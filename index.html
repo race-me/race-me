@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Race Me — Nonprofit Car Club">
+<meta property="og:description" content="We build them, race them, road-trip them. 24 Hours of Lemons, annual runs, and a shop on the way.">
+<meta property="og:image" content="uploads/pasted-1783392734015-0.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #080b12; }
+  body { font-family: 'Chakra Petch', sans-serif; color: #e8edf5; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #4da3ff; text-decoration: none; }
+  a:hover { color: #ff8a3d; }
+  @keyframes rm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes rm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  ::selection { background: #ff8a3d; color: #080b12; }
+</style>
+</helmet>
+
+<!-- ======================= NAV ======================= -->
+<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
+  <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
+    <span style="display: inline-block; width: 26px; height: 16px; background: repeating-linear-gradient(-60deg, #4da3ff 0 6px, transparent 6px 11px)"></span>
+    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME</span>
+  </a>
+  <div style="display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
+    <a href="#club" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE CLUB</a>
+    <a href="#garage" style="color: #9fb0c8" style-hover="color: #ff8a3d">GARAGE</a>
+    <a href="projects.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">PROJECTS</a>
+    <a href="#roadtrip" style="color: #9fb0c8" style-hover="color: #ff8a3d">ROAD TRIP</a>
+    <a href="#shop" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE SHOP</a>
+    <a href="#sponsors" style="color: #9fb0c8" style-hover="color: #ff8a3d">SPONSORS</a>
+    <a href="#join" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">JOIN</a>
+  </div>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<div id="top" data-screen-label="Hero" style="position: relative; overflow: hidden; padding: clamp(114px, 14vw, 180px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 110px); background: radial-gradient(1100px 600px at 80% -10%, rgba(77,163,255,0.16), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(255,138,61,0.10), transparent 60%), #080b12">
+  <!-- faint grid texture -->
+  <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(77,163,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(77,163,255,0.05) 1px, transparent 1px); background-size: 56px 56px"></div>
+  <div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); max-width: 1280px; margin: 0 auto; align-items: center">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.22em; color: #4da3ff; border: 1px solid rgba(77,163,255,0.35); padding: 7px 14px; margin-bottom: 28px">
+        <span style="width: 7px; height: 7px; background: #ff8a3d; animation: rm-pulse 1.6s infinite"></span>
+        NONPROFIT CAR CLUB — EST. 2026
+      </div>
+      <h1 style="margin: 0 0 20px; font-size: clamp(52px, 9vw, 110px); line-height: 0.95; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase">
+        Race.<br>
+        Wrench.<br>
+        <span style="color: #ff8a3d">Repeat.</span>
+      </h1>
+      <p style="margin: 0 0 36px; max-width: 46ch; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: #9fb0c8; text-wrap: pretty">
+        Race Me is a nonprofit club for people who'd rather spend a Saturday under a car than anywhere else. We build them, race them, road-trip them — and crack a cold one when the tools go down.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px">
+        <a href="#join" style="padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">BECOME A MEMBER</a>
+        <a href="#sponsors" style="padding: 15px 30px; border: 1px solid rgba(232,237,245,0.3); color: #e8edf5; font-weight: 600; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="border-color: #ff8a3d; color: #ff8a3d">SPONSOR US</a>
+      </div>
+    </div>
+    <div style="position: relative">
+      <div style="position: absolute; top: -14px; right: -14px; width: 90px; height: 90px; border-top: 2px solid #ff8a3d; border-right: 2px solid #ff8a3d; pointer-events: none"></div>
+      <div style="position: absolute; bottom: -14px; left: -14px; width: 90px; height: 90px; border-bottom: 2px solid #4da3ff; border-left: 2px solid #4da3ff; pointer-events: none"></div>
+      <div style="width: 100%; aspect-ratio: 4 / 3">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-car" shape="rect" src="uploads/20260104_160450.jpg" placeholder="Drop a photo of your build" hint-size="100%,100%"></x-import>
+      </div>
+      <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.01 — PROJECT CAR: HONDA INSIGHT · 24 HOURS OF LEMONS</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= TICKER ======================= -->
+<sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+  <div style="overflow: hidden; border-top: 1px solid rgba(255,138,61,0.35); border-bottom: 1px solid rgba(255,138,61,0.35); background: #0b0f18; padding: 12px 0">
+    <div style="display: flex; width: max-content; white-space: nowrap; animation-name: rm-marquee; animation-timing-function: linear; animation-iteration-count: infinite; animation-duration: {{ tickerDuration }}">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.24em; color: #ff8a3d; padding-right: 48px">RACE ✕ WRENCH ✕ DRIVE ✕ HANG ✕ REPEAT ✕&nbsp;</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.24em; color: #ff8a3d; padding-right: 48px">RACE ✕ WRENCH ✕ DRIVE ✕ HANG ✕ REPEAT ✕&nbsp;</span>
+    </div>
+  </div>
+</sc-if>
+
+<!-- ======================= THE CLUB ======================= -->
+<div id="club" data-screen-label="The Club" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #080b12">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 01</span>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em">What we're about</h2>
+    </div>
+    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">No gatekeeping, no trailer queens. If you like cars and good company, you're in the right place.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 2px; background: rgba(77,163,255,0.18)">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+        <div style="background: #0b0f18; padding: 32px 28px 36px" style-hover="background: #0e1420">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #ff8a3d; letter-spacing: 0.2em; margin-bottom: 18px">{{ p.num }}</div>
+          <div style="font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px">{{ p.title }}</div>
+          <div style="color: #9fb0c8; font-size: 15px; line-height: 1.6; text-wrap: pretty">{{ p.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= MEMBER GARAGE ======================= -->
+<div id="garage" data-screen-label="Member Garage" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #0b0f18">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 02</span>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">Member garage</h2>
+    </div>
+    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
+      What the crew drives, races, and wrenches on. Some already fly sponsor colors — yours could be next.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 270px; grid-auto-flow: dense; gap: 2px; background: rgba(77,163,255,0.18)">
+      <sc-for list="{{ garage }}" as="g" hint-placeholder-count="5">
+        <div style="position: relative; grid-row: {{ g.row }}; background: #0b0f18">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" dc-props="{{ g.slotProps }}" shape="rect" hint-size="100%,100%"></x-import>
+          <div style="position: absolute; left: 0; bottom: 0; pointer-events: none; background: rgba(8,11,18,0.82); padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #e8edf5">{{ g.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.02 — MEMBER RIDES, PHOTOGRAPHED BY THE CLUB</div>
+  </div>
+</div>
+
+<!-- ======================= ROAD TRIP ======================= -->
+<div id="roadtrip" data-screen-label="Road Trip" style="position: relative; overflow: hidden; padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: linear-gradient(180deg, #0b0f18, #0d1220)">
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(90deg, #ff8a3d 0 40px, transparent 40px 80px)"></div>
+  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center">
+    <div style="width: 100%; aspect-ratio: 16 / 10">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="roadtrip-photo" shape="rect" src="uploads/pasted-1783392734015-0.jpg" placeholder="Drop a road trip / convoy photo" hint-size="100%,100%"></x-import>
+    </div>
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 03</span>
+        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The Annual Run</h2>
+      </div>
+      <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
+        Once a year we pick a route, pack the tools, and take the whole club on the road. Backroads, mountain passes, questionable diners — the works. Every member drives, every car makes it home. Mostly.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(77,163,255,0.18); max-width: 480px">
+        <sc-for list="{{ tripStats }}" as="s" hint-placeholder-count="3">
+          <div style="background: #0b0f18; padding: 18px 16px; text-align: center">
+            <div style="font-size: clamp(22px, 3vw, 30px); font-weight: 700; color: #ff8a3d">{{ s.value }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84; margin-top: 6px">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= THE SHOP ======================= -->
+<div id="shop" data-screen-label="The Shop" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #080b12">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 04</span>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The Shop <span style="color: #4da3ff; font-size: 0.45em; vertical-align: middle; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; font-weight: 500">— IN THE WORKS</span></h2>
+    </div>
+    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
+      We're building a large commercial shop: lifts, tools, a paint-ready bay, and enough room to hang out after the work's done. Home base for every build and every Friday night.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: clamp(24px, 3vw, 40px); align-items: stretch">
+      <div style="width: 100%; min-height: 300px">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shop-render" shape="rect" placeholder="Drop shop render / site photo" hint-size="100%,300px"></x-import>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; background: rgba(77,163,255,0.18)">
+        <sc-for list="{{ shopSpecs }}" as="sp" hint-placeholder-count="5">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #0b0f18; padding: 18px 22px; flex: 1">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #9fb0c8">{{ sp.label }}</span>
+            <span style="font-weight: 700; font-size: 16px; color: #e8edf5; text-align: right">{{ sp.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= SPONSORS ======================= -->
+<div id="sponsors" data-screen-label="Sponsors" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: linear-gradient(180deg, #0b0f18, #0d1220)">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 05</span>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">Back the club</h2>
+    </div>
+    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
+      We're a nonprofit — sponsorships keep cars on track and the lights on in the shop. Your logo rides with us: on the cars, at the events, on the annual run.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 2.5vw, 32px)">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div style="position: relative; background: #0b0f18; border: 1px solid {{ t.border }}; padding: 34px 30px 38px" style-hover="border-color: #ff8a3d">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: {{ t.accent }}"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.24em; color: {{ t.accent }}; margin-bottom: 14px">{{ t.tag }}</div>
+          <div style="font-size: 26px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px">{{ t.name }}</div>
+          <div style="font-size: 15px; color: #5a6b84; font-family: 'IBM Plex Mono', monospace; margin-bottom: 22px">{{ t.price }}</div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ t.perks }}" as="perk" hint-placeholder-count="3">
+              <div style="display: flex; gap: 10px; align-items: baseline; color: #9fb0c8; font-size: 15px; line-height: 1.5">
+                <span style="color: {{ t.accent }}; font-family: 'IBM Plex Mono', monospace">▸</span>
+                <span>{{ perk }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= JOIN / FOOTER ======================= -->
+<div id="join" data-screen-label="Join" style="position: relative; overflow: hidden; padding: clamp(72px, 10vw, 140px) clamp(20px, 5vw, 64px) 0; background: #080b12">
+  <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(900px 500px at 50% 0%, rgba(255,138,61,0.10), transparent 65%)"></div>
+  <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.24em; color: #4da3ff; margin-bottom: 20px">GRID SPOTS OPEN</div>
+    <h2 style="margin: 0 0 20px; font-size: clamp(40px, 7vw, 84px); font-weight: 700; text-transform: uppercase; line-height: 1">Pull up a stool.<br><span style="color: #ff8a3d">Grab a wrench.</span></h2>
+    <p style="margin: 0 auto 40px; max-width: 48ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">Membership is open to anyone who loves cars. Come to a meet, see the builds, meet the crew.</p>
+    <a href="mailto:info@race-me.org" style="display: inline-block; padding: 18px 44px; background: #ff8a3d; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #4da3ff">GET IN TOUCH</a>
+  </div>
+  <div style="position: relative; max-width: 1280px; margin: clamp(64px, 9vw, 110px) auto 0; padding: 24px 0 28px; border-top: 1px solid rgba(77,163,255,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #5a6b84">
+    <span>© 2026 RACE ME — A NONPROFIT CAR CLUB</span>
+    <span>DRIVE FAST · WRENCH SLOW · DRINK RESPONSIBLY</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showTicker&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Ticker&quot; },
+  &quot;tickerSpeed&quot;: { &quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 18, &quot;min&quot;: 6, &quot;max&quot;: 40, &quot;step&quot;: 1, &quot;unit&quot;: &quot;s&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Ticker&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const speed = this.props.tickerSpeed ?? 18;
+    return {
+      showTicker: this.props.showTicker ?? true,
+      tickerDuration: speed + 's',
+      pillars: [
+        { num: '01', title: 'Race', body: '24 Hours of Lemons is our arena. Next up: the High Plains 24 in September — roll cage going in now, Class C win in the crosshairs.' },
+        { num: '02', title: 'Wrench', body: 'Group builds and shared tools. Bring your project — someone here has done that swap before.' },
+        { num: '03', title: 'Drive', body: 'Weekend cruises and canyon runs. The cars get driven, not parked under covers.' },
+        { num: '04', title: 'Hang', body: 'Cold beer, hot takes, good people. Half the club is the cars; the other half is everyone around them.' },
+      ],
+      garage: [
+        { row: 'auto', label: '007 — TRACK-DAY MISSILE', slotProps: { id: 'garage-007', src: 'uploads/pasted-1783392817796-0.jpg', placeholder: 'Drop a member ride' } },
+        { row: 'span 2', label: 'SPYDER — CANYON RUN, TOP DOWN', slotProps: { id: 'garage-canyon', src: 'uploads/pasted-1783392747836-0.jpg', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'THE ELISE — ONE LAP OF AMERICA VETERAN', slotProps: { id: 'garage-elise', src: 'uploads/pasted-1783392769200-0.jpg', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'BOXSTER SPYDER — WEEKEND WEAPON', slotProps: { id: 'garage-spyder', src: 'uploads/pasted-1783392794416-0.jpg', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'GR SUPRA — FRONT RANGE CRUISER', slotProps: { id: 'garage-supra', src: 'uploads/pasted-1783392857251-0.jpg', placeholder: 'Drop a member ride' } },
+      ],
+      tripStats: [
+        { value: '1,200+', label: 'MILES' },
+        { value: '5', label: 'DAYS' },
+        { value: '1', label: 'BREAKDOWN LIMIT' },
+      ],
+      shopSpecs: [
+        { label: 'FOOTPRINT', value: '3,200 sq ft' },
+        { label: 'LIFTS', value: '3 two-post + 1 four-post' },
+        { label: 'WELDING', value: 'Dedicated weld area' },
+        { label: 'PAINT', value: 'Paint booth' },
+        { label: 'HANGOUT', value: 'Sim racing + bar (future)' },
+      ],
+      tiers: [
+        { tag: 'TIER 01', name: 'Pit Crew', price: '$500 / yr', accent: '#4da3ff', border: 'rgba(77,163,255,0.3)',
+          perks: ['Logo on the club site', 'Shout-outs at every event', 'Invites to club meets'] },
+        { tag: 'TIER 02', name: 'Podium', price: '$2,500 / yr', accent: '#ff8a3d', border: 'rgba(255,138,61,0.4)',
+          perks: ['Decal on every club race car', 'Banner at the shop', 'Everything in Pit Crew'] },
+        { tag: 'TIER 03', name: 'Title', price: 'Let\'s talk', accent: '#e8edf5', border: 'rgba(232,237,245,0.3)',
+          perks: ['Naming rights on the annual run', 'Featured livery placement', 'Everything in Podium'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
