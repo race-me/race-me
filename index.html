@@ -12,6 +12,7 @@
 <meta property="og:title" content="Race Me — Nonprofit Car Club">
 <meta property="og:description" content="We build them, race them, road-trip them. 24 Hours of Lemons, annual runs, and a shop on the way.">
 <meta property="og:image" content="uploads/pasted-1783392734015-0.jpg">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -22,6 +23,7 @@
   a:hover { color: #ff8a3d; }
   @keyframes rm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes rm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @keyframes rm-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   ::selection { background: #ff8a3d; color: #080b12; }
 </style>
 </helmet>
@@ -29,14 +31,15 @@
 <!-- ======================= NAV ======================= -->
 <div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
   <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
-    <span style="display: inline-block; width: 26px; height: 16px; background: repeating-linear-gradient(-60deg, #4da3ff 0 6px, transparent 6px 11px)"></span>
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME</span>
+    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
+    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME<span style="font-size: 10px; vertical-align: super">™</span></span>
   </a>
   <div style="display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
     <a href="#club" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE CLUB</a>
     <a href="#garage" style="color: #9fb0c8" style-hover="color: #ff8a3d">GARAGE</a>
     <a href="projects.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">PROJECTS</a>
-    <a href="#roadtrip" style="color: #9fb0c8" style-hover="color: #ff8a3d">ROAD TRIP</a>
+    <a href="roadtrip.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">ROAD TRIP</a>
+    <a href="pasttrips.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">PAST RUNS</a>
     <a href="#shop" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE SHOP</a>
     <a href="#sponsors" style="color: #9fb0c8" style-hover="color: #ff8a3d">SPONSORS</a>
     <a href="#join" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">JOIN</a>
@@ -142,8 +145,9 @@
         <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The Annual Run</h2>
       </div>
       <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
-        Once a year we pick a route, pack the tools, and take the whole club on the road. Backroads, mountain passes, questionable diners — the works. Every member drives, every car makes it home. Mostly.
+        This year: the Tail of the Dragon. October 2–10 — a week in the Smokies on the best driving roads in America, then the Barber Motorsports Museum on the ride home. Every member drives, every car makes it home. Mostly.
       </p>
+      <a href="roadtrip.html" style="display: inline-block; margin-bottom: 28px; padding: 13px 26px; border: 1px solid #ff8a3d; color: #ff8a3d; font-weight: 600; font-size: 14px; letter-spacing: 0.08em; clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">2026 ITINERARY →</a>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(77,163,255,0.18); max-width: 480px">
         <sc-for list="{{ tripStats }}" as="s" hint-placeholder-count="3">
           <div style="background: #0b0f18; padding: 18px 16px; text-align: center">
@@ -213,22 +217,56 @@
   </div>
 </div>
 
+<!-- ======================= COMMUNITY / DISCORD ======================= -->
+<div id="community" data-screen-label="Community" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #0b0f18">
+  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center">
+    <div>
+      <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 06</span>
+        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The paddock</h2>
+      </div>
+      <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
+        The club lives on Discord between meets — build threads, race prep, road-trip planning, and someone always selling parts. Jump in and say hi.
+      </p>
+      <a href="{{ discordUrl }}" style="display: inline-block; padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d">JOIN THE DISCORD</a>
+    </div>
+    <div>
+      <sc-if value="{{ hasDiscordWidget }}" hint-placeholder-val="{{ false }}">
+        <iframe src="{{ discordWidgetSrc }}" width="100%" height="480" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border: 1px solid rgba(77,163,255,0.25); display: block"></iframe>
+      </sc-if>
+      <sc-if value="{{ noDiscordWidget }}" hint-placeholder-val="{{ true }}">
+        <div style="height: 480px; border: 1px dashed rgba(77,163,255,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 24px">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #4da3ff">LIVE SERVER WIDGET</div>
+          <div style="color: #5a6b84; font-size: 14px; line-height: 1.6; max-width: 34ch">Appears here once the Discord Server ID is set in Tweaks.</div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
 <!-- ======================= JOIN / FOOTER ======================= -->
 <div id="join" data-screen-label="Join" style="position: relative; overflow: hidden; padding: clamp(72px, 10vw, 140px) clamp(20px, 5vw, 64px) 0; background: #080b12">
   <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(900px 500px at 50% 0%, rgba(255,138,61,0.10), transparent 65%)"></div>
+  <div style="position: absolute; top: 50%; left: 50%; width: min(640px, 90vw); aspect-ratio: 1; margin: max(-320px, -45vw) 0 0 max(-320px, -45vw); pointer-events: none; border-radius: 50%; border: 1px dashed rgba(77,163,255,0.22); animation: rm-spin 60s linear infinite"></div>
   <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center">
+    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 110px; height: 110px; margin-bottom: 26px">
     <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.24em; color: #4da3ff; margin-bottom: 20px">GRID SPOTS OPEN</div>
     <h2 style="margin: 0 0 20px; font-size: clamp(40px, 7vw, 84px); font-weight: 700; text-transform: uppercase; line-height: 1">Pull up a stool.<br><span style="color: #ff8a3d">Grab a wrench.</span></h2>
     <p style="margin: 0 auto 40px; max-width: 48ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">Membership is open to anyone who loves cars. Come to a meet, see the builds, meet the crew.</p>
-    <a href="mailto:info@race-me.org" style="display: inline-block; padding: 18px 44px; background: #ff8a3d; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #4da3ff">GET IN TOUCH</a>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center">
+      <a href="{{ discordUrl }}" style="display: inline-block; padding: 18px 44px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #ff8a3d">JOIN THE DISCORD</a>
+      <a href="mailto:info@race-me.org" style="display: inline-block; padding: 18px 44px; background: #ff8a3d; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #4da3ff">GET IN TOUCH</a>
+    </div>
   </div>
   <div style="position: relative; max-width: 1280px; margin: clamp(64px, 9vw, 110px) auto 0; padding: 24px 0 28px; border-top: 1px solid rgba(77,163,255,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #5a6b84">
-    <span>© 2026 RACE ME — A NONPROFIT CAR CLUB</span>
+    <span style="display: inline-flex; align-items: center; gap: 10px"><img src="assets/logo-rm-64.png" alt="RM" style="width: 22px; height: 22px">© 2026 RACE ME™ — A REGISTERED COLORADO NONPROFIT</span>
     <span>DRIVE FAST · WRENCH SLOW · DRINK RESPONSIBLY</span>
   </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{
+  &quot;discordUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://discord.gg/kSG9SPUkdZ&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Discord&quot; },
+  &quot;discordServerId&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;1523907282952261773&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Discord&quot; },
   &quot;showTicker&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Ticker&quot; },
   &quot;tickerSpeed&quot;: { &quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 18, &quot;min&quot;: 6, &quot;max&quot;: 40, &quot;step&quot;: 1, &quot;unit&quot;: &quot;s&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Ticker&quot; }
 }">
@@ -236,6 +274,10 @@ class Component extends DCLogic {
   renderVals() {
     const speed = this.props.tickerSpeed ?? 18;
     return {
+      discordUrl: this.props.discordUrl ?? 'https://discord.gg/kSG9SPUkdZ',
+      hasDiscordWidget: !!(this.props.discordServerId ?? '1523907282952261773').trim(),
+      noDiscordWidget: !(this.props.discordServerId ?? '1523907282952261773').trim(),
+      discordWidgetSrc: 'https://discord.com/widget?id=' + (this.props.discordServerId ?? '1523907282952261773').trim() + '&theme=dark',
       showTicker: this.props.showTicker ?? true,
       tickerDuration: speed + 's',
       pillars: [
@@ -252,8 +294,8 @@ class Component extends DCLogic {
         { row: 'auto', label: 'GR SUPRA — FRONT RANGE CRUISER', slotProps: { id: 'garage-supra', src: 'uploads/pasted-1783392857251-0.jpg', placeholder: 'Drop a member ride' } },
       ],
       tripStats: [
-        { value: '1,200+', label: 'MILES' },
-        { value: '5', label: 'DAYS' },
+        { value: '318', label: 'CURVES / 11 MI' },
+        { value: '9', label: 'DAYS' },
         { value: '1', label: 'BREAKDOWN LIMIT' },
       ],
       shopSpecs: [

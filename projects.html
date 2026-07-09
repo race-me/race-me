@@ -9,6 +9,7 @@
 <x-dc>
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -25,8 +26,8 @@
 <!-- ======================= NAV ======================= -->
 <div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
   <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
-    <span style="display: inline-block; width: 26px; height: 16px; background: repeating-linear-gradient(-60deg, #4da3ff 0 6px, transparent 6px 11px)"></span>
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME</span>
+    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
+    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME<span style="font-size: 10px; vertical-align: super">™</span></span>
   </a>
   <div style="display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
     <a href="index.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">← BACK TO SITE</a>
@@ -105,11 +106,73 @@
   </div>
 </div>
 
+<!-- ======================= THE VISION (BEFORE/AFTER) ======================= -->
+<div id="vision" data-screen-label="The Vision" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); background: #080b12">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em; margin-bottom: 10px">THE VISION</div>
+    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase">From barn find to <span style="color: #ff8a3d">street legend</span></h2>
+    <p style="margin: 0 0 36px; max-width: 60ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
+      Where we're taking the Insight. Drag the handle to compare today's car with the build vision.
+    </p>
+    <div style="position: relative; max-width: 960px; aspect-ratio: 16 / 10; user-select: none; touch-action: none">
+      <!-- AFTER (bottom layer) -->
+      <div style="position: absolute; inset: 0">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="vision-after" shape="rect" placeholder="Drop the AI 'after' render here" hint-size="100%,100%"></x-import>
+      </div>
+      <!-- BEFORE (top layer, clipped) -->
+      <img src="uploads/20260104_160450.jpg" alt="Insight today" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: {{ beforeClip }}; pointer-events: none">
+      <!-- divider + handle -->
+      <div style="position: absolute; top: 0; bottom: 0; left: {{ dividerLeft }}; width: 3px; margin-left: -1.5px; background: #ff8a3d; pointer-events: none">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: #ff8a3d; color: #080b12; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; letter-spacing: 0.05em">⇄</div>
+      </div>
+      <!-- labels -->
+      <div style="position: absolute; top: 14px; left: 14px; background: rgba(8,11,18,0.82); color: #4da3ff; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 6px 12px; pointer-events: none">BEFORE — AS DELIVERED</div>
+      <div style="position: absolute; top: 14px; right: 14px; background: rgba(8,11,18,0.82); color: #ff8a3d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 6px 12px; pointer-events: none">AFTER — THE VISION</div>
+      <!-- invisible range input drives the slider -->
+      <input type="range" min="0" max="100" step="0.1" value="{{ sliderPct }}" onInput="{{ onSlide }}" aria-label="Before / after comparison" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0">
+    </div>
+    <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.03 — DRAG TO COMPARE · RENDER IS A CONCEPT, BUDGET PENDING</div>
+  </div>
+</div>
+
+<!-- ======================= PROJECT 02: MR2 (CHAMPION) ======================= -->
+<div id="mr2" data-screen-label="Project MR2" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); background: #0b0f18">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 18px; margin-bottom: 10px">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">PROJECT / 02</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #080b12; background: #ff8a3d; padding: 5px 12px; font-weight: 600">🏆 CLASS B WINNER — B.F.E. GP 2026</span>
+    </div>
+    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase">Toyota MR2 “DadBod CarMod”</h2>
+    <p style="margin: 0 0 40px; max-width: 66ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
+      Our best 24 Hours of Lemons result yet. June 2026 at High Plains Raceway: the #177 MR2 ran 336 laps in 14.5 hours and took the Class B win by two clean laps. Its stablemate — the green #157 Yaris — led Class C until a catastrophic brake failure cost a three-hour repair. The DadBod CarMod team did fantastic.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 2px; background: rgba(77,163,255,0.18); max-width: 760px; margin-bottom: 40px">
+      <sc-for list="{{ mr2Stats }}" as="s" hint-placeholder-count="4">
+        <div style="background: #080b12; padding: 18px 20px; text-align: center">
+          <div style="font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #ff8a3d">{{ s.value }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84; margin-top: 6px">{{ s.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 2px; background: rgba(77,163,255,0.18)">
+      <sc-for list="{{ mr2Photos }}" as="p" hint-placeholder-count="8">
+        <div style="position: relative; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+          <img src="{{ p.src }}" alt="{{ p.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" loading="lazy">
+          <div style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.82); padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #e8edf5">{{ p.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.02 — BEFORE: CAGE PREP AND COILOVERS. AFTER: P1 IN CLASS. THE BEER WAS EARNED.</div>
+  </div>
+</div>
+
 <!-- ======================= NEXT PROJECT ======================= -->
 <sc-if value="{{ showUpNext }}" hint-placeholder-val="{{ true }}">
   <div data-screen-label="Next Project" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px) clamp(72px, 9vw, 120px); background: #080b12">
     <div style="max-width: 1280px; margin: 0 auto">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em; margin-bottom: 10px">PROJECT / 02</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em; margin-bottom: 10px">PROJECT / 03</div>
       <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase; color: #5a6b84">To be determined</h2>
       <p style="margin: 0 0 32px; max-width: 56ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">The next club build gets documented here. Got a candidate rotting in a field somewhere? Pitch it at the next meet.</p>
       <div style="width: 100%; max-width: 640px; aspect-ratio: 16 / 9; border: 1px dashed rgba(77,163,255,0.35)">
@@ -122,7 +185,7 @@
 <!-- ======================= FOOTER ======================= -->
 <div style="padding: 0 clamp(20px, 5vw, 64px); background: #080b12">
   <div style="max-width: 1280px; margin: 0 auto; padding: 24px 0 28px; border-top: 1px solid rgba(77,163,255,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #5a6b84">
-    <span>© 2026 RACE ME — A NONPROFIT CAR CLUB</span>
+    <span style="display: inline-flex; align-items: center; gap: 10px"><img src="assets/logo-rm-64.png" alt="RM" style="width: 22px; height: 22px">© 2026 RACE ME™ — A REGISTERED COLORADO NONPROFIT</span>
     <a href="mailto:info@race-me.org" style="color: #5a6b84" style-hover="color: #ff8a3d">INFO@RACE-ME.ORG</a>
   </div>
 </div>
@@ -131,10 +194,32 @@
   &quot;showUpNext&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Sections&quot; }
 }">
 class Component extends DCLogic {
+  state = { sliderPct: 50 };
   renderVals() {
     const done = '#4da3ff', now = '#ff8a3d', next = '#5a6b84';
+    const pct = this.state.sliderPct;
     return {
+      sliderPct: pct,
+      dividerLeft: pct + '%',
+      beforeClip: 'inset(0 ' + (100 - pct) + '% 0 0)',
+      onSlide: (e) => this.setState({ sliderPct: parseFloat(e.target.value) }),
       showUpNext: this.props.showUpNext ?? true,
+      mr2Stats: [
+        { value: 'P1 — CLASS B', label: 'FINISH' },
+        { value: '336', label: 'LAPS' },
+        { value: '2:12.899', label: 'BEST LAP' },
+        { value: '+2 LAPS', label: 'WINNING GAP' },
+      ],
+      mr2Photos: [
+        { src: 'assets/projects/mr2-team.jpg', label: 'THE DADBOD CARMOD TEAM — MR2 + YARIS', row: 'span 2', col: 'span 2' },
+        { src: 'assets/projects/mr2-trophy.jpg', label: 'THE LEMON — CLASS B, WON', row: 'span 2', col: 'auto' },
+        { src: 'assets/projects/mr2-lift.jpg', label: 'BEFORE — ON THE LIFT, COILOVER PREP', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-cage.jpg', label: 'BEFORE — CAGE MEASUREMENTS', row: 'auto', col: 'auto' },
+        { src: 'assets/projects/mr2-leading.jpg', label: 'LEADING THE PACK AT HPR', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-yaris-track.jpg', label: 'TEAM CARS 1-2 ON THE FRONT STRAIGHT', row: 'auto', col: 'auto' },
+        { src: 'assets/projects/mr2-chug.jpg', label: 'VICTORY PROTOCOL, EXECUTED', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-hood.jpg', label: 'DRIVERS ON THE WINNING HOOD', row: 'auto', col: 'auto' },
+      ],
       insightThumbs: [
         { id: 'proj-insight-t1', src: 'uploads/20260104_160514.jpg', placeholder: 'Build photo' },
         { id: 'proj-insight-t2', src: 'uploads/20260104_160455.jpg', placeholder: 'Build photo' },
