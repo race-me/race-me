@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="Race Me — Nonprofit Car Club">
 <meta property="og:description" content="We build them, race them, road-trip them. 24 Hours of Lemons, annual runs, and a shop on the way.">
-<meta property="og:image" content="uploads/pasted-1783392734015-0.jpg">
+<meta property="og:image" content="uploads/pasted-1783392734015-0.png">
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -29,25 +29,26 @@
 </helmet>
 
 <!-- ======================= NAV ======================= -->
-<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
+<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
   <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
     <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME<span style="font-size: 10px; vertical-align: super">™</span></span>
+    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em"><span style="color: #4da3ff">RACE</span>&nbsp;<span style="color: #ff8a3d">ME</span><span style="font-size: 10px; vertical-align: super">™</span></span>
   </a>
-  <div style="display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px clamp(8px, 2vw, 24px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
     <a href="#club" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE CLUB</a>
     <a href="#garage" style="color: #9fb0c8" style-hover="color: #ff8a3d">GARAGE</a>
-    <a href="projects.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">PROJECTS</a>
-    <a href="roadtrip.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">ROAD TRIP</a>
-    <a href="pasttrips.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">PAST RUNS</a>
     <a href="#shop" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE SHOP</a>
     <a href="#sponsors" style="color: #9fb0c8" style-hover="color: #ff8a3d">SPONSORS</a>
+    <span style="width: 1px; height: 18px; background: rgba(77,163,255,0.3)"></span>
+    <a href="projects.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PROJECTS ▸</a>
+    <a href="roadtrip.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">ROAD TRIP ▸</a>
+    <a href="pasttrips.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PAST RUNS ▸</a>
     <a href="#join" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">JOIN</a>
   </div>
 </div>
 
 <!-- ======================= HERO ======================= -->
-<div id="top" data-screen-label="Hero" style="position: relative; overflow: hidden; padding: clamp(114px, 14vw, 180px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 110px); background: radial-gradient(1100px 600px at 80% -10%, rgba(77,163,255,0.16), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(255,138,61,0.10), transparent 60%), #080b12">
+<div id="top" data-screen-label="Hero" style="position: relative; overflow: hidden; padding: clamp(190px, 16vw, 200px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 110px); background: radial-gradient(1100px 600px at 80% -10%, rgba(77,163,255,0.16), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(255,138,61,0.10), transparent 60%), #080b12">
   <!-- faint grid texture -->
   <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(77,163,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(77,163,255,0.05) 1px, transparent 1px); background-size: 56px 56px"></div>
   <div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); max-width: 1280px; margin: 0 auto; align-items: center">
@@ -57,7 +58,7 @@
         NONPROFIT CAR CLUB — EST. 2026
       </div>
       <h1 style="margin: 0 0 20px; font-size: clamp(52px, 9vw, 110px); line-height: 0.95; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase">
-        Race.<br>
+        <span style="color: #4da3ff">Race.</span><br>
         Wrench.<br>
         <span style="color: #ff8a3d">Repeat.</span>
       </h1>
@@ -95,7 +96,7 @@
   <div style="max-width: 1280px; margin: 0 auto">
     <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
       <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 01</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em">What we're about</h2>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em"><span style="color: #4da3ff">What</span> we're <span style="color: #ff8a3d">about</span></h2>
     </div>
     <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">No gatekeeping, no trailer queens. If you like cars and good company, you're in the right place.</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 2px; background: rgba(77,163,255,0.18)">
@@ -115,7 +116,7 @@
   <div style="max-width: 1280px; margin: 0 auto">
     <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
       <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 02</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">Member garage</h2>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Member</span> <span style="color: #ff8a3d">garage</span></h2>
     </div>
     <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
       What the crew drives, races, and wrenches on. Some already fly sponsor colors — yours could be next.
@@ -137,12 +138,12 @@
   <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(90deg, #ff8a3d 0 40px, transparent 40px 80px)"></div>
   <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center">
     <div style="width: 100%; aspect-ratio: 16 / 10">
-      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="roadtrip-photo" shape="rect" src="uploads/pasted-1783392734015-0.jpg" placeholder="Drop a road trip / convoy photo" hint-size="100%,100%"></x-import>
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="roadtrip-photo" shape="rect" src="uploads/pasted-1783392734015-0.png" placeholder="Drop a road trip / convoy photo" hint-size="100%,100%"></x-import>
     </div>
     <div>
       <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 03</span>
-        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The Annual Run</h2>
+        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> Annual <span style="color: #ff8a3d">Run</span></h2>
       </div>
       <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
         This year: the Tail of the Dragon. October 2–10 — a week in the Smokies on the best driving roads in America, then the Barber Motorsports Museum on the ride home. Every member drives, every car makes it home. Mostly.
@@ -165,7 +166,7 @@
   <div style="max-width: 1280px; margin: 0 auto">
     <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
       <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 04</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The Shop <span style="color: #4da3ff; font-size: 0.45em; vertical-align: middle; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; font-weight: 500">— IN THE WORKS</span></h2>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> <span style="color: #ff8a3d">Shop</span> <span style="color: #4da3ff; font-size: 0.45em; vertical-align: middle; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; font-weight: 500">— IN THE WORKS</span></h2>
     </div>
     <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
       We're building a large commercial shop: lifts, tools, a paint-ready bay, and enough room to hang out after the work's done. Home base for every build and every Friday night.
@@ -191,7 +192,7 @@
   <div style="max-width: 1280px; margin: 0 auto">
     <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
       <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 05</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">Back the club</h2>
+      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Back</span> the <span style="color: #ff8a3d">club</span></h2>
     </div>
     <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
       We're a nonprofit — sponsorships keep cars on track and the lights on in the shop. Your logo rides with us: on the cars, at the events, on the annual run.
@@ -223,7 +224,7 @@
     <div>
       <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 06</span>
-        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase">The paddock</h2>
+        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> <span style="color: #ff8a3d">paddock</span></h2>
       </div>
       <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
         The club lives on Discord between meets — build threads, race prep, road-trip planning, and someone always selling parts. Jump in and say hi.
@@ -251,7 +252,7 @@
   <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center">
     <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 110px; height: 110px; margin-bottom: 26px">
     <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.24em; color: #4da3ff; margin-bottom: 20px">GRID SPOTS OPEN</div>
-    <h2 style="margin: 0 0 20px; font-size: clamp(40px, 7vw, 84px); font-weight: 700; text-transform: uppercase; line-height: 1">Pull up a stool.<br><span style="color: #ff8a3d">Grab a wrench.</span></h2>
+    <h2 style="margin: 0 0 20px; font-size: clamp(40px, 7vw, 84px); font-weight: 700; text-transform: uppercase; line-height: 1"><span style="color: #4da3ff">Pull</span> up a stool.<br><span style="color: #ff8a3d">Grab a wrench.</span></h2>
     <p style="margin: 0 auto 40px; max-width: 48ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">Membership is open to anyone who loves cars. Come to a meet, see the builds, meet the crew.</p>
     <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center">
       <a href="{{ discordUrl }}" style="display: inline-block; padding: 18px 44px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #ff8a3d">JOIN THE DISCORD</a>
@@ -287,11 +288,11 @@ class Component extends DCLogic {
         { num: '04', title: 'Hang', body: 'Cold beer, hot takes, good people. Half the club is the cars; the other half is everyone around them.' },
       ],
       garage: [
-        { row: 'auto', label: '007 — TRACK-DAY MISSILE', slotProps: { id: 'garage-007', src: 'uploads/pasted-1783392817796-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'span 2', label: 'SPYDER — CANYON RUN, TOP DOWN', slotProps: { id: 'garage-canyon', src: 'uploads/pasted-1783392747836-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'THE ELISE — ONE LAP OF AMERICA VETERAN', slotProps: { id: 'garage-elise', src: 'uploads/pasted-1783392769200-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'BOXSTER SPYDER — WEEKEND WEAPON', slotProps: { id: 'garage-spyder', src: 'uploads/pasted-1783392794416-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'GR SUPRA — FRONT RANGE CRUISER', slotProps: { id: 'garage-supra', src: 'uploads/pasted-1783392857251-0.jpg', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: '007 — TRACK-DAY MISSILE', slotProps: { id: 'garage-007', src: 'uploads/pasted-1783392817796-0.png', placeholder: 'Drop a member ride' } },
+        { row: 'span 2', label: 'SPYDER — CANYON RUN, TOP DOWN', slotProps: { id: 'garage-canyon', src: 'uploads/pasted-1783392747836-0.png', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'THE ELISE — ONE LAP OF AMERICA VETERAN', slotProps: { id: 'garage-elise', src: 'uploads/pasted-1783392769200-0.png', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'BOXSTER SPYDER — WEEKEND WEAPON', slotProps: { id: 'garage-spyder', src: 'uploads/pasted-1783392794416-0.png', placeholder: 'Drop a member ride' } },
+        { row: 'auto', label: 'GR SUPRA — FRONT RANGE CRUISER', slotProps: { id: 'garage-supra', src: 'uploads/pasted-1783392857251-0.png', placeholder: 'Drop a member ride' } },
       ],
       tripStats: [
         { value: '318', label: 'CURVES / 11 MI' },

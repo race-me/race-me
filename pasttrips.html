@@ -23,24 +23,28 @@
 </helmet>
 
 <!-- ======================= NAV ======================= -->
-<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
+<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
   <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
     <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em">RACE&nbsp;ME<span style="font-size: 10px; vertical-align: super">™</span></span>
+    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em"><span style="color: #4da3ff">RACE</span>&nbsp;<span style="color: #ff8a3d">ME</span><span style="font-size: 10px; vertical-align: super">™</span></span>
   </a>
-  <div style="display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
-    <a href="roadtrip.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">2026 ROUTE</a>
-    <a href="index.html" style="color: #9fb0c8" style-hover="color: #ff8a3d">← BACK TO SITE</a>
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px clamp(8px, 2vw, 24px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
+    <a href="#socal-2025" style="color: #9fb0c8" style-hover="color: #ff8a3d">SOCAL 2025</a>
+    <span style="width: 1px; height: 18px; background: rgba(77,163,255,0.3)"></span>
+    <a href="index.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">HOME</a>
+    <a href="projects.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PROJECTS</a>
+    <a href="roadtrip.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">ROAD TRIP</a>
+    <span style="color: #080b12; background: #4da3ff; border: 1px solid #4da3ff; padding: 6px 12px; font-weight: 600">PAST RUNS</span>
     <a href="https://discord.gg/kSG9SPUkdZ" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">DISCORD</a>
   </div>
 </div>
 
 <!-- ======================= HEADER ======================= -->
-<div data-screen-label="Past Trips Header" style="position: relative; overflow: hidden; padding: clamp(114px, 14vw, 170px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); background: radial-gradient(1100px 600px at 20% -10%, rgba(77,163,255,0.14), transparent 60%), #080b12">
+<div data-screen-label="Past Trips Header" style="position: relative; overflow: hidden; padding: clamp(160px, 15vw, 180px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); background: radial-gradient(1100px 600px at 20% -10%, rgba(77,163,255,0.14), transparent 60%), #080b12">
   <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(77,163,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(77,163,255,0.05) 1px, transparent 1px); background-size: 56px 56px"></div>
   <div style="position: relative; max-width: 1280px; margin: 0 auto">
     <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.22em; color: #4da3ff; margin-bottom: 18px">THE ARCHIVE — WHERE WE'VE BEEN</div>
-    <h1 style="margin: 0 0 16px; font-size: clamp(40px, 6.5vw, 84px); line-height: 0.98; font-weight: 700; text-transform: uppercase">Past <span style="color: #ff8a3d">Runs</span></h1>
+    <h1 style="margin: 0 0 16px; font-size: clamp(40px, 6.5vw, 84px); line-height: 0.98; font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Past</span> <span style="color: #ff8a3d">Runs</span></h1>
     <p style="margin: 0; max-width: 58ch; font-size: 17px; line-height: 1.6; color: #9fb0c8; text-wrap: pretty">Every annual run gets its chapter here. Proof the cars get driven — hard, far, and in good company.</p>
   </div>
 </div>
@@ -51,7 +55,7 @@
     <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 18px; margin-bottom: 10px">
       <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">RUN / 2025</span>
     </div>
-    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase">SoCal &amp; Vegas</h2>
+    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">SoCal</span> &amp; <span style="color: #ff8a3d">Vegas</span></h2>
     <p style="margin: 0 0 36px; max-width: 64ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
       Colorado to the coast and back: I-70 through the San Rafael Swell, Vegas, the Angeles Crest, Malibu canyons and the PCH — some of the best driving roads Southern California has to offer. Convoyed home past the Albuquerque Balloon Fiesta.
     </p>
@@ -71,7 +75,7 @@
 <div data-screen-label="Next Chapter" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px) clamp(72px, 9vw, 110px); background: #080b12">
   <div style="max-width: 1280px; margin: 0 auto; text-align: center">
     <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.24em; color: #4da3ff; margin-bottom: 16px">NEXT CHAPTER</div>
-    <h2 style="margin: 0 0 20px; font-size: clamp(32px, 5vw, 56px); font-weight: 700; text-transform: uppercase">Tail of the Dragon — <span style="color: #ff8a3d">Oct 2026</span></h2>
+    <h2 style="margin: 0 0 20px; font-size: clamp(32px, 5vw, 56px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Tail</span> of the Dragon — <span style="color: #ff8a3d">Oct 2026</span></h2>
     <a href="roadtrip.html" style="display: inline-block; padding: 15px 34px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d">SEE THE PLAN</a>
   </div>
 </div>
