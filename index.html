@@ -43,7 +43,8 @@
     <a href="projects.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PROJECTS ▸</a>
     <a href="roadtrip.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">ROAD TRIP ▸</a>
     <a href="pasttrips.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PAST RUNS ▸</a>
-    <a href="#join" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">JOIN</a>
+    <a href="support.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">SUPPORT ▸</a>
+    <a href="paddock.html" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">PADDOCK</a>
   </div>
 </div>
 
@@ -66,7 +67,7 @@
         Race Me is a nonprofit club for people who'd rather spend a Saturday under a car than anywhere else. We build them, race them, road-trip them — and crack a cold one when the tools go down.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: 14px">
-        <a href="#join" style="padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">BECOME A MEMBER</a>
+        <a href="support.html#membership" style="padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">BECOME A MEMBER</a>
         <a href="#sponsors" style="padding: 15px 30px; border: 1px solid rgba(232,237,245,0.3); color: #e8edf5; font-weight: 600; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="border-color: #ff8a3d; color: #ff8a3d">SPONSOR US</a>
       </div>
     </div>
@@ -195,11 +196,11 @@
       <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Back</span> the <span style="color: #ff8a3d">club</span></h2>
     </div>
     <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      We're a nonprofit — sponsorships keep cars on track and the lights on in the shop. Your logo rides with us: on the cars, at the events, on the annual run.
+      We're a nonprofit — memberships keep cars on track and the lights on in the shop. Pick your level; every dollar goes to the club. Business sponsorships: <a href="mailto:info@race-me.org">info@race-me.org</a>.
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 2.5vw, 32px)">
       <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
-        <div style="position: relative; background: #0b0f18; border: 1px solid {{ t.border }}; padding: 34px 30px 38px" style-hover="border-color: #ff8a3d">
+        <a href="{{ t.href }}" style="position: relative; display: flex; flex-direction: column; background: #0b0f18; border: 1px solid {{ t.border }}; padding: 34px 30px 38px; color: #e8edf5" style-hover="border-color: #ff8a3d">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: {{ t.accent }}"></div>
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.24em; color: {{ t.accent }}; margin-bottom: 14px">{{ t.tag }}</div>
           <div style="font-size: 26px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px">{{ t.name }}</div>
@@ -212,7 +213,8 @@
               </div>
             </sc-for>
           </div>
-        </div>
+          <div style="margin-top: 24px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: {{ t.accent }}">{{ t.cta }} ▸</div>
+        </a>
       </sc-for>
     </div>
   </div>
@@ -307,12 +309,15 @@ class Component extends DCLogic {
         { label: 'HANGOUT', value: 'Sim racing + bar (future)' },
       ],
       tiers: [
-        { tag: 'TIER 01', name: 'Pit Crew', price: '$500 / yr', accent: '#4da3ff', border: 'rgba(77,163,255,0.3)',
-          perks: ['Logo on the club site', 'Shout-outs at every event', 'Invites to club meets'] },
-        { tag: 'TIER 02', name: 'Podium', price: '$2,500 / yr', accent: '#ff8a3d', border: 'rgba(255,138,61,0.4)',
-          perks: ['Decal on every club race car', 'Banner at the shop', 'Everything in Pit Crew'] },
-        { tag: 'TIER 03', name: 'Title', price: 'Let\'s talk', accent: '#e8edf5', border: 'rgba(232,237,245,0.3)',
-          perks: ['Naming rights on the annual run', 'Featured livery placement', 'Everything in Podium'] },
+        { tag: 'TIER 01', name: 'Pit Crew', price: '$125 / yr', accent: '#4da3ff', border: 'rgba(77,163,255,0.3)',
+          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
+          perks: ['All monthly meets, cruises & socials', 'Members-only chat access', 'Race Me decal + digital membership card', 'Vote in annual club decisions'] },
+        { tag: 'TIER 02', name: 'Driver', price: '$250 / yr', accent: '#ff8a3d', border: 'rgba(255,138,61,0.4)',
+          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
+          perks: ['Everything in Pit Crew', 'Priority + discounted track days', 'Merch pack & free entry to club shows', 'Early access to limited-capacity events'] },
+        { tag: 'TIER 03', name: 'Podium', price: '$500 / yr', accent: '#e8edf5', border: 'rgba(232,237,245,0.3)',
+          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
+          perks: ['Everything in Driver', 'One free track day per year', 'Name on race-me.org & event banners', 'Podium-only garage night + first pick on trip spots'] },
       ],
     };
   }
