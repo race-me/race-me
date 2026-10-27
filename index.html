@@ -219,7 +219,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
     <p style="margin: 0; flex: 0 1 440px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">We're lining up partner discounts now. Local shops and businesses who'd like to offer one can reach us at <a href="mailto:info@race-me.org" style="font-weight: 700">info@race-me.org</a>.</p>
   </div>
   <div style="border-top: 2px solid #4da3ff">
-    <sc-for list="{{ perks }}" as="p" hint-placeholder-count="5">
+    <sc-for list="{{ perks }}" as="p" hint-placeholder-count="6">
       <div style="display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
         <span style="flex: 1 1 240px; font-stretch: 62%; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase">{{ p.title }}</span>
         <span style="flex: 3 1 420px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">{{ p.body }}</span>
@@ -406,6 +406,7 @@ class Component extends DCLogic {
         { title: 'Built to last', body: 'Club cars and equipment belong to the club, not to any one person, so they stay with the members.' }
       ],
       perks: [
+        { title: 'Suspension tool', body: 'The Suspension Geometry Bench, in the members area. Model your front or rear suspension and see camber, roll center, and bump steer through the travel, size springs and anti-roll bars, and let the optimizer find more grip at the balance you want.' },
         { title: 'Parts', body: 'Member pricing at local and national parts stores (in the works).' },
         { title: 'Insurance', body: 'Discounts on road and track-day coverage through a club partner (in the works).' },
         { title: 'Track days', body: 'Group rates with driving-day organizers at High Plains Raceway.' },
