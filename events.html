@@ -75,7 +75,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Every May · Coast to coast</div>
   <h2 id="onelap-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">One Lap of America</h2>
   <p style="margin: 0 0 20px; max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Tire Rack One Lap of America is the week-long event Brock Yates started: one car, driven on the street from track to track across the country and timed at every stop. It starts at Tire Rack in South Bend, Indiana, and the car you drive there is the car you race, so it has to survive the highway as well as the track.</p>
-  <p style="margin: 0 0 clamp(32px, 4vw, 48px); max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members run it in <strong style="color: #e8edf5">Dadbod Carmod #3</strong>, an orange 2006 Lotus Elise wearing #64, with E. Pilarczyk and G. Young on the doors.</p>
+  <p style="margin: 0 0 clamp(32px, 4vw, 48px); max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members Eric Pilarczyk and Gabriel Young, both of Colorado Springs, run it in <strong style="color: #e8edf5">Dadbod Carmod #3</strong>, an orange 2006 Lotus Elise. In 2026 they took it to a class podium: <strong style="color: #e8edf5">3rd in Sports GT-2 Small Bore</strong>.</p>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); max-width: 960px; border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); margin-bottom: clamp(48px, 6vw, 80px)">
     <sc-for list="{{ carStats }}" as="s" hint-placeholder-count="4">
@@ -89,10 +89,10 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   <!-- 2026 -->
   <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: 20px">
     <h3 id="onelap-2026" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">2026</h3>
-    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 29 to May 8: trailered to the start, then a week of tracks and transit stages, including the banking at Nashville Superspeedway.</p>
+    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 29 to May 8, running as #49: trailered to the start, then a week of tracks and transit stages, including the banking at Nashville Superspeedway. The Elise finished 3rd of 8 in Sports GT-2 Small Bore with 385 class points.</p>
   </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
-    <sc-for list="{{ photos2026 }}" as="p" hint-placeholder-count="7">
+    <sc-for list="{{ photos2026 }}" as="p" hint-placeholder-count="8">
       <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
         <img src="{{ p.src }}" alt="{{ p.label }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ p.pos }}">
         <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
@@ -103,7 +103,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   <!-- 2025 -->
   <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin: clamp(56px, 7vw, 96px) 0 20px">
     <h3 id="onelap-2025" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">2025</h3>
-    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 30 to May 10: the start at Tire Rack, stops including World Wide Technology Raceway at Gateway, and a week of track sessions and long transit stages.</p>
+    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 30 to May 10, running as #64: the start at Tire Rack, stops including World Wide Technology Raceway at Gateway, and a week of track sessions and long transit stages. The Elise finished 8th of 13 in Sports GT-1 Small Bore with 505 class points, one of three Dadbod Carmod Elises in the class alongside #58 (10th) and #68 (12th).</p>
   </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
     <sc-for list="{{ photos2025 }}" as="p" hint-placeholder-count="8">
@@ -158,14 +158,14 @@ class Component extends DCLogic {
   renderVals() {
     return {
       events: [
-        { when: 'May', name: 'One Lap of America', summary: 'A week, one car, and a different track nearly every day, all driven on the street in between.', cta: 'The 2025 and 2026 runs', href: '#one-lap' },
+        { when: 'May', name: 'One Lap of America', summary: 'A week, one car, and a different track nearly every day, all driven on the street in between. 3rd in class in 2026.', cta: 'The 2025 and 2026 runs', href: '#one-lap' },
         { when: 'June · Sept.', name: '24 Hours of Lemons', summary: 'Endurance racing at High Plains Raceway with our affiliate team, Dadbod Carmod: back-to-back class wins in 2026.', cta: 'Race reports', href: 'projects.html#mr2' }
       ],
       carStats: [
-        { value: '#64', label: 'Car number, 2025 and 2026' },
-        { value: '2006', label: 'Lotus Elise' },
-        { value: '2', label: 'Years running (2025, 2026)' },
-        { value: 'South Bend', label: 'Start and finish, Tire Rack' }
+        { value: 'P3', label: 'Sports GT-2 Small Bore, 2026 (of 8)' },
+        { value: 'P8', label: 'Sports GT-1 Small Bore, 2025 (of 13)' },
+        { value: '#49', label: 'Car number in 2026 (#64 in 2025)' },
+        { value: '2006', label: 'Lotus Elise' }
       ],
       photos2026: [
         { src: 'assets/events/onelap-2026-trailer.jpg', label: 'Loaded up for the trip to the start', row: 'span 2', col: 'span 2', pos: '50% 55%' },
@@ -173,8 +173,9 @@ class Component extends DCLogic {
         { src: 'assets/events/onelap-2026-front.jpg', label: 'Dadbod Carmod livery, Tire Rack banner', row: 'span 2', col: 'auto', pos: '50% 45%' },
         { src: 'assets/events/onelap-2026-track.jpg', label: 'The Elise on track', row: 'auto', col: 'span 2', pos: '50% 50%' },
         { src: 'assets/events/onelap-2026-nashville.jpg', label: 'Start/finish at Nashville Superspeedway', row: 'auto', col: 'span 2', pos: '50% 45%' },
-        { src: 'assets/events/onelap-2026-garage.jpg', label: 'Garage time between sessions', row: 'auto', col: 'span 2', pos: '50% 55%' },
-        { src: 'assets/events/onelap-2026-sunset.jpg', label: 'Transit stage into the night', row: 'auto', col: 'span 2', pos: '50% 60%' }
+        { src: 'assets/events/onelap-2026-paddock.jpg', label: 'The #49 Elise in the morning paddock', row: 'auto', col: 'span 2', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2026-garage.jpg', label: 'Garage time between sessions', row: 'auto', col: 'auto', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2026-sunset.jpg', label: 'Transit stage into the night', row: 'auto', col: 'auto', pos: '50% 60%' }
       ],
       photos2025: [
         { src: 'assets/events/onelap-2025-track1.jpg', label: 'Dadbod Carmod #3 at speed', row: 'span 2', col: 'span 2', pos: '50% 50%' },
