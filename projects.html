@@ -135,8 +135,18 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   <p style="margin: 0 0 clamp(32px, 4vw, 48px); max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members also race with <a href="https://dadbodcarmodllc.com" style="font-weight: 700">Dadbod Carmod LLC</a>, our affiliate team out of Denver, and the crew took back-to-back class wins at 24 Hours of Lemons in 2026. In June at the B.F.E. GP at High Plains Raceway, the #177 MR2 ran 336 laps in 14.5 hours and took the Class B win by two clean laps. Its stablemate, the green #157 Yaris, led Class C until a brake failure cost a three-hour repair. Both cars came back for the High Plains Drifter, a full 24-hour race, on September 26: the MR2 as #75 and the Yaris as #57. This time the Yaris took the Class C win by 49 laps and finished 5th overall, with 522 laps in 24 hours and a best lap of 2:14.337 (68.3 mph).</p>
   <a href="https://dadbodcarmodllc.com" style="display: inline-block; margin: 0 0 clamp(32px, 4vw, 48px); text-decoration: none; padding: 15px 24px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Visit dadbodcarmodllc.com</a>
 
-  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); max-width: 960px; margin-bottom: clamp(32px, 4vw, 48px)">
+  <div style="max-width: 960px; margin-bottom: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #e8edf5">#177 MR2 · B.F.E. GP, June</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); max-width: 960px; margin-bottom: clamp(24px, 3vw, 32px)">
     <sc-for list="{{ mr2Stats }}" as="s" hint-placeholder-count="4">
+      <div style="padding: 18px 16px 16px 0">
+        <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(32px, 3.6vw, 52px); line-height: 0.95; color: #ff8a3d">{{ s.value }}</div>
+        <div style="margin-top: 8px; font-size: 13px; color: #8b9bb3">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="max-width: 960px; margin-bottom: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #e8edf5">#57 Yaris · High Plains Drifter (24 hours), September</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); max-width: 960px; margin-bottom: clamp(32px, 4vw, 48px)">
+    <sc-for list="{{ yarisStats }}" as="s" hint-placeholder-count="4">
       <div style="padding: 18px 16px 16px 0">
         <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(32px, 3.6vw, 52px); line-height: 0.95; color: #ff8a3d">{{ s.value }}</div>
         <div style="margin-top: 8px; font-size: 13px; color: #8b9bb3">{{ s.label }}</div>
@@ -219,6 +229,12 @@ class Component extends DCLogic {
         { value: '336', label: 'Laps' },
         { value: '2:12.899', label: 'Best lap' },
         { value: '+2 laps', label: 'Winning gap' }
+      ],
+      yarisStats: [
+        { value: 'P1', label: 'Class C finish (5th overall)' },
+        { value: '522', label: 'Laps' },
+        { value: '2:14.337', label: 'Best lap' },
+        { value: '+49 laps', label: 'Winning gap' }
       ],
       mr2Photos: [
         { src: 'assets/projects/mr2-team.jpg', label: 'The Dadbod Carmod team with the MR2 and Yaris', row: 'span 2', col: 'span 2' },
