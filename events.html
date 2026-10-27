@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Me — Events</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M4232QS5G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M4232QS5G8');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Events Race Me members drive in beyond the club: Tire Rack One Lap of America and 24 Hours of Lemons.">
+<meta property="og:title" content="Race Me — Colorado Springs Car Club">
+<meta property="og:description" content="Events Race Me members drive in beyond the club: Tire Rack One Lap of America and 24 Hours of Lemons.">
+<meta property="og:image" content="assets/events/onelap-2025-track1.jpg">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#080b12;color:#e8edf5;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4da3ff}a:hover{color:#ff8a3d}
+::selection{background:#ff8a3d;color:#080b12}
+</style>
+</helmet>
+<div style="background: #080b12; color: #e8edf5; font-family: 'Archivo', system-ui, sans-serif; min-width: 0">
+
+<!-- ============ MASTHEAD ============ -->
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 18px clamp(16px, 4vw, 56px); border-bottom: 1px solid rgba(159,176,200,0.25)">
+  <a href="index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #e8edf5">
+    <img src="assets/logo-roundel-512.png" alt="" style="width: 44px; height: 44px">
+    <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; line-height: 1; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></span>
+  </a>
+  <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+    <a href="index.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Home</a>
+    <a href="trips.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Road trips</a>
+    <a href="events.html" aria-current="page" style="text-decoration: none; padding: 12px 0; color: #ff8a3d; border-bottom: 2px solid #ff8a3d">Events</a>
+    <a href="projects.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Projects</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Support</a>
+    <a href="paddock.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Paddock</a>
+    <a href="/members/" style="text-decoration: none; padding: 12px 0; color: #8b9bb3">Members login</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 20px; background: #ff8a3d; color: #080b12; font-weight: 700">Join the club</a>
+  </nav>
+</header>
+
+<!-- ============ PAGE HEAD ============ -->
+<section aria-labelledby="events-h" style="padding: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 56px) clamp(32px, 4vw, 56px)">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Events</div>
+  <h1 id="events-h" style="margin: 0 0 24px; font-stretch: 62%; font-weight: 900; font-size: clamp(64px, 10vw, 160px); line-height: 0.86; text-transform: uppercase">Out there</h1>
+  <p style="margin: 0 0 40px; max-width: 58ch; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: #9fb0c8; text-wrap: pretty">Club meets and the annual run are only part of it. Race Me members also enter events across the country, and this is where you'll find them.</p>
+
+  <div role="table" aria-label="Events members attend" style="border-top: 2px solid #4da3ff">
+    <sc-for list="{{ events }}" as="e" hint-placeholder-count="2">
+      <a role="row" href="{{ e.href }}" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid rgba(159,176,200,0.35); text-decoration: none; color: #e8edf5">
+        <span role="cell" style="flex: 0 0 120px; font-stretch: 62%; font-weight: 800; font-size: 28px; color: #ff8a3d">{{ e.when }}</span>
+        <span role="cell" style="flex: 1 1 280px; font-stretch: 62%; font-weight: 900; font-size: clamp(36px, 4vw, 56px); line-height: 0.95; text-transform: uppercase">{{ e.name }}</span>
+        <span role="cell" style="flex: 2 1 340px; font-size: 17px; line-height: 1.5; color: #9fb0c8">{{ e.summary }}</span>
+        <span role="cell" style="flex: 0 0 auto; font-weight: 700; font-size: 15px; color: #4da3ff">{{ e.cta }} →</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ ONE LAP OF AMERICA ============ -->
+<section id="one-lap" aria-labelledby="onelap-h" style="background: #0d1220; border-top: 6px solid #ff8a3d; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Every May · Coast to coast</div>
+  <h2 id="onelap-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">One Lap of America</h2>
+  <p style="margin: 0 0 20px; max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Tire Rack One Lap of America is the week-long event Brock Yates started: one car, driven on the street from track to track across the country and timed at every stop. It starts at Tire Rack in South Bend, Indiana, and the car you drive there is the car you race, so it has to survive the highway as well as the track.</p>
+  <p style="margin: 0 0 clamp(32px, 4vw, 48px); max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members run it in <strong style="color: #e8edf5">Dadbod Carmod #3</strong>, an orange 2006 Lotus Elise wearing #64, with E. Pilarczyk and G. Young on the doors.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); max-width: 960px; border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); margin-bottom: clamp(48px, 6vw, 80px)">
+    <sc-for list="{{ carStats }}" as="s" hint-placeholder-count="4">
+      <div style="padding: 18px 16px 16px 0">
+        <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(32px, 3.6vw, 52px); line-height: 0.95; color: #ff8a3d">{{ s.value }}</div>
+        <div style="margin-top: 8px; font-size: 13px; color: #8b9bb3">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- 2026 -->
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: 20px">
+    <h3 id="onelap-2026" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">2026</h3>
+    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 29 to May 8: trailered to the start, then a week of tracks and transit stages, including the banking at Nashville Superspeedway.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ photos2026 }}" as="p" hint-placeholder-count="7">
+      <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ p.src }}" alt="{{ p.label }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ p.pos }}">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+
+  <!-- 2025 -->
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin: clamp(56px, 7vw, 96px) 0 20px">
+    <h3 id="onelap-2025" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">2025</h3>
+    <p style="margin: 0; flex: 0 1 480px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">April 30 to May 10: the start at Tire Rack, stops including World Wide Technology Raceway at Gateway, and a week of track sessions and long transit stages.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ photos2025 }}" as="p" hint-placeholder-count="8">
+      <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ p.src }}" alt="{{ p.label }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ p.pos }}">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ GOING TO AN EVENT ============ -->
+<section id="next-event" aria-labelledby="next-h" style="background: #ff8a3d; color: #080b12; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px">
+    <h2 id="next-h" style="margin: 0; flex: 1 1 560px; max-width: 16ch; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">Headed to an event?</h2>
+    <div style="flex: 0 1 400px; display: flex; flex-direction: column; gap: 22px">
+      <p style="margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; text-wrap: pretty">Post it in the Paddock to find crew, a co-driver, or company for the drive. Members' events can land on this page too.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="paddock.html" style="text-decoration: none; padding: 16px 26px; background: #080b12; color: #ff8a3d; font-weight: 700; font-size: 16px">Post in the Paddock</a>
+        <a href="support.html" style="text-decoration: none; padding: 14px 24px; border: 2px solid #080b12; color: #080b12; font-weight: 700; font-size: 16px">Join the club</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #05070c; color: #8b9bb3; padding: 40px clamp(16px, 4vw, 56px) 36px; font-size: 14px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px">
+    <div style="display: flex; align-items: center; gap: 18px">
+      <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 72px; height: 72px">
+      <div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: 56px; line-height: 0.9; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></div>
+        <div style="margin-top: 8px">© 2026 Race Me, a Colorado 501(c)(7) nonprofit social club</div>
+      </div>
+    </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 22px">
+      <a href="index.html" style="color: #c9d3e2; padding: 10px 0">Home</a>
+      <a href="trips.html" style="color: #c9d3e2; padding: 10px 0">Road trips</a>
+      <a href="projects.html" style="color: #c9d3e2; padding: 10px 0">Projects</a>
+      <a href="support.html" style="color: #c9d3e2; padding: 10px 0">Support</a>
+      <a href="paddock.html" style="color: #c9d3e2; padding: 10px 0">Paddock</a>
+      <a href="mailto:info@race-me.org" style="color: #c9d3e2; padding: 10px 0">info@race-me.org</a>
+    </nav>
+  </div>
+  <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(159,176,200,0.2)">Members must be 21 or older. Alcohol only after the tools are down and the driving is done.</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      events: [
+        { when: 'May', name: 'One Lap of America', summary: 'A week, one car, and a different track nearly every day, all driven on the street in between.', cta: 'The 2025 and 2026 runs', href: '#one-lap' },
+        { when: 'June · Sept.', name: '24 Hours of Lemons', summary: 'Endurance racing at High Plains Raceway with our affiliate team, Dadbod Carmod: back-to-back class wins in 2026.', cta: 'Race reports', href: 'projects.html#mr2' }
+      ],
+      carStats: [
+        { value: '#64', label: 'Car number, 2025 and 2026' },
+        { value: '2006', label: 'Lotus Elise' },
+        { value: '2', label: 'Years running (2025, 2026)' },
+        { value: 'South Bend', label: 'Start and finish, Tire Rack' }
+      ],
+      photos2026: [
+        { src: 'assets/events/onelap-2026-trailer.jpg', label: 'Loaded up for the trip to the start', row: 'span 2', col: 'span 2', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2026-hotel.jpg', label: 'Stickered up and ready', row: 'span 2', col: 'auto', pos: '50% 50%' },
+        { src: 'assets/events/onelap-2026-front.jpg', label: 'Dadbod Carmod livery, Tire Rack banner', row: 'span 2', col: 'auto', pos: '50% 45%' },
+        { src: 'assets/events/onelap-2026-track.jpg', label: 'The Elise on track', row: 'auto', col: 'span 2', pos: '50% 50%' },
+        { src: 'assets/events/onelap-2026-nashville.jpg', label: 'Start/finish at Nashville Superspeedway', row: 'auto', col: 'span 2', pos: '50% 45%' },
+        { src: 'assets/events/onelap-2026-garage.jpg', label: 'Garage time between sessions', row: 'auto', col: 'span 2', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2026-sunset.jpg', label: 'Transit stage into the night', row: 'auto', col: 'span 2', pos: '50% 60%' }
+      ],
+      photos2025: [
+        { src: 'assets/events/onelap-2025-track1.jpg', label: 'Dadbod Carmod #3 at speed', row: 'span 2', col: 'span 2', pos: '50% 50%' },
+        { src: 'assets/events/onelap-2025-finish.jpg', label: 'At the One Lap awards', row: 'span 2', col: 'auto', pos: '50% 40%' },
+        { src: 'assets/events/onelap-2025-names.jpg', label: 'Drivers on the door', row: 'auto', col: 'auto', pos: '50% 50%' },
+        { src: 'assets/events/onelap-2025-tirerack.jpg', label: 'The starting field at Tire Rack', row: 'auto', col: 'span 2', pos: '50% 50%' },
+        { src: 'assets/events/onelap-2025-paddock.jpg', label: 'In the paddock', row: 'auto', col: 'auto', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2025-closeup.jpg', label: 'Race-day livery', row: 'auto', col: 'span 2', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2025-track2.jpg', label: 'Through the turn', row: 'auto', col: 'span 2', pos: '50% 55%' },
+        { src: 'assets/events/onelap-2025-sunset.jpg', label: 'Sunset transit stage', row: 'auto', col: 'span 2', pos: '50% 60%' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
