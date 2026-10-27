@@ -72,7 +72,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   </div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 2px; background: rgba(159,176,200,0.25); margin-top: clamp(40px, 5vw, 64px)">
-    <sc-for list="{{ channels }}" as="c" hint-placeholder-count="4">
+    <sc-for list="{{ channels }}" as="c" hint-placeholder-count="3">
       <div style="background: #080b12; padding: 24px 22px 26px">
         <div style="font-stretch: 62%; font-weight: 900; font-size: 28px; line-height: 1; text-transform: uppercase; margin-bottom: 10px">{{ c.name }}</div>
         <div style="font-size: 15px; line-height: 1.5; color: #9fb0c8; text-wrap: pretty">{{ c.body }}</div>
@@ -104,19 +104,18 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"discordServerId":{"editor":"text","default":"1523907282952261773","tsType":"string","section":"Discord"},"widgetChannelId":{"editor":"text","default":"","tsType":"string","section":"Discord"},"discordInvite":{"editor":"text","default":"https://discord.gg/kSG9SPUkdZ","tsType":"string","section":"Discord"},"$preview":{"width":1440,"height":2000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"discordServerId":{"editor":"text","default":"1523907282952261773","tsType":"string","section":"Discord"},"widgetChannelId":{"editor":"text","default":"1523907283774607473","tsType":"string","section":"Discord"},"discordInvite":{"editor":"text","default":"https://discord.gg/kSG9SPUkdZ","tsType":"string","section":"Discord"},"$preview":{"width":1440,"height":2000}}'>
 class Component extends DCLogic {
   renderVals() {
     const serverId = (this.props.discordServerId ?? '1523907282952261773').trim();
-    const channelId = (this.props.widgetChannelId ?? '').trim();
+    const channelId = (this.props.widgetChannelId ?? '1523907283774607473').trim();
     return {
       widgetSrc: 'https://e.widgetbot.io/channels/' + serverId + (channelId ? '/' + channelId : ''),
       discordInvite: this.props.discordInvite ?? 'https://discord.gg/kSG9SPUkdZ',
       channels: [
-        { name: 'Build threads', body: 'Progress, questions, and photos from member projects and the club cars.' },
-        { name: 'Race prep', body: 'Driver sign-ups, wrench-credit tallies, and the to-do list before each event.' },
-        { name: 'Road trips', body: 'Route pitches and votes for the next annual run.' },
-        { name: 'Parts for sale', body: 'Buy, sell, and trade with other members.' }
+        { name: '#general', body: 'The main club chat: builds, race prep, road trips, and everything in between.' },
+        { name: '#welcome', body: 'New here? Start with this channel and say hi.' },
+        { name: '#garage-sale', body: 'Buy, sell, and trade parts with other members.' }
       ]
     };
   }
