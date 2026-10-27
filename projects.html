@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Me — Projects</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -14,247 +15,221 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-M4232QS5G8');
 </script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Race Me club car builds, starting with the Honda Insight for 24 Hours of Lemons.">
+<meta property="og:title" content="Race Me — Colorado Springs Car Club">
+<meta property="og:description" content="Race Me club car builds, starting with the Honda Insight for 24 Hours of Lemons.">
+<meta property="og:image" content="assets/trips/2026/dragon-20261007_170906.jpg">
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; padding: 0; background: #080b12; }
-  body { font-family: 'Chakra Petch', sans-serif; color: #e8edf5; -webkit-font-smoothing: antialiased; }
-  * { box-sizing: border-box; }
-  a { color: #4da3ff; text-decoration: none; }
-  a:hover { color: #ff8a3d; }
-  @keyframes rm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-  ::selection { background: #ff8a3d; color: #080b12; }
+body{margin:0;background:#080b12;color:#e8edf5;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4da3ff}a:hover{color:#ff8a3d}
+::selection{background:#ff8a3d;color:#080b12}
 </style>
 </helmet>
+<div style="background: #080b12; color: #e8edf5; font-family: 'Archivo', system-ui, sans-serif; min-width: 0">
 
-<!-- ======================= NAV ======================= -->
-<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
-  <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
-    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em"><span style="color: #4da3ff">RACE</span>&nbsp;<span style="color: #ff8a3d">ME</span><span style="font-size: 10px; vertical-align: super">™</span></span>
+<!-- ============ MASTHEAD ============ -->
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 18px clamp(16px, 4vw, 56px); border-bottom: 1px solid rgba(159,176,200,0.25)">
+  <a href="index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #e8edf5">
+    <img src="assets/logo-roundel-512.png" alt="" style="width: 44px; height: 44px">
+    <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; line-height: 1; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></span>
   </a>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px clamp(8px, 2vw, 24px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
-    <a href="#insight" style="color: #9fb0c8" style-hover="color: #ff8a3d">INSIGHT</a>
-    <a href="#vision" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE VISION</a>
-    <a href="#mr2" style="color: #9fb0c8" style-hover="color: #ff8a3d">MR2</a>
-    <span style="width: 1px; height: 18px; background: rgba(77,163,255,0.3)"></span>
-    <a href="index.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">HOME</a>
-    <span style="color: #080b12; background: #4da3ff; border: 1px solid #4da3ff; padding: 6px 12px; font-weight: 600">PROJECTS</span>
-    <a href="roadtrip.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">ROAD TRIP</a>
-    <a href="pasttrips.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PAST RUNS</a>
-    <a href="support.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">SUPPORT</a>
-    <a href="paddock.html" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">PADDOCK</a>
+  <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+    <a href="index.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Home</a>
+    <a href="trips.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Road trips</a>
+    <a href="projects.html" aria-current="page" style="text-decoration: none; padding: 12px 0; color: #ff8a3d; border-bottom: 2px solid #ff8a3d">Projects</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Support</a>
+    <a href="paddock.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Paddock</a>
+    <a href="/members/" style="text-decoration: none; padding: 12px 0; color: #8b9bb3">Members login</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 20px; background: #ff8a3d; color: #080b12; font-weight: 700">Join the club</a>
+  </nav>
+</header>
+
+<!-- ============ PAGE HEAD ============ -->
+<section aria-labelledby="proj-h" style="padding: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 56px) clamp(32px, 4vw, 56px)">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Projects</div>
+  <h1 id="proj-h" style="margin: 0 0 24px; font-stretch: 62%; font-weight: 900; font-size: clamp(64px, 10vw, 160px); line-height: 0.86; text-transform: uppercase">The build log</h1>
+  <p style="margin: 0; max-width: 58ch; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: #9fb0c8; text-wrap: pretty">Every club build, documented: what we bought, what broke, and what we fixed at 1 a.m. the night before tech inspection. Hours you log on a club car earn you seat time in it.</p>
+</section>
+
+<!-- ============ CLUB CAR 1: INSIGHT ============ -->
+<section id="insight" aria-labelledby="insight-h" style="background: #0d1220; border-top: 6px solid #4da3ff; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 16px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4da3ff">Club car No. 1</span>
+    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #080b12; background: #ff8a3d; padding: 4px 10px">Active build</span>
   </div>
-</div>
+  <h2 id="insight-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">Honda Insight <span style="color: #ff8a3d">"RAC3 M3"</span></h2>
+  <p style="margin: 0 0 clamp(40px, 5vw, 56px); max-width: 60ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">A first-generation Insight headed for 24 Hours of Lemons: aluminum body, a three-cylinder hybrid heart, and zero shame. It's the first Race Me club car, so the members who build it are the members who race it.</p>
 
-<!-- ======================= HEADER ======================= -->
-<div data-screen-label="Projects Header" style="position: relative; overflow: hidden; padding: clamp(160px, 15vw, 180px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); background: radial-gradient(1100px 600px at 80% -10%, rgba(77,163,255,0.16), transparent 60%), #080b12">
-  <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(77,163,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(77,163,255,0.05) 1px, transparent 1px); background-size: 56px 56px"></div>
-  <div style="position: relative; max-width: 1280px; margin: 0 auto">
-    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.22em; color: #4da3ff; margin-bottom: 18px">RACE ME — BUILD DOCUMENTATION</div>
-    <h1 style="margin: 0 0 16px; font-size: clamp(44px, 7vw, 88px); line-height: 0.98; font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Project</span> <span style="color: #ff8a3d">Log</span></h1>
-    <p style="margin: 0; max-width: 56ch; font-size: 17px; line-height: 1.6; color: #9fb0c8; text-wrap: pretty">Every club build, documented — what we bought, what broke, and what we fixed at 1 a.m. the night before tech inspection.</p>
-  </div>
-</div>
-
-<!-- ======================= PROJECT 01: INSIGHT ======================= -->
-<div id="insight" data-screen-label="Project Insight" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); background: #0b0f18">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 18px; margin-bottom: 10px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">PROJECT / 01</span>
-      <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #ff8a3d; border: 1px solid rgba(255,138,61,0.4); padding: 5px 12px">
-        <span style="width: 6px; height: 6px; background: #ff8a3d; animation: rm-pulse 1.6s infinite"></span>
-        ACTIVE BUILD
-      </span>
-    </div>
-    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Honda</span> Insight <span style="color: #ff8a3d">“RAC3 M3”</span></h2>
-    <p style="margin: 0 0 40px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      A first-gen Insight headed for the 24 Hours of Lemons. Aluminum body, three-cylinder hybrid heart, zero shame. Roll cage prep is underway for the High Plains 24 in September — and we're not going just to participate.
-    </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start">
-      <!-- photos -->
-      <div>
-        <div style="position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: #0b0f18">
-          <img src="uploads/20260104_160450.jpg" alt="Honda Insight project car" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2px; background: rgba(77,163,255,0.18)">
-          <sc-for list="{{ insightThumbs }}" as="t" hint-placeholder-count="3">
-            <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #0b0f18">
-              <img src="{{ t.src }}" alt="Insight build photo" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" loading="lazy">
-            </div>
-          </sc-for>
-        </div>
-        <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.01 — AS DELIVERED. IT ONLY GETS BETTER FROM HERE.</div>
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 64px); align-items: flex-start">
+    <div style="flex: 1 1 480px; min-width: 0">
+      <img src="uploads/20260104_160450.jpg" alt="The Honda Insight project car, rear view, with RAC3 M3 Colorado plates" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-top: 4px">
+        <img src="uploads/20260104_160514.jpg" alt="Insight build photo" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+        <img src="uploads/20260104_160455.jpg" alt="Insight build photo" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+        <img src="uploads/20260104_160502.jpg" alt="Insight build photo" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
       </div>
+      <div style="margin-top: 12px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">As delivered.</strong> It only gets better from here.</div>
+    </div>
 
-      <!-- spec + build log -->
-      <div style="display: flex; flex-direction: column; gap: 32px">
-        <div style="display: flex; flex-direction: column; gap: 2px; background: rgba(77,163,255,0.18)">
-          <sc-for list="{{ insightSpecs }}" as="sp" hint-placeholder-count="5">
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #080b12; padding: 15px 20px">
-              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #9fb0c8">{{ sp.label }}</span>
-              <span style="font-weight: 700; font-size: 15px; color: #e8edf5; text-align: right">{{ sp.value }}</span>
-            </div>
-          </sc-for>
-        </div>
-
-        <div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #4da3ff; margin-bottom: 16px">BUILD LOG</div>
-          <div style="display: flex; flex-direction: column">
-            <sc-for list="{{ insightLog }}" as="entry" hint-placeholder-count="5">
-              <div style="display: flex; gap: 18px; padding: 14px 0; border-bottom: 1px solid rgba(77,163,255,0.12)">
-                <span style="flex: 0 0 92px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: {{ entry.color }}; padding-top: 3px">{{ entry.status }}</span>
-                <div>
-                  <div style="font-weight: 600; font-size: 16px">{{ entry.title }}</div>
-                  <div style="color: #9fb0c8; font-size: 14px; line-height: 1.5; margin-top: 3px; text-wrap: pretty">{{ entry.detail }}</div>
-                </div>
-              </div>
-            </sc-for>
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 40px">
+      <dl style="margin: 0; border-top: 2px solid #4da3ff">
+        <sc-for list="{{ specs }}" as="sp" hint-placeholder-count="5">
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+            <dt style="font-size: 15px; color: #8b9bb3">{{ sp.label }}</dt>
+            <dd style="margin: 0; font-size: 15px; font-weight: 700; text-align: right">{{ sp.value }}</dd>
           </div>
-        </div>
+        </sc-for>
+      </dl>
+
+      <div>
+        <h3 style="margin: 0 0 16px; font-stretch: 62%; font-weight: 900; font-size: 36px; line-height: 1; text-transform: uppercase">Build log</h3>
+        <ol style="margin: 0; padding: 0; list-style: none; border-top: 2px solid #4da3ff">
+          <sc-for list="{{ log }}" as="e" hint-placeholder-count="5">
+            <li style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+              <span style="flex: 0 0 72px; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: {{ e.color }}; padding-top: 3px">{{ e.status }}</span>
+              <span style="display: flex; flex-direction: column; gap: 4px">
+                <span style="font-weight: 700; font-size: 17px">{{ e.title }}</span>
+                <span style="font-size: 15px; line-height: 1.5; color: #9fb0c8; text-wrap: pretty">{{ e.detail }}</span>
+              </span>
+            </li>
+          </sc-for>
+        </ol>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ======================= THE VISION (BEFORE/AFTER) ======================= -->
-<div id="vision" data-screen-label="The Vision" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); background: #080b12">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em; margin-bottom: 10px">THE VISION</div>
-    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">From</span> barn find to <span style="color: #ff8a3d">street legend</span></h2>
-    <p style="margin: 0 0 36px; max-width: 60ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      The spirit of where we're taking the Insight. Drag the handle to compare.
-    </p>
-    <div style="position: relative; max-width: 960px; aspect-ratio: 1024 / 572; user-select: none; touch-action: pan-y; overflow: hidden; background: #0b0f18">
-      <!-- AFTER (bottom layer) -->
-      <img src="assets/projects/insight-after.jpg" alt="Insight build vision — concept render" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none">
-      <!-- BEFORE (top layer, clipped) -->
-      <img src="assets/projects/insight-before.jpg" alt="Insight today" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: {{ beforeClip }}; pointer-events: none">
-      <!-- divider + handle -->
-      <div style="position: absolute; top: 0; bottom: 0; left: {{ dividerLeft }}; width: 3px; margin-left: -1.5px; background: #ff8a3d; pointer-events: none">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: #ff8a3d; color: #080b12; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; letter-spacing: 0.05em">⇄</div>
+  <!-- before / after -->
+  <div style="margin-top: clamp(56px, 7vw, 96px); max-width: 1040px">
+    <h3 style="margin: 0 0 8px; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">Where it's headed</h3>
+    <p style="margin: 0 0 24px; font-size: 17px; color: #9fb0c8">Slide to compare the car today with the concept.</p>
+    <div style="position: relative; width: 100%; aspect-ratio: 1024 / 572; overflow: hidden; background: #0b0f18">
+      <img src="assets/projects/insight-after.jpg" alt="Concept rendering of the Insight in Race Me livery: blue stripes, wing, and aftermarket wheels" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover">
+      <img src="assets/projects/insight-before.jpg" alt="The Insight today: stock silver with factory hubcaps" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; clip-path: {{ beforeClip }}">
+      <div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: {{ splitPct }}; width: 3px; margin-left: -1px; background: #e8edf5"></div>
+      <span style="position: absolute; left: 12px; top: 12px; padding: 5px 10px; background: rgba(8,11,18,0.85); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #e8edf5">Today</span>
+      <span style="position: absolute; right: 12px; top: 12px; padding: 5px 10px; background: #ff8a3d; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #080b12">Concept</span>
+    </div>
+    <label style="display: flex; align-items: center; gap: 14px; margin-top: 12px; font-size: 13px; font-weight: 700; color: #9fb0c8">
+      <span style="flex: 0 0 auto">Before</span>
+      <input type="range" min="0" max="100" value="{{ split }}" onInput="{{ onSplit }}" aria-label="Slide between the Insight today and the concept" style="flex: 1 1 auto; min-height: 44px; accent-color: #ff8a3d">
+      <span style="flex: 0 0 auto">After</span>
+    </label>
+    <p style="margin: 10px 0 0; font-size: 13px; line-height: 1.5; color: #8b9bb3"><strong style="color: #ff8a3d">The "after" is a concept rendering, not the real car.</strong> The livery, wing, and wheels show the idea, and the brand logos are for looks only; they aren't sponsors.</p>
+  </div>
+</section>
+
+<!-- ============ MEMBER SPOTLIGHT: MR2 ============ -->
+<section id="mr2" aria-labelledby="mr2-h" style="padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 16px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4da3ff">Affiliate team · Denver</span>
+    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #080b12; background: #e8edf5; padding: 4px 10px">Back-to-back class wins · 2026</span>
+  </div>
+  <h2 id="mr2-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">Dadbod Carmod <span style="color: #ff8a3d">MR2</span></h2>
+  <p style="margin: 0 0 clamp(32px, 4vw, 48px); max-width: 64ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members also race with <a href="https://dadbodcarmodllc.com" style="font-weight: 700">Dadbod Carmod LLC</a>, our affiliate team out of Denver, and the crew took back-to-back class wins at 24 Hours of Lemons in 2026. In June at High Plains Raceway, the #177 MR2 ran 336 laps in 14.5 hours and took the Class B win by two clean laps. Its stablemate, the green #157 Yaris, led Class C until a brake failure cost a three-hour repair, then came back to win Class C in September.</p>
+  <a href="https://dadbodcarmodllc.com" style="display: inline-block; margin: 0 0 clamp(32px, 4vw, 48px); text-decoration: none; padding: 15px 24px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Visit dadbodcarmodllc.com</a>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); max-width: 960px; margin-bottom: clamp(32px, 4vw, 48px)">
+    <sc-for list="{{ mr2Stats }}" as="s" hint-placeholder-count="4">
+      <div style="padding: 18px 16px 16px 0">
+        <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(32px, 3.6vw, 52px); line-height: 0.95; color: #ff8a3d">{{ s.value }}</div>
+        <div style="margin-top: 8px; font-size: 13px; color: #8b9bb3">{{ s.label }}</div>
       </div>
-      <!-- labels -->
-      <div style="position: absolute; top: 14px; left: 14px; background: rgba(8,11,18,0.82); color: #4da3ff; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 6px 12px; pointer-events: none">BEFORE — AS DELIVERED</div>
-      <div style="position: absolute; top: 14px; right: 14px; background: rgba(8,11,18,0.82); color: #ff8a3d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 6px 12px; pointer-events: none">AFTER — THE VISION</div>
-      <!-- invisible range input drives the slider -->
-      <input type="range" min="0" max="100" step="0.1" value="{{ sliderPct }}" onInput="{{ onSlide }}" aria-label="Before / after comparison" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0">
-    </div>
-    <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.03 — DRAG TO COMPARE · AI-GENERATED CONCEPT, FOR ILLUSTRATION ONLY — NEITHER VERSION EXISTS OR EVER WILL. IT'S A LEMONS CAR.</div>
+    </sc-for>
   </div>
-</div>
 
-<!-- ======================= PROJECT 02: MR2 (CHAMPION) ======================= -->
-<div id="mr2" data-screen-label="Project MR2" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px); background: #0b0f18">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 18px; margin-bottom: 10px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">PROJECT / 02</span>
-      <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #080b12; background: #ff8a3d; padding: 5px 12px; font-weight: 600">🏆 CLASS B WINNER — B.F.E. GP 2026</span>
-    </div>
-    <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Toyota</span> MR2 <span style="color: #ff8a3d">“DadBod CarMod”</span></h2>
-    <p style="margin: 0 0 40px; max-width: 66ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      Our best 24 Hours of Lemons result yet. June 2026 at High Plains Raceway: the #177 MR2 ran 336 laps in 14.5 hours and took the Class B win by two clean laps. Its stablemate — the green #157 Yaris — led Class C until a catastrophic brake failure cost a three-hour repair. The DadBod CarMod team did fantastic.
-    </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 2px; background: rgba(77,163,255,0.18); max-width: 760px; margin-bottom: 40px">
-      <sc-for list="{{ mr2Stats }}" as="s" hint-placeholder-count="4">
-        <div style="background: #080b12; padding: 18px 20px; text-align: center">
-          <div style="font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #ff8a3d">{{ s.value }}</div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84; margin-top: 6px">{{ s.label }}</div>
-        </div>
-      </sc-for>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 2px; background: rgba(77,163,255,0.18)">
-      <sc-for list="{{ mr2Photos }}" as="p" hint-placeholder-count="8">
-        <div style="position: relative; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
-          <img src="{{ p.src }}" alt="{{ p.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover" loading="lazy">
-          <div style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.82); padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #e8edf5">{{ p.label }}</div>
-        </div>
-      </sc-for>
-    </div>
-    <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.02 — BEFORE: CAGE PREP AND COILOVERS. AFTER: P1 IN CLASS. THE BEER WAS EARNED.</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ mr2Photos }}" as="p" hint-placeholder-count="8">
+      <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ p.src }}" alt="{{ p.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
+      </figure>
+    </sc-for>
   </div>
-</div>
+</section>
 
-<!-- ======================= NEXT PROJECT ======================= -->
-<sc-if value="{{ showUpNext }}" hint-placeholder-val="{{ true }}">
-  <div data-screen-label="Next Project" style="padding: clamp(48px, 7vw, 90px) clamp(20px, 5vw, 64px) clamp(72px, 9vw, 120px); background: #080b12">
-    <div style="max-width: 1280px; margin: 0 auto">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em; margin-bottom: 10px">PROJECT / 03</div>
-      <h2 style="margin: 0 0 8px; font-size: clamp(34px, 5vw, 60px); font-weight: 700; text-transform: uppercase; color: #5a6b84"><span style="color: #4da3ff">To</span> be <span style="color: #ff8a3d">determined</span></h2>
-      <p style="margin: 0 0 32px; max-width: 56ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">The next club build gets documented here. Got a candidate rotting in a field somewhere? Pitch it at the next meet.</p>
-      <div style="width: 100%; max-width: 640px; aspect-ratio: 16 / 9; border: 1px dashed rgba(77,163,255,0.35)">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="proj-next" shape="rect" placeholder="Future project car goes here" hint-size="100%,100%"></x-import>
+<!-- ============ NEXT PROJECT ============ -->
+<section aria-labelledby="next-h" style="padding: 0 clamp(16px, 4vw, 56px) clamp(64px, 9vw, 128px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: clamp(32px, 5vw, 64px); border-top: 2px solid #4da3ff; padding-top: clamp(40px, 5vw, 64px)">
+    <div style="flex: 1 1 420px; min-width: 0">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4da3ff; margin-bottom: 16px">Club car No. 2</div>
+      <h2 id="next-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 6vw, 96px); line-height: 0.88; text-transform: uppercase; color: #8b9bb3">To be decided</h2>
+      <p style="margin: 0 0 24px; max-width: 50ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">The next club car joins once the Insight has a full driver roster. Got a candidate rotting in a field somewhere? Pitch it at the next meet, and members vote.</p>
+      <a href="paddock.html" style="display: inline-block; text-decoration: none; padding: 15px 24px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 16px">Pitch a car</a>
+    </div>
+    <div style="flex: 1 1 420px; min-width: 0; aspect-ratio: 16 / 9; border: 2px dashed rgba(159,176,200,0.45); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; font-size: 15px; color: #8b9bb3">Photo of the next club car</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #05070c; color: #8b9bb3; padding: 40px clamp(16px, 4vw, 56px) 36px; font-size: 14px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px">
+    <div style="display: flex; align-items: center; gap: 18px">
+      <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 72px; height: 72px">
+      <div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: 56px; line-height: 0.9; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></div>
+        <div style="margin-top: 8px">© 2026 Race Me, a Colorado 501(c)(7) nonprofit social club</div>
       </div>
     </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 22px">
+      <a href="index.html" style="color: #c9d3e2; padding: 10px 0">Home</a>
+      <a href="trips.html" style="color: #c9d3e2; padding: 10px 0">Road trips</a>
+      <a href="support.html" style="color: #c9d3e2; padding: 10px 0">Support</a>
+      <a href="paddock.html" style="color: #c9d3e2; padding: 10px 0">Paddock</a>
+      <a href="mailto:info@race-me.org" style="color: #c9d3e2; padding: 10px 0">info@race-me.org</a>
+    </nav>
   </div>
-</sc-if>
+  <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(159,176,200,0.2)">Members must be 21 or older. Alcohol only after the tools are down and the driving is done.</div>
+</footer>
 
-<!-- ======================= FOOTER ======================= -->
-<div style="padding: 0 clamp(20px, 5vw, 64px); background: #080b12">
-  <div style="max-width: 1280px; margin: 0 auto; padding: 24px 0 28px; border-top: 1px solid rgba(77,163,255,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #5a6b84">
-    <span style="display: inline-flex; align-items: center; gap: 10px"><img src="assets/logo-rm-64.png" alt="RM" style="width: 22px; height: 22px">© 2026 RACE ME™ — A REGISTERED COLORADO NONPROFIT</span>
-    <a href="mailto:info@race-me.org" style="color: #5a6b84" style-hover="color: #ff8a3d">INFO@RACE-ME.ORG</a>
-  </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{
-  &quot;showUpNext&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Sections&quot; }
-}">
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6800}}'>
 class Component extends DCLogic {
-  state = { sliderPct: 50 };
   renderVals() {
-    const done = '#4da3ff', now = '#ff8a3d', next = '#5a6b84';
-    const pct = this.state.sliderPct;
+    const split = this.state && this.state.split != null ? this.state.split : 50;
+    const done = '#4da3ff', now = '#ff8a3d', next = '#8b9bb3';
     return {
-      sliderPct: pct,
-      dividerLeft: pct + '%',
-      beforeClip: 'inset(0 ' + (100 - pct) + '% 0 0)',
-      onSlide: (e) => this.setState({ sliderPct: parseFloat(e.target.value) }),
-      showUpNext: this.props.showUpNext ?? true,
+      split: split,
+      splitPct: split + '%',
+      beforeClip: 'inset(0 ' + (100 - split) + '% 0 0)',
+      onSplit: (e) => this.setState({ split: Number(e.target.value) }),
+      specs: [
+        { label: 'Chassis', value: 'Honda Insight, first generation' },
+        { label: 'Series', value: '24 Hours of Lemons' },
+        { label: 'Class', value: 'Class C' },
+        { label: 'First race', value: 'Date to be announced' },
+        { label: 'Seat time', value: 'Earned with wrench credit' }
+      ],
+      log: [
+        { status: 'Done', color: done, title: 'Car acquired', detail: 'One owner-ish, mostly complete, and priced like a Lemons car should be.' },
+        { status: 'Done', color: done, title: 'Teardown and interior strip', detail: 'Everything flammable and everything heavy came out.' },
+        { status: 'Now', color: now, title: 'Roll cage prep', detail: 'Measuring, notching, and fitting ahead of the cage install.' },
+        { status: 'Next', color: next, title: 'Cage install and safety gear', detail: 'Cage welded in, then seat, harness, kill switch, and fire bottle.' },
+        { status: 'Next', color: next, title: 'First race', detail: 'Survive it, then go after the Class C win.' }
+      ],
       mr2Stats: [
-        { value: 'P1 — CLASS B', label: 'FINISH' },
-        { value: '336', label: 'LAPS' },
-        { value: '2:12.899', label: 'BEST LAP' },
-        { value: '+2 LAPS', label: 'WINNING GAP' },
+        { value: 'P1', label: 'Class B finish' },
+        { value: '336', label: 'Laps' },
+        { value: '2:12.899', label: 'Best lap' },
+        { value: '+2 laps', label: 'Winning gap' }
       ],
       mr2Photos: [
-        { src: 'assets/projects/mr2-team.jpg', label: 'THE DADBOD CARMOD TEAM — MR2 + YARIS', row: 'span 2', col: 'span 2' },
-        { src: 'assets/projects/mr2-trophy.jpg', label: 'THE LEMON — CLASS B, WON', row: 'span 2', col: 'auto' },
-        { src: 'assets/projects/mr2-lift.jpg', label: 'BEFORE — ON THE LIFT, COILOVER PREP', row: 'auto', col: 'span 2' },
-        { src: 'assets/projects/mr2-cage.jpg', label: 'BEFORE — CAGE MEASUREMENTS', row: 'auto', col: 'auto' },
-        { src: 'assets/projects/mr2-leading.jpg', label: 'LEADING THE PACK AT HPR', row: 'auto', col: 'span 2' },
-        { src: 'assets/projects/mr2-yaris-track.jpg', label: 'TEAM CARS 1-2 ON THE FRONT STRAIGHT', row: 'auto', col: 'auto' },
-        { src: 'assets/projects/mr2-chug.jpg', label: 'VICTORY PROTOCOL, EXECUTED', row: 'auto', col: 'span 2' },
-        { src: 'assets/projects/mr2-hood.jpg', label: 'DRIVERS ON THE WINNING HOOD', row: 'auto', col: 'auto' },
-      ],
-      insightThumbs: [
-        { id: 'proj-insight-t1', src: 'uploads/20260104_160514.jpg', placeholder: 'Build photo' },
-        { id: 'proj-insight-t2', src: 'uploads/20260104_160455.jpg', placeholder: 'Build photo' },
-        { id: 'proj-insight-t3', src: 'uploads/20260104_160502.jpg', placeholder: 'Build photo' },
-      ],
-      insightSpecs: [
-        { label: 'CHASSIS', value: 'Honda Insight (1st gen)' },
-        { label: 'SERIES', value: '24 Hours of Lemons' },
-        { label: 'NEXT RACE', value: 'High Plains 24 — Sept' },
-        { label: 'CLASS', value: 'Class C' },
-        { label: 'GOAL', value: 'Win it' },
-      ],
-      insightLog: [
-        { status: '● DONE', color: done, title: 'Car acquired', detail: 'One owner-ish, mostly complete, priced like a Lemons car should be.' },
-        { status: '● DONE', color: done, title: 'Teardown + interior strip', detail: 'Everything flammable and everything heavy came out.' },
-        { status: '▶ NOW', color: now, title: 'Roll cage prep', detail: 'Measuring, notching, and fitting ahead of the cage install.' },
-        { status: '○ NEXT', color: next, title: 'Cage install + safety gear', detail: 'Cage welded in, seat, harness, kill switch, fire bottle.' },
-        { status: '○ NEXT', color: next, title: 'High Plains 24', detail: 'September. Survive, then win Class C.' },
-      ],
+        { src: 'assets/projects/mr2-team.jpg', label: 'The Dadbod Carmod team with the MR2 and Yaris', row: 'span 2', col: 'span 2' },
+        { src: 'assets/projects/mr2-trophy.jpg', label: 'The Class B trophy', row: 'span 2', col: 'auto' },
+        { src: 'assets/projects/mr2-lift.jpg', label: 'Before: on the lift for coilover prep', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-cage.jpg', label: 'Before: cage measurements', row: 'auto', col: 'auto' },
+        { src: 'assets/projects/mr2-leading.jpg', label: 'Leading the pack at High Plains', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-yaris-track.jpg', label: 'Team cars on the front straight', row: 'auto', col: 'auto' },
+        { src: 'assets/projects/mr2-chug.jpg', label: 'Victory protocol, executed', row: 'auto', col: 'span 2' },
+        { src: 'assets/projects/mr2-hood.jpg', label: 'Drivers on the winning hood', row: 'auto', col: 'auto' }
+      ]
     };
   }
 }

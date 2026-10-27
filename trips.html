@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Me — Road trips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M4232QS5G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M4232QS5G8');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Race Me annual run: 2026 Tail of the Dragon (3,577 miles, 8 days, 15 states) and 2025 SoCal and Vegas.">
+<meta property="og:title" content="Race Me — Colorado Springs Car Club">
+<meta property="og:description" content="The Race Me annual run: 2026 Tail of the Dragon (3,577 miles, 8 days, 15 states) and 2025 SoCal and Vegas.">
+<meta property="og:image" content="assets/trips/2026/dragon-20261007_170906.jpg">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#080b12;color:#e8edf5;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4da3ff}a:hover{color:#ff8a3d}
+::selection{background:#ff8a3d;color:#080b12}
+</style>
+</helmet>
+<div style="background: #080b12; color: #e8edf5; font-family: 'Archivo', system-ui, sans-serif; min-width: 0">
+
+<!-- ============ MASTHEAD ============ -->
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 18px clamp(16px, 4vw, 56px); border-bottom: 1px solid rgba(159,176,200,0.25)">
+  <a href="index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #e8edf5">
+    <img src="assets/logo-roundel-512.png" alt="" style="width: 44px; height: 44px">
+    <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; line-height: 1; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></span>
+  </a>
+  <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+    <a href="index.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Home</a>
+    <a href="trips.html" aria-current="page" style="text-decoration: none; padding: 12px 0; color: #ff8a3d; border-bottom: 2px solid #ff8a3d">Road trips</a>
+    <a href="projects.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Projects</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Support</a>
+    <a href="paddock.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Paddock</a>
+    <a href="/members/" style="text-decoration: none; padding: 12px 0; color: #8b9bb3">Members login</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 20px; background: #ff8a3d; color: #080b12; font-weight: 700">Join the club</a>
+  </nav>
+</header>
+
+<!-- ============ PAGE HEAD ============ -->
+<section aria-labelledby="trips-h" style="padding: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 56px) clamp(32px, 4vw, 56px)">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Road trips</div>
+  <h1 id="trips-h" style="margin: 0 0 24px; font-stretch: 62%; font-weight: 900; font-size: clamp(64px, 10vw, 160px); line-height: 0.86; text-transform: uppercase">The annual run</h1>
+  <p style="margin: 0 0 40px; max-width: 58ch; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: #9fb0c8; text-wrap: pretty">Once a year the club points the cars at the best roads we can reach and drives there together. Every member drives their own car, nobody gets trailered, and we all get home. Mostly.</p>
+
+  <div role="table" aria-label="Every annual run" style="border-top: 2px solid #4da3ff">
+    <sc-for list="{{ runs }}" as="r" hint-placeholder-count="3">
+      <a role="row" href="{{ r.href }}" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid rgba(159,176,200,0.35); text-decoration: none; color: #e8edf5">
+        <span role="cell" style="flex: 0 0 88px; font-stretch: 62%; font-weight: 800; font-size: 32px; color: #ff8a3d">{{ r.year }}</span>
+        <span role="cell" style="flex: 1 1 280px; font-stretch: 62%; font-weight: 900; font-size: clamp(36px, 4vw, 56px); line-height: 0.95; text-transform: uppercase">{{ r.name }}</span>
+        <span role="cell" style="flex: 2 1 340px; font-size: 17px; line-height: 1.5; color: #9fb0c8">{{ r.summary }}</span>
+        <span role="cell" style="flex: 0 0 auto; font-weight: 700; font-size: 15px; color: #4da3ff">{{ r.cta }} →</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ 2026: TAIL OF THE DRAGON ============ -->
+<section id="dragon-2026" aria-labelledby="dragon-h" style="background: #0d1220; border-top: 6px solid #ff8a3d; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">2026 · October</div>
+  <h2 id="dragon-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">Tail of the Dragon</h2>
+  <p style="margin: 0 0 32px; max-width: 60ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Our most epic run yet: from Colorado Springs to the Smokies for 318 curves in 11 miles, plus the Cherohala Skyway, Moonshiner 28, and the Barber Motorsports Museum on the way home.</p>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 880px; border-top: 2px solid #4da3ff; border-bottom: 1px solid rgba(159,176,200,0.35); margin-bottom: clamp(40px, 5vw, 64px)">
+    <sc-for list="{{ dragonStats }}" as="s" hint-placeholder-count="3">
+      <div style="padding: 18px 16px 16px 0">
+        <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 6.4vw, 96px); line-height: 0.9; color: #ff8a3d">{{ s.value }}</div>
+        <div style="margin-top: 8px; font-size: 14px; color: #8b9bb3">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(40px, 5vw, 72px)">
+    <div style="flex: 1 1 420px; min-width: 0">
+      <h3 style="margin: 0 0 4px; font-stretch: 62%; font-weight: 900; font-size: 40px; line-height: 1; text-transform: uppercase">The itinerary</h3>
+      <div style="border-top: 2px solid #4da3ff; margin-top: 16px">
+        <sc-for list="{{ legs }}" as="leg" hint-placeholder-count="4">
+          <div style="display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 20px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+            <div style="flex: 0 0 120px">
+              <div style="font-stretch: 62%; font-weight: 800; font-size: 24px; line-height: 1; color: #ff8a3d">{{ leg.dates }}</div>
+              <div style="margin-top: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8b9bb3">{{ leg.tag }}</div>
+            </div>
+            <div style="flex: 1 1 260px">
+              <div style="font-weight: 700; font-size: 18px">{{ leg.title }}</div>
+              <div style="margin-top: 6px; font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">{{ leg.detail }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 520px; min-width: 0">
+      <h3 style="margin: 0 0 4px; font-stretch: 62%; font-weight: 900; font-size: 40px; line-height: 1; text-transform: uppercase">The hit list</h3>
+      <p style="margin: 8px 0 0; font-size: 15px; color: #8b9bb3">Roads from the guide at <a href="https://tailofthedragon.com/roads/">tailofthedragon.com/roads</a>.</p>
+      <div style="border-top: 2px solid #4da3ff; margin-top: 16px">
+        <sc-for list="{{ roads }}" as="r" hint-placeholder-count="8">
+          <a href="{{ r.url }}" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 18px 0; border-bottom: 1px solid rgba(159,176,200,0.35); text-decoration: none; color: #e8edf5">
+            <span style="flex: 1 1 220px; font-stretch: 62%; font-weight: 900; font-size: 28px; line-height: 1; text-transform: uppercase">{{ r.name }}</span>
+            <span style="flex: 0 0 auto; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ff8a3d">{{ r.stat }}</span>
+            <span style="flex: 1 1 100%; font-size: 15px; line-height: 1.5; color: #9fb0c8">{{ r.desc }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div id="route-vote" style="margin-top: clamp(56px, 7vw, 96px)">
+    <h3 style="margin: 0 0 8px; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">The ride home</h3>
+    <p style="margin: 0 0 24px; max-width: 62ch; font-size: 17px; line-height: 1.55; color: #9fb0c8">After Barber on the 8th, there were three ways back west. Members weighed the trade-offs and voted in the Discord.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); border-top: 2px solid #4da3ff; border-left: 1px solid rgba(159,176,200,0.35)">
+      <sc-for list="{{ scenarios }}" as="sc" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 26px 24px 28px; border-right: 1px solid rgba(159,176,200,0.35); border-bottom: 1px solid rgba(159,176,200,0.35); background: #080b12">
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d">Option {{ sc.letter }}</div>
+          <div style="font-stretch: 62%; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase">{{ sc.name }}</div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ sc.days }}" as="d" hint-placeholder-count="2">
+              <div style="display: flex; gap: 12px; align-items: baseline">
+                <span style="flex: 0 0 52px; font-size: 13px; font-weight: 700; color: #8b9bb3">{{ d.date }}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">{{ d.plan }}</span><span style="font-size: 13px; color: #4da3ff">{{ d.load }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(159,176,200,0.25); font-size: 15px; line-height: 1.5; color: #9fb0c8; text-wrap: pretty">{{ sc.verdict }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <h3 style="margin: clamp(56px, 7vw, 96px) 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.4vw, 64px); line-height: 0.95; text-transform: uppercase">From the road</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ dragonPhotos }}" as="p" hint-placeholder-count="13">
+      <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ p.src }}" alt="{{ p.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ p.pos }}">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+  <div style="margin-top: 14px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">October 2026</strong> — 3,577 miles, 8 days, 15 states.</div>
+</section>
+
+<!-- ============ 2025: SOCAL & VEGAS ============ -->
+<section id="socal-2025" aria-labelledby="socal-h" style="padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(28px, 4vw, 48px)">
+    <div>
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">2025 · October</div>
+      <h2 id="socal-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">SoCal and Vegas</h2>
+    </div>
+    <p style="margin: 0; flex: 0 1 480px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Colorado to the coast and back: I-70 through the San Rafael Swell, Vegas, the Angeles Crest, Malibu canyons, and the PCH. We convoyed home past the Albuquerque Balloon Fiesta.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ photos }}" as="p" hint-placeholder-count="10">
+      <figure style="position: relative; margin: 0; grid-row: {{ p.row }}; grid-column: {{ p.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ p.src }}" alt="{{ p.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ p.label }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+  <div style="margin-top: 14px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">October 2025</strong> — about 2,000 miles, zero trailers.</div>
+</section>
+
+<!-- ============ NEXT RUN ============ -->
+<section id="next-run" aria-labelledby="next-h" style="background: #ff8a3d; color: #080b12; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px">
+    <h2 id="next-h" style="margin: 0; flex: 1 1 560px; max-width: 16ch; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 8vw, 128px); line-height: 0.86; text-transform: uppercase">Where should we drive in 2027?</h2>
+    <div style="flex: 0 1 400px; display: flex; flex-direction: column; gap: 22px">
+      <p style="margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; text-wrap: pretty">Members pitch routes and vote on the next run in the Discord. Bring a road you've always wanted to drive.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="paddock.html" style="text-decoration: none; padding: 16px 26px; background: #080b12; color: #ff8a3d; font-weight: 700; font-size: 16px">Pitch a route</a>
+        <a href="support.html" style="text-decoration: none; padding: 14px 24px; border: 2px solid #080b12; color: #080b12; font-weight: 700; font-size: 16px">Join to come along</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #05070c; color: #8b9bb3; padding: 40px clamp(16px, 4vw, 56px) 36px; font-size: 14px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px">
+    <div style="display: flex; align-items: center; gap: 18px">
+      <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 72px; height: 72px">
+      <div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: 56px; line-height: 0.9; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></div>
+        <div style="margin-top: 8px">© 2026 Race Me, a Colorado 501(c)(7) nonprofit social club</div>
+      </div>
+    </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 22px">
+      <a href="index.html" style="color: #c9d3e2; padding: 10px 0">Home</a>
+      <a href="projects.html" style="color: #c9d3e2; padding: 10px 0">Projects</a>
+      <a href="support.html" style="color: #c9d3e2; padding: 10px 0">Support</a>
+      <a href="paddock.html" style="color: #c9d3e2; padding: 10px 0">Paddock</a>
+      <a href="mailto:info@race-me.org" style="color: #c9d3e2; padding: 10px 0">info@race-me.org</a>
+    </nav>
+  </div>
+  <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(159,176,200,0.2)">Members must be 21 or older. Alcohol only after the tools are down and the driving is done.</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      scenarios: [
+        { letter: 'A', name: 'Long day, then easy cruising', days: [ { date: 'Oct 8', plan: 'Tallassee to Barber to Memphis', load: '12 hours of travel plus the museum' }, { date: 'Oct 9', plan: 'Memphis to Oklahoma City', load: 'About 7.5 hours of driving' } ], verdict: 'A marathon on the 8th with the museum on a strict clock, then an easy cruise into Oklahoma City on the 9th.' },
+        { letter: 'B', name: 'More time at Barber', days: [ { date: 'Oct 8', plan: 'Tallassee to Barber, overnight in Birmingham', load: '8 hours, relaxed' }, { date: 'Oct 9', plan: 'Birmingham to Oklahoma City', load: '11+ hours of driving' } ], verdict: 'A great museum day, but 11 hours of convoy driving on the 9th stretches to 13 or 14 with stops.' },
+        { letter: 'C', name: 'The Goldilocks route', days: [ { date: 'Oct 8', plan: 'Tallassee to Barber, overnight in Birmingham', load: '8 hours, relaxed' }, { date: 'Oct 9', plan: 'Birmingham to Fort Smith, AR', load: 'About 8.5 hours of driving' }, { date: 'Oct 10', plan: 'Fort Smith to Colorado Springs', load: 'About 10 hours, the final push' } ], verdict: 'A relaxed museum day and no brutal drive. Fort Smith sits on I-40 at the Oklahoma line, teeing up the run home.' }
+      ],
+      dragonPhotos: [
+        { src: 'assets/trips/2026/dragon-20261006_154229.jpg', label: 'The crew at the falls', row: 'span 2', col: 'span 2', pos: '50% 50%' },
+        { src: 'assets/trips/2026/dragon-20261005_111154.jpg', label: 'Deals Gap: 318 curves in 11 miles', row: 'span 2', col: 'auto', pos: '50% 60%' },
+        { src: 'assets/trips/2026/dragon-20261005-WA0006.jpg', label: 'On the Tail of the Dragon', row: 'span 2', col: 'auto', pos: '50% 60%' },
+        { src: 'assets/trips/2026/dragon-20261007_170906.jpg', label: 'Golden hour overlook in the Smokies', row: 'auto', col: 'span 2', pos: '50% 70%' },
+        { src: 'assets/trips/2026/dragon-20261002_072325.jpg', label: 'Day 1: wheels up at dawn', row: 'auto', col: 'auto', pos: '50% 60%' },
+        { src: 'assets/trips/2026/dragon-20261005_113219.jpg', label: 'Above the valley', row: 'span 2', col: 'auto', pos: '50% 50%' },
+        { src: 'assets/trips/2026/dragon-20261006_095308.jpg', label: 'Basecamp at the chalet', row: 'auto', col: 'span 2', pos: '50% 60%' },
+        { src: 'assets/trips/2026/dragon-20261007_080124.jpg', label: 'Morning wrench session', row: 'auto', col: 'auto', pos: '50% 50%' },
+        { src: 'assets/trips/2026/dragon-20261007_183355.jpg', label: 'Sunset lineup', row: 'auto', col: 'span 2', pos: '50% 60%' },
+        { src: 'assets/trips/2026/dragon-20261008_092957.jpg', label: 'Barber Motorsports Museum', row: 'auto', col: 'span 2', pos: '50% 50%' },
+        { src: 'assets/trips/2026/dragon-20261008_095535.jpg', label: 'Lotus row at Barber', row: 'auto', col: 'auto', pos: '50% 50%' },
+        { src: 'assets/trips/2026/dragon-20261008_215513.jpg', label: 'Late-night ice cream run', row: 'span 2', col: 'auto', pos: '50% 70%' },
+        { src: 'assets/trips/2026/dragon-20261009_074104.jpg', label: 'Sunrise on the drive home', row: 'span 2', col: 'auto', pos: '50% 50%' }
+      ],
+      dragonStats: [
+        { value: '3,577', label: 'Miles' },
+        { value: '8', label: 'Days' },
+        { value: '15', label: 'States' }
+      ],
+      runs: [
+        { year: '2026', name: 'Tail of the Dragon', summary: '3,577 miles, 8 days, and 15 states to the Smokies and back, with the Barber Motorsports Museum on the way home.', cta: 'The run', href: '#dragon-2026' },
+        { year: '2025', name: 'SoCal and Vegas', summary: 'About 2,000 miles from Colorado to the Pacific Coast Highway and back.', cta: 'The photos', href: '#socal-2025' },
+        { year: '2027', name: 'To be decided', summary: 'Members pitch and vote on the route. Yours could be next.', cta: 'Pitch a route', href: '#next-run' }
+      ],
+      legs: [
+        { dates: 'Oct 2–3', tag: 'Basecamp 1', title: 'Roll in', detail: 'The convoy arrives, unloads, shakes down the cars, and takes a first crack at the local roads.' },
+        { dates: 'Oct 3–8', tag: 'Basecamp 2', title: 'Dragon week at the chalet', detail: 'Five days on the Tail of the Dragon, Cherohala Skyway, Moonshiner 28, and whatever else the mountains offer.' },
+        { dates: 'Oct 8', tag: 'The pilgrimage', title: 'Barber Motorsports Museum', detail: 'Down out of the mountains to Birmingham, about 4 hours, for the world’s largest motorcycle museum and its track. Budget at least 4 hours inside.' },
+        { dates: 'Oct 8–10', tag: 'The ride home', title: 'Back west to Colorado Springs', detail: 'Three routes home went to a member vote. See the options below.' }
+      ],
+      roads: [
+        { name: 'Tail of the Dragon', stat: '318 curves · 11 mi', url: 'https://tailofthedragon.com/road/tail-of-the-dragon/', desc: 'The main event. US 129 from Deals Gap through the Cherokee National Forest.' },
+        { name: 'Cherohala Skyway', stat: '43 mi', url: 'https://tailofthedragon.com/road/cherohala-skyway/', desc: 'Tellico Plains, TN to Robbinsville, NC. High-elevation sweepers after the Dragon.' },
+        { name: 'Moonshiner 28', stat: '103 mi', url: 'https://tailofthedragon.com/road/moonshiner-28/', desc: 'An old moonshine-running route off the Dragon’s tail, with twisties and big scenery.' },
+        { name: 'Smoky Mountain Loop', stat: '143 mi', url: 'https://tailofthedragon.com/road/smoky-mountain-loop/', desc: 'Five top roads in one day: the Dragon, Foothills Parkway, Little River Road, US 441, and back via 28.' },
+        { name: 'Foothills Parkway', stat: '38.6 mi', url: 'https://tailofthedragon.com/road/foothills-parkway/', desc: 'Scenic parkway from US 129 to Wears Valley. Big views at an easy pace.' },
+        { name: 'Devils Triangle', stat: '44 mi loop', url: 'https://tailofthedragon.com/road/devils-triangle/', desc: 'TN 62, 116, and 330 on the Cumberland Plateau: tight two-lanes through old mining country.' },
+        { name: 'Diamondback 226', stat: '38 mi loop', url: 'https://tailofthedragon.com/road/diamondback-226/', desc: 'Near Little Switzerland off the Blue Ridge Parkway, if we range north toward Asheville.' },
+        { name: 'Gambler NC 209', stat: '36 mi', url: 'https://tailofthedragon.com/road/gambler-nc209/', desc: 'Lake Junaluska to Hot Springs through towns named Trust and Luck.' }
+      ],
+      photos: [
+        { src: 'assets/trips/20251005_125111.jpg', label: 'Malibu: the full grid on the PCH', row: 'span 2', col: 'span 2' },
+        { src: 'assets/trips/img_1123.jpg', label: 'Tunnel run', row: 'span 2', col: 'auto' },
+        { src: 'assets/trips/20251004_164006.jpg', label: 'The welcoming committee', row: 'span 2', col: 'auto' },
+        { src: 'assets/trips/20251004_094122.jpg', label: 'Angeles Crest, above the clouds', row: 'auto', col: 'span 2' },
+        { src: 'assets/trips/20251003_070825.jpg', label: 'Day 1: Frisco, CO, fuel and go', row: 'auto', col: 'auto' },
+        { src: 'assets/trips/20251003_105908.jpg', label: 'I-70 through the San Rafael Swell', row: 'auto', col: 'auto' },
+        { src: 'assets/trips/20251003_143436.jpg', label: 'St. George: desert checkpoint', row: 'auto', col: 'span 2' },
+        { src: 'assets/trips/20251004_182033.jpg', label: 'Golden hour rooftop regroup', row: 'auto', col: 'span 2' },
+        { src: 'assets/trips/20251009_073242.jpg', label: 'Homeward: Albuquerque Balloon Fiesta', row: 'auto', col: 'span 2' },
+        { src: 'assets/trips/20251003_200154.jpg', label: 'Late-night wrenching', row: 'auto', col: 'span 2' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

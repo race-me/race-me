@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Me — Homepage</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -14,321 +15,410 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-M4232QS5G8');
 </script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:title" content="Race Me — Nonprofit Car Club">
-<meta property="og:description" content="We build them, race them, road-trip them. 24 Hours of Lemons, annual runs, and a shop on the way.">
-<meta property="og:image" content="uploads/pasted-1783392734015-0.jpg">
+<meta name="description" content="A Colorado Springs nonprofit car club where everyone drives. Club cars, shop time, road trips, and 24 Hours of Lemons.">
+<meta property="og:title" content="Race Me — Colorado Springs Car Club">
+<meta property="og:description" content="A Colorado Springs nonprofit car club where everyone drives. Club cars, shop time, road trips, and 24 Hours of Lemons.">
+<meta property="og:image" content="assets/trips/2026/dragon-20261007_170906.jpg">
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; padding: 0; background: #080b12; }
-  body { font-family: 'Chakra Petch', sans-serif; color: #e8edf5; -webkit-font-smoothing: antialiased; }
-  * { box-sizing: border-box; }
-  a { color: #4da3ff; text-decoration: none; }
-  a:hover { color: #ff8a3d; }
-  @keyframes rm-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes rm-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-  @keyframes rm-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  ::selection { background: #ff8a3d; color: #080b12; }
+body{margin:0;background:#080b12;color:#e8edf5;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4da3ff}a:hover{color:#ff8a3d}
+::selection{background:#ff8a3d;color:#080b12}
 </style>
 </helmet>
+<div style="background: #080b12; color: #e8edf5; font-family: 'Archivo', system-ui, sans-serif; min-width: 0">
 
-<!-- ======================= NAV ======================= -->
-<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px clamp(20px, 5vw, 64px); background: rgba(8,11,18,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(77,163,255,0.18)">
-  <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #e8edf5">
-    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 36px; height: 36px">
-    <span style="font-weight: 700; font-size: 18px; letter-spacing: 0.14em"><span style="color: #4da3ff">RACE</span>&nbsp;<span style="color: #ff8a3d">ME</span><span style="font-size: 10px; vertical-align: super">™</span></span>
+<!-- ============ MASTHEAD ============ -->
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 18px clamp(16px, 4vw, 56px); border-bottom: 1px solid rgba(159,176,200,0.25)">
+  <a href="#top" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #e8edf5">
+    <img src="assets/logo-roundel-512.png" alt="" style="width: 44px; height: 44px">
+    <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; letter-spacing: 0.01em; line-height: 1; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></span>
+    <span style="font-size: 13px; font-weight: 500; color: #8b9bb3">Colorado Springs nonprofit car club · 21+</span>
   </a>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px clamp(8px, 2vw, 24px); font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em">
-    <a href="#club" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE CLUB</a>
-    <a href="#garage" style="color: #9fb0c8" style-hover="color: #ff8a3d">GARAGE</a>
-    <a href="#shop" style="color: #9fb0c8" style-hover="color: #ff8a3d">THE SHOP</a>
-    <a href="#sponsors" style="color: #9fb0c8" style-hover="color: #ff8a3d">SPONSORS</a>
-    <span style="width: 1px; height: 18px; background: rgba(77,163,255,0.3)"></span>
-    <a href="projects.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PROJECTS ▸</a>
-    <a href="roadtrip.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">ROAD TRIP ▸</a>
-    <a href="pasttrips.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">PAST RUNS ▸</a>
-    <a href="support.html" style="color: #4da3ff; border: 1px solid rgba(77,163,255,0.4); padding: 6px 12px" style-hover="color: #080b12; background: #4da3ff">SUPPORT ▸</a>
-    <a href="paddock.html" style="padding: 9px 18px; background: #ff8a3d; color: #080b12; font-weight: 600; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" style-hover="background: #4da3ff; color: #080b12">PADDOCK</a>
+  <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+    <a href="#different" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Why Race Me</a>
+    <a href="#membership" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Membership</a>
+    <a href="#garage" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Garage</a>
+    <a href="trips.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Road trips</a>
+    <a href="projects.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Projects</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Support</a>
+    <a href="paddock.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Paddock</a>
+    <a href="/members/" style="text-decoration: none; padding: 12px 0; color: #8b9bb3">Members login</a>
+    <a href="support.html" style="text-decoration: none; padding: 12px 20px; background: #ff8a3d; color: #080b12; font-weight: 700">Join the club</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" aria-label="Intro" style="padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 56px) 0">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9fb0c8; padding-bottom: 14px; border-bottom: 1px solid rgba(159,176,200,0.35)">
+    <span>501(c)(7) social club</span>
+    <span>Men and women, 21 and over</span>
+    <span>Club cars you can earn time in</span>
+    <span>Colorado Springs, Colorado</span>
   </div>
+  <h1 style="margin: clamp(20px, 3vw, 36px) 0 0; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 11vw, 184px); line-height: 0.86; letter-spacing: -0.005em; text-transform: uppercase">A car club where<br><span style="color: #ff8a3d">everyone</span> <span style="color: #4da3ff">drives</span></h1>
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 48px; margin-top: clamp(28px, 4vw, 48px); padding-bottom: clamp(28px, 4vw, 44px)">
+    <p style="margin: 0; flex: 1 1 380px; max-width: 56ch; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: #9fb0c8; text-wrap: pretty">Race Me is a Colorado nonprofit club for people who want to drive fast, wrench together, and make real friends doing it. You don't need a race car to join. Put in time on ours and you'll earn a turn behind the wheel.</p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
+      <a href="#membership" style="text-decoration: none; padding: 16px 26px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 16px">See membership</a>
+      <a href="{{ discordUrl }}" style="text-decoration: none; padding: 14px 24px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Say hi on Discord</a>
+    </div>
+  </div>
+</section>
+
+<div style="position: relative; margin: 0 clamp(16px, 4vw, 56px)">
+  <img src="assets/projects/mr2-leading.jpg" alt="A pack of Lemons race cars nose to tail through a hairpin" style="display: block; width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 50% 55%">
+  <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; left: clamp(12px, 3vw, 40px); top: clamp(-22px, -1.6vw, -14px); transform: rotate(-3deg); background: #ff8a3d; padding: 8px 18px 6px; font-family: 'Permanent Marker', cursive; font-size: clamp(18px, 2vw, 26px); color: #080b12">no trailer queens</div>
+  </sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin: 0 clamp(16px, 4vw, 56px); padding: 12px 0; border-bottom: 1px solid rgba(159,176,200,0.35); font-size: 13px; color: #8b9bb3">
+  <span><strong style="color: #e8edf5">Fig. 1</strong> — Our affiliate Dadbod Carmod leading the pack through the hairpin, 24 Hours of Lemons.</span>
+  <a href="projects.html" style="font-weight: 700">See the builds →</a>
 </div>
 
-<!-- ======================= HERO ======================= -->
-<div id="top" data-screen-label="Hero" style="position: relative; overflow: hidden; padding: clamp(190px, 16vw, 200px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 110px); background: radial-gradient(1100px 600px at 80% -10%, rgba(77,163,255,0.16), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(255,138,61,0.10), transparent 60%), #080b12">
-  <!-- faint grid texture -->
-  <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(77,163,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(77,163,255,0.05) 1px, transparent 1px); background-size: 56px 56px"></div>
-  <div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); max-width: 1280px; margin: 0 auto; align-items: center">
-    <div>
-      <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.22em; color: #4da3ff; border: 1px solid rgba(77,163,255,0.35); padding: 7px 14px; margin-bottom: 28px">
-        <span style="width: 7px; height: 7px; background: #ff8a3d; animation: rm-pulse 1.6s infinite"></span>
-        NONPROFIT CAR CLUB — EST. 2026
+<!-- ============ WHAT MAKES IT DIFFERENT ============ -->
+<section id="different" aria-labelledby="diff-h" style="padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(28px, 4vw, 48px)">
+    <h2 id="diff-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase">Why Race Me</h2>
+    <p style="margin: 0; flex: 0 1 440px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Plenty of clubs park in a lot and talk about cars. We'd rather be driving them, and doing it with people who'll still be around next season.</p>
+  </div>
+
+  <div role="table" aria-label="What makes Race Me different" style="border-top: 2px solid #4da3ff">
+    <sc-for list="{{ reasons }}" as="s" hint-placeholder-count="4">
+      <div role="row" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+        <span role="cell" style="flex: 0 0 56px; font-stretch: 62%; font-weight: 800; font-size: 28px; color: #ff8a3d">P{{ s.pos }}</span>
+        <span role="cell" style="flex: 1 1 280px; font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.8vw, 72px); line-height: 0.9; text-transform: uppercase">{{ s.title }}</span>
+        <span role="cell" style="flex: 2 1 360px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">{{ s.body }}</span>
       </div>
-      <h1 style="margin: 0 0 20px; font-size: clamp(52px, 9vw, 110px); line-height: 0.95; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase">
-        <span style="color: #4da3ff">Race.</span><br>
-        Wrench.<br>
-        <span style="color: #ff8a3d">Repeat.</span>
-      </h1>
-      <p style="margin: 0 0 36px; max-width: 46ch; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: #9fb0c8; text-wrap: pretty">
-        Race Me is a nonprofit club for people who'd rather spend a Saturday under a car than anywhere else. We build them, race them, road-trip them — and crack a cold one when the tools go down.
-      </p>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ EARN YOUR SEAT ============ -->
+<section id="seat" aria-labelledby="seat-h" style="background: #0d1220; border-top: 6px solid #4da3ff; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px); align-items: stretch">
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4da3ff">The seat-time program</div>
+      <h2 id="seat-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(56px, 7vw, 108px); line-height: 0.86; text-transform: uppercase">Wrench time earns <span style="color: #ff8a3d">seat time</span></h2>
+      <p style="margin: 0; max-width: 50ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Every hour you put into a club car earns credit toward driving it. Seats at each event go to the members who built the car, and drivers split the cost of tires, fuel, and the entry fee. Credit is good for 12 months.</p>
+      <figure style="margin: 8px 0 0">
+        <div style="position: relative; width: 100%; aspect-ratio: 1024 / 572; overflow: hidden; background: #0b0f18">
+          <img src="assets/projects/insight-after.jpg" alt="Concept rendering of the Honda Insight in Race Me livery: blue stripes, wing, and aftermarket wheels" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover">
+          <img src="assets/projects/insight-before.jpg" alt="The Honda Insight today: stock silver with factory hubcaps" style="position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; clip-path: {{ beforeClip }}">
+          <div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: {{ splitPct }}; width: 3px; margin-left: -1px; background: #e8edf5"></div>
+          <span style="position: absolute; left: 12px; top: 12px; padding: 5px 10px; background: rgba(8,11,18,0.85); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #e8edf5">Today</span>
+          <span style="position: absolute; right: 12px; top: 12px; padding: 5px 10px; background: #ff8a3d; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #080b12">Concept</span>
+        </div>
+        <label style="display: flex; align-items: center; gap: 14px; margin-top: 12px; font-size: 13px; font-weight: 700; color: #9fb0c8">
+          <span style="flex: 0 0 auto">Before</span>
+          <input type="range" min="0" max="100" value="{{ split }}" onInput="{{ onSplit }}" aria-label="Slide between the Insight today and the concept" style="flex: 1 1 auto; min-height: 44px; accent-color: #ff8a3d">
+          <span style="flex: 0 0 auto">After</span>
+        </label>
+        <figcaption style="margin-top: 10px; font-size: 13px; line-height: 1.5; color: #8b9bb3"><strong style="color: #e8edf5">Club car No. 1</strong> — the Honda Insight, headed for 24 Hours of Lemons. <strong style="color: #ff8a3d">The "after" is a concept rendering, not the real car yet.</strong> The livery, wing, and wheels are the plan, and the brand logos are for looks only; they aren't sponsors.</figcaption>
+      </figure>
+    </div>
+
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; justify-content: center">
+      <div style="padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.35); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8b9bb3">The driver ladder</div>
+      <ol style="margin: 0; padding: 0; list-style: none">
+        <sc-for list="{{ ladder }}" as="l" hint-placeholder-count="4">
+          <li style="display: flex; gap: 22px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+            <span aria-hidden="true" style="flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #e8edf5; color: #080b12; display: flex; align-items: center; justify-content: center; font-stretch: 62%; font-weight: 900; font-size: 32px; line-height: 1">{{ l.step }}</span>
+            <span style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; line-height: 1; text-transform: uppercase">{{ l.title }}</span>
+              <span style="font-size: 16px; line-height: 1.5; color: #9fb0c8; text-wrap: pretty">{{ l.body }}</span>
+            </span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMBERSHIP: race classes ============ -->
+<section id="membership" aria-labelledby="tiers-h" style="padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(32px, 4vw, 56px)">
+    <h2 id="tiers-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase">Pick your class</h2>
+    <p style="margin: 0; flex: 0 1 460px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Every class gets every meet, every event, a vote, and shop access for your own car. Driver and Podium include lift hours each month, and every class moves up to a cheaper hourly rate and earlier booking. Pay monthly or save with a year up front.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); border-top: 2px solid #4da3ff; border-left: 1px solid rgba(159,176,200,0.35)">
+    <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 22px; padding: 30px 28px 32px; border-right: 1px solid rgba(159,176,200,0.35); border-bottom: 1px solid rgba(159,176,200,0.35); background: #0b0f18">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+          <div>
+            <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8b9bb3">Class {{ t.cls }}</div>
+            <div style="font-stretch: 62%; font-weight: 900; font-size: 52px; line-height: 0.95; text-transform: uppercase">{{ t.name }}</div>
+          </div>
+          <div aria-hidden="true" style="flex: 0 0 auto; width: 76px; height: 76px; border-radius: 50%; background: #e8edf5; border: 3px solid #4da3ff; display: flex; align-items: center; justify-content: center; font-stretch: 62%; font-weight: 900; font-size: 46px; line-height: 1; color: #080b12">{{ t.cls }}</div>
+        </div>
+        <div>
+          <div style="font-stretch: 62%; font-weight: 800; font-size: 48px; line-height: 1; color: #ff8a3d">{{ t.monthly }}<span style="font-stretch: 100%; font-weight: 500; font-size: 16px; color: #8b9bb3"> / month</span></div>
+          <div style="margin-top: 6px; font-size: 14px; color: #8b9bb3">or {{ t.yearly }} / year</div>
+        </div>
+        <dl style="margin: 0; display: flex; flex-direction: column; border-top: 1px solid rgba(159,176,200,0.35)">
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.2)"><dt style="color: #8b9bb3; font-size: 15px">Included lift hours / month</dt><dd style="margin: 0; font-weight: 700; font-size: 15px">{{ t.hours }}</dd></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.2)"><dt style="color: #8b9bb3; font-size: 15px">Lift time rate</dt><dd style="margin: 0; font-weight: 700; font-size: 15px">{{ t.extra }}</dd></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.2)"><dt style="color: #8b9bb3; font-size: 15px">Book ahead</dt><dd style="margin: 0; font-weight: 700; font-size: 15px">{{ t.booking }}</dd></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.2)"><dt style="color: #8b9bb3; font-size: 15px">Club-car seat time</dt><dd style="margin: 0; font-weight: 700; font-size: 15px; text-align: right">{{ t.seat }}</dd></div>
+        </dl>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto">
+          <sc-for list="{{ t.perks }}" as="perk" hint-placeholder-count="3">
+            <li style="display: flex; gap: 10px; font-size: 16px; line-height: 1.45; color: #c9d3e2"><span aria-hidden="true" style="color: #4da3ff; font-weight: 700">—</span><span>{{ perk }}</span></li>
+          </sc-for>
+        </ul>
+        <a href="https://www.zeffy.com/en-US/ticketing/race-mes-memberships" style="text-decoration: none; text-align: center; padding: 15px 20px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 16px">Join as {{ t.name }}</a>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin: 20px 0 0; font-size: 14px; color: #8b9bb3">Floor space without a lift is half the lift rate. Included hours reset each month and don't roll over.</p>
+</section>
+
+<!-- ============ WHY A NONPROFIT ============ -->
+<section id="nonprofit" aria-labelledby="np-h" style="background: #0b0f18; border-top: 1px solid rgba(159,176,200,0.25); border-bottom: 1px solid rgba(159,176,200,0.25); padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px)">
+    <div style="flex: 1 1 380px; min-width: 0">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Why we're a nonprofit</div>
+      <h2 id="np-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(52px, 6.4vw, 96px); line-height: 0.88; text-transform: uppercase">Nobody gets rich here, and that's the point</h2>
+      <p style="margin: 0 0 32px; max-width: 50ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me is a 501(c)(7) social club, owned and run by its members. There's no owner taking a cut, so dues go straight back into what we do together.</p>
+
+      <div style="border-top: 2px solid #ff8a3d; padding-top: 22px">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8b9bb3; margin-bottom: 10px">Next goal</div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: clamp(36px, 3.6vw, 52px); line-height: 0.95; text-transform: uppercase">At {{ trackGoal }} members, we rent the track</div>
+        <sc-if value="{{ hasCount }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top: 18px; height: 14px; background: #1a2233">
+            <div style="height: 14px; width: {{ goalPct }}; background: #ff8a3d"></div>
+          </div>
+          <div style="margin-top: 10px; font-size: 14px; color: #9fb0c8">{{ memberCount }} of {{ trackGoal }} members so far</div>
+        </sc-if>
+        <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.5; color: #9fb0c8">A private day at the track, just for members. Bring a friend into the club and you get us there sooner.</p>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 460px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 2px; background: rgba(159,176,200,0.25); align-self: start">
+      <sc-for list="{{ nonprofit }}" as="n" hint-placeholder-count="4">
+        <div style="background: #0b0f18; padding: 28px 24px 30px">
+          <div style="font-stretch: 62%; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase; margin-bottom: 12px">{{ n.title }}</div>
+          <div style="font-size: 16px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">{{ n.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMBER PERKS ============ -->
+<section aria-labelledby="perks-h" style="padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(28px, 4vw, 48px)">
+    <h2 id="perks-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase">Member perks</h2>
+    <p style="margin: 0; flex: 0 1 440px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">We're lining up partner discounts now. Local shops and businesses who'd like to offer one can reach us at <a href="mailto:info@race-me.org" style="font-weight: 700">info@race-me.org</a>.</p>
+  </div>
+  <div style="border-top: 2px solid #4da3ff">
+    <sc-for list="{{ perks }}" as="p" hint-placeholder-count="5">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+        <span style="flex: 1 1 240px; font-stretch: 62%; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase">{{ p.title }}</span>
+        <span style="flex: 3 1 420px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">{{ p.body }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ MEMBER GARAGE ============ -->
+<section id="garage" aria-labelledby="garage-h" style="padding: 0 clamp(16px, 4vw, 56px) clamp(80px, 10vw, 140px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(28px, 4vw, 48px)">
+    <h2 id="garage-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase">Member garage</h2>
+    <p style="margin: 0; flex: 0 1 440px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">What the crew drives, races, and wrenches on. Some already fly sponsor colors, and yours could be next.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 280px; grid-auto-flow: dense; gap: 4px">
+    <sc-for list="{{ garage }}" as="g" hint-placeholder-count="5">
+      <figure style="position: relative; margin: 0; grid-row: {{ g.row }}; grid-column: {{ g.col }}; overflow: hidden; background: #0b0f18">
+        <img src="{{ g.src }}" alt="{{ g.label }}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+        <figcaption style="position: absolute; left: 0; bottom: 0; background: rgba(8,11,18,0.85); padding: 8px 14px; font-size: 13px; font-weight: 600; color: #e8edf5">{{ g.label }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+  <div style="margin-top: 14px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">Member rides</strong>, photographed by the club.</div>
+</section>
+
+<!-- ============ THE SHOP ============ -->
+<section id="shop" aria-labelledby="shop-h" style="padding: 0 clamp(16px, 4vw, 56px) clamp(64px, 9vw, 128px)">
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px)">
+    <div style="flex: 1 1 380px; min-width: 0">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d; margin-bottom: 16px">Home base</div>
+      <h2 id="shop-h" style="margin: 0 0 20px; font-stretch: 62%; font-weight: 900; font-size: clamp(52px, 7vw, 104px); line-height: 0.88; text-transform: uppercase">The shop</h2>
+      <p style="margin: 0 0 32px; max-width: 48ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Two lifts today, with more planned as we grow. Book your hours, bring your project, and borrow the tools you don't own yet. The club cars are built here too.</p>
+
+      <div style="border-top: 2px solid #4da3ff">
+        <div style="padding: 10px 0; border-bottom: 1px solid rgba(159,176,200,0.35); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8b9bb3">Shop basics</div>
+        <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5">
+          <div style="display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(159,176,200,0.35)">
+            <span aria-hidden="true" style="flex: 0 0 auto; width: 18px; height: 18px; margin-top: 3px; border: 2px solid #4da3ff"></span>
+            <span style="font-size: 16px; line-height: 1.5; color: #c9d3e2">{{ r }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <figure style="flex: 1 1 460px; min-width: 0; margin: 0; display: flex; flex-direction: column; justify-content: center">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px 44px; font-size: 13px; font-weight: 700; color: #9fb0c8">
+        <span style="flex: 1 1 auto; height: 0; border-top: 1px solid #9fb0c8"></span>
+        <span>80 FT</span>
+        <span style="flex: 1 1 auto; height: 0; border-top: 1px solid #9fb0c8"></span>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: stretch">
+        <div style="flex: 0 0 34px; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: #9fb0c8">
+          <span style="flex: 1 1 auto; width: 0; border-left: 1px solid #9fb0c8"></span>
+          <span style="writing-mode: vertical-rl; transform: rotate(180deg)">40 FT</span>
+          <span style="flex: 1 1 auto; width: 0; border-left: 1px solid #9fb0c8"></span>
+        </div>
+        <div style="flex: 1 1 auto; aspect-ratio: 2 / 1; border: 3px solid #4da3ff; background: #0b0f18; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; padding: 16px">
+          <span style="font-stretch: 62%; font-weight: 900; font-size: clamp(40px, 4.6vw, 68px); line-height: 0.9">3,200 SQ FT</span>
+          <span style="font-size: 14px; color: #8b9bb3">2 lifts · weld area · room to hang out</span>
+        </div>
+      </div>
+      <figcaption style="margin: 12px 0 0 44px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">Fig. 2</strong> — The footprint.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ ANNUAL RUN ============ -->
+<section id="run" aria-labelledby="run-h" style="background: #0d1220; border-top: 6px solid #ff8a3d; padding: clamp(56px, 8vw, 112px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 5vw, 72px); align-items: center">
+    <figure style="margin: 0; flex: 1 1 460px; min-width: 0">
+      <img src="assets/trips/2026/dragon-20261007_170906.jpg" alt="Five member cars lined up at a mountain overlook in the Smokies" style="display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 70%">
+      <figcaption style="margin-top: 12px; font-size: 13px; color: #8b9bb3"><strong style="color: #e8edf5">Fig. 3</strong> — Golden hour overlook in the Smokies, 2026 run to the Tail of the Dragon.</figcaption>
+    </figure>
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff8a3d">The annual run</div>
+      <h2 id="run-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(52px, 6.4vw, 96px); line-height: 0.88; text-transform: uppercase">One big road trip a year</h2>
+      <p style="margin: 0; max-width: 50ch; font-size: 18px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">In 2025 we drove about 2,000 miles to the Pacific Coast Highway and back. In 2026 we went bigger: 3,577 miles, 8 days, and 15 states to drive the Tail of the Dragon, 318 curves in 11 miles. Every member drives, and every car makes it home. Mostly.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 14px">
-        <a href="support.html#membership" style="padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">BECOME A MEMBER</a>
-        <a href="#sponsors" style="padding: 15px 30px; border: 1px solid rgba(232,237,245,0.3); color: #e8edf5; font-weight: 600; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="border-color: #ff8a3d; color: #ff8a3d">SPONSOR US</a>
-      </div>
-    </div>
-    <div style="position: relative">
-      <div style="position: absolute; top: -14px; right: -14px; width: 90px; height: 90px; border-top: 2px solid #ff8a3d; border-right: 2px solid #ff8a3d; pointer-events: none"></div>
-      <div style="position: absolute; bottom: -14px; left: -14px; width: 90px; height: 90px; border-bottom: 2px solid #4da3ff; border-left: 2px solid #4da3ff; pointer-events: none"></div>
-      <div style="width: 100%; aspect-ratio: 4 / 3">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-car" shape="rect" src="uploads/20260104_160450.jpg" placeholder="Drop a photo of your build" hint-size="100%,100%"></x-import>
-      </div>
-      <div style="margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.01 — PROJECT CAR: HONDA INSIGHT · 24 HOURS OF LEMONS</div>
-    </div>
-  </div>
-</div>
-
-<!-- ======================= TICKER ======================= -->
-<sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
-  <div style="overflow: hidden; border-top: 1px solid rgba(255,138,61,0.35); border-bottom: 1px solid rgba(255,138,61,0.35); background: #0b0f18; padding: 12px 0">
-    <div style="display: flex; width: max-content; white-space: nowrap; animation-name: rm-marquee; animation-timing-function: linear; animation-iteration-count: infinite; animation-duration: {{ tickerDuration }}">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.24em; color: #ff8a3d; padding-right: 48px">RACE ✕ WRENCH ✕ DRIVE ✕ HANG ✕ REPEAT ✕&nbsp;</span>
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; letter-spacing: 0.24em; color: #ff8a3d; padding-right: 48px">RACE ✕ WRENCH ✕ DRIVE ✕ HANG ✕ REPEAT ✕&nbsp;</span>
-    </div>
-  </div>
-</sc-if>
-
-<!-- ======================= THE CLUB ======================= -->
-<div id="club" data-screen-label="The Club" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #080b12">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 01</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em"><span style="color: #4da3ff">What</span> we're <span style="color: #ff8a3d">about</span></h2>
-    </div>
-    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">No gatekeeping, no trailer queens. If you like cars and good company, you're in the right place.</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 2px; background: rgba(77,163,255,0.18)">
-      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
-        <div style="background: #0b0f18; padding: 32px 28px 36px" style-hover="background: #0e1420">
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #ff8a3d; letter-spacing: 0.2em; margin-bottom: 18px">{{ p.num }}</div>
-          <div style="font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px">{{ p.title }}</div>
-          <div style="color: #9fb0c8; font-size: 15px; line-height: 1.6; text-wrap: pretty">{{ p.body }}</div>
-        </div>
-      </sc-for>
-    </div>
-  </div>
-</div>
-
-<!-- ======================= MEMBER GARAGE ======================= -->
-<div id="garage" data-screen-label="Member Garage" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #0b0f18">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 02</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Member</span> <span style="color: #ff8a3d">garage</span></h2>
-    </div>
-    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      What the crew drives, races, and wrenches on. Some already fly sponsor colors — yours could be next.
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: 270px; grid-auto-flow: dense; gap: 2px; background: rgba(77,163,255,0.18)">
-      <sc-for list="{{ garage }}" as="g" hint-placeholder-count="5">
-        <div style="position: relative; grid-row: {{ g.row }}; background: #0b0f18">
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" dc-props="{{ g.slotProps }}" shape="rect" hint-size="100%,100%"></x-import>
-          <div style="position: absolute; left: 0; bottom: 0; pointer-events: none; background: rgba(8,11,18,0.82); padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #e8edf5">{{ g.label }}</div>
-        </div>
-      </sc-for>
-    </div>
-    <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84">FIG.02 — MEMBER RIDES, PHOTOGRAPHED BY THE CLUB</div>
-  </div>
-</div>
-
-<!-- ======================= ROAD TRIP ======================= -->
-<div id="roadtrip" data-screen-label="Road Trip" style="position: relative; overflow: hidden; padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: linear-gradient(180deg, #0b0f18, #0d1220)">
-  <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(90deg, #ff8a3d 0 40px, transparent 40px 80px)"></div>
-  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center">
-    <div style="width: 100%; aspect-ratio: 16 / 10">
-      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="roadtrip-photo" shape="rect" src="uploads/pasted-1783392734015-0.jpg" placeholder="Drop a road trip / convoy photo" hint-size="100%,100%"></x-import>
-    </div>
-    <div>
-      <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 03</span>
-        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> Annual <span style="color: #ff8a3d">Run</span></h2>
-      </div>
-      <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
-        This year: the Tail of the Dragon. October 2–10 — a week in the Smokies on the best driving roads in America, then the Barber Motorsports Museum on the ride home. Every member drives, every car makes it home. Mostly.
-      </p>
-      <a href="roadtrip.html" style="display: inline-block; margin-bottom: 28px; padding: 13px 26px; border: 1px solid #ff8a3d; color: #ff8a3d; font-weight: 600; font-size: 14px; letter-spacing: 0.08em; clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)" style-hover="background: #ff8a3d; color: #080b12">2026 ITINERARY →</a>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(77,163,255,0.18); max-width: 480px">
-        <sc-for list="{{ tripStats }}" as="s" hint-placeholder-count="3">
-          <div style="background: #0b0f18; padding: 18px 16px; text-align: center">
-            <div style="font-size: clamp(22px, 3vw, 30px); font-weight: 700; color: #ff8a3d">{{ s.value }}</div>
-            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5a6b84; margin-top: 6px">{{ s.label }}</div>
-          </div>
-        </sc-for>
+        <a href="trips.html" style="text-decoration: none; padding: 15px 24px; background: #ff8a3d; color: #080b12; font-weight: 700; font-size: 16px">All road trips</a>
+        <a href="trips.html#next-run" style="text-decoration: none; padding: 13px 22px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Pitch the 2027 route</a>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ======================= THE SHOP ======================= -->
-<div id="shop" data-screen-label="The Shop" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #080b12">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 04</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> <span style="color: #ff8a3d">Shop</span> <span style="color: #4da3ff; font-size: 0.45em; vertical-align: middle; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; font-weight: 500">— IN THE WORKS</span></h2>
-    </div>
-    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      We're building a large commercial shop: lifts, tools, a paint-ready bay, and enough room to hang out after the work's done. Home base for every build and every Friday night.
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: clamp(24px, 3vw, 40px); align-items: stretch">
-      <div style="width: 100%; min-height: 300px">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shop-render" shape="rect" placeholder="Drop shop render / site photo" hint-size="100%,300px"></x-import>
+<!-- ============ THE CREW ============ -->
+<section aria-labelledby="crew-h" style="padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px) 0">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: clamp(24px, 3vw, 40px)">
+    <h2 id="crew-h" style="margin: 0; font-stretch: 62%; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase">Our affiliate team</h2>
+    <p style="margin: 0; flex: 0 1 440px; font-size: 17px; line-height: 1.55; color: #9fb0c8; text-wrap: pretty">Race Me members also race with <a href="https://dadbodcarmodllc.com" style="font-weight: 700">Dadbod Carmod LLC</a>, our affiliate team out of Denver. In 2026 the crew took back-to-back class wins at 24 Hours of Lemons.</p>
+  </div>
+  <div style="position: relative">
+    <img src="assets/projects/mr2-team.jpg" alt="The Dadbod Carmod crew, drivers in race suits and their families, gathered around their MR2 and Yaris race cars in the paddock" style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 40%">
+    <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; right: clamp(12px, 3vw, 40px); bottom: clamp(-20px, -1.4vw, -12px); transform: rotate(2deg); background: #080b12; border: 2px solid #4da3ff; padding: 8px 18px 6px; font-family: 'Permanent Marker', cursive; font-size: clamp(17px, 1.8vw, 24px); color: #e8edf5">back-to-back class wins</div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- ============ JOIN / DISCORD ============ -->
+<section id="join" aria-labelledby="join-h" style="margin-top: clamp(64px, 9vw, 128px); background: #ff8a3d; color: #080b12; padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px">
+    <h2 id="join-h" style="margin: 0; flex: 1 1 560px; max-width: 16ch; font-stretch: 62%; font-weight: 900; font-size: clamp(60px, 9vw, 150px); line-height: 0.86; text-transform: uppercase">Come to a meet before you decide</h2>
+    <div style="flex: 0 1 400px; display: flex; flex-direction: column; gap: 22px">
+      <p style="margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; text-wrap: pretty">Guests can visit twice before joining. Hop in the Discord, find the next meet, and come see the cars and the crew in person.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="{{ discordUrl }}" style="text-decoration: none; padding: 16px 26px; background: #080b12; color: #ff8a3d; font-weight: 700; font-size: 16px">Join the Discord</a>
+        <a href="mailto:info@race-me.org" style="text-decoration: none; padding: 14px 24px; border: 2px solid #080b12; color: #080b12; font-weight: 700; font-size: 16px">Get in touch</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 2px; background: rgba(77,163,255,0.18)">
-        <sc-for list="{{ shopSpecs }}" as="sp" hint-placeholder-count="5">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #0b0f18; padding: 18px 22px; flex: 1">
-            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #9fb0c8">{{ sp.label }}</span>
-            <span style="font-weight: 700; font-size: 16px; color: #e8edf5; text-align: right">{{ sp.value }}</span>
-          </div>
-        </sc-for>
+      <a href="paddock.html" style="font-weight: 700; font-size: 16px; color: #080b12">Read the live club chat in the Paddock →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #05070c; color: #8b9bb3; padding: 40px clamp(16px, 4vw, 56px) 36px; font-size: 14px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px">
+    <div style="display: flex; align-items: center; gap: 18px">
+      <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 72px; height: 72px">
+      <div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: 56px; line-height: 0.9; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></div>
+        <div style="margin-top: 8px">© 2026 Race Me, a Colorado 501(c)(7) nonprofit social club</div>
       </div>
     </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 22px">
+      <a href="trips.html" style="color: #c9d3e2; padding: 10px 0">Road trips</a>
+      <a href="projects.html" style="color: #c9d3e2; padding: 10px 0">Projects</a>
+      <a href="support.html" style="color: #c9d3e2; padding: 10px 0">Support</a>
+      <a href="paddock.html" style="color: #c9d3e2; padding: 10px 0">Paddock</a>
+      <a href="mailto:info@race-me.org" style="color: #c9d3e2; padding: 10px 0">info@race-me.org</a>
+    </nav>
   </div>
-</div>
+  <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(159,176,200,0.2)">Members must be 21 or older. Alcohol only after the tools are down and the driving is done.</div>
+</footer>
 
-<!-- ======================= SPONSORS ======================= -->
-<div id="sponsors" data-screen-label="Sponsors" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: linear-gradient(180deg, #0b0f18, #0d1220)">
-  <div style="max-width: 1280px; margin: 0 auto">
-    <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 05</span>
-      <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">Back</span> the <span style="color: #ff8a3d">club</span></h2>
-    </div>
-    <p style="margin: 0 0 48px; max-width: 62ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">
-      We're a nonprofit — memberships keep cars on track and the lights on in the shop. Pick your level; every dollar goes to the club. Business sponsorships: <a href="mailto:info@race-me.org">info@race-me.org</a>.
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 2.5vw, 32px)">
-      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
-        <a href="{{ t.href }}" style="position: relative; display: flex; flex-direction: column; background: #0b0f18; border: 1px solid {{ t.border }}; padding: 34px 30px 38px; color: #e8edf5" style-hover="border-color: #ff8a3d">
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: {{ t.accent }}"></div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.24em; color: {{ t.accent }}; margin-bottom: 14px">{{ t.tag }}</div>
-          <div style="font-size: 26px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px">{{ t.name }}</div>
-          <div style="font-size: 15px; color: #5a6b84; font-family: 'IBM Plex Mono', monospace; margin-bottom: 22px">{{ t.price }}</div>
-          <div style="display: flex; flex-direction: column; gap: 10px">
-            <sc-for list="{{ t.perks }}" as="perk" hint-placeholder-count="3">
-              <div style="display: flex; gap: 10px; align-items: baseline; color: #9fb0c8; font-size: 15px; line-height: 1.5">
-                <span style="color: {{ t.accent }}; font-family: 'IBM Plex Mono', monospace">▸</span>
-                <span>{{ perk }}</span>
-              </div>
-            </sc-for>
-          </div>
-          <div style="margin-top: 24px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: {{ t.accent }}">{{ t.cta }} ▸</div>
-        </a>
-      </sc-for>
-    </div>
-  </div>
-</div>
-
-<!-- ======================= COMMUNITY / DISCORD ======================= -->
-<div id="community" data-screen-label="Community" style="padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px); background: #0b0f18">
-  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center">
-    <div>
-      <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4da3ff; letter-spacing: 0.2em">/ 06</span>
-        <h2 style="margin: 0; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; text-transform: uppercase"><span style="color: #4da3ff">The</span> <span style="color: #ff8a3d">paddock</span></h2>
-      </div>
-      <p style="margin: 0 0 28px; color: #9fb0c8; font-size: 17px; line-height: 1.6; max-width: 52ch; text-wrap: pretty">
-        The club lives on Discord between meets — build threads, race prep, road-trip planning, and someone always selling parts. Jump in and say hi.
-      </p>
-      <a href="{{ discordUrl }}" style="display: inline-block; padding: 15px 30px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" style-hover="background: #ff8a3d">JOIN THE DISCORD</a>
-    </div>
-    <div>
-      <sc-if value="{{ hasDiscordWidget }}" hint-placeholder-val="{{ false }}">
-        <iframe src="{{ discordWidgetSrc }}" width="100%" height="480" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border: 1px solid rgba(77,163,255,0.25); display: block"></iframe>
-      </sc-if>
-      <sc-if value="{{ noDiscordWidget }}" hint-placeholder-val="{{ true }}">
-        <div style="height: 480px; border: 1px dashed rgba(77,163,255,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 24px">
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #4da3ff">LIVE SERVER WIDGET</div>
-          <div style="color: #5a6b84; font-size: 14px; line-height: 1.6; max-width: 34ch">Appears here once the Discord Server ID is set in Tweaks.</div>
-        </div>
-      </sc-if>
-    </div>
-  </div>
-</div>
-
-<!-- ======================= JOIN / FOOTER ======================= -->
-<div id="join" data-screen-label="Join" style="position: relative; overflow: hidden; padding: clamp(72px, 10vw, 140px) clamp(20px, 5vw, 64px) 0; background: #080b12">
-  <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(900px 500px at 50% 0%, rgba(255,138,61,0.10), transparent 65%)"></div>
-  <div style="position: absolute; top: 50%; left: 50%; width: min(640px, 90vw); aspect-ratio: 1; margin: max(-320px, -45vw) 0 0 max(-320px, -45vw); pointer-events: none; border-radius: 50%; border: 1px dashed rgba(77,163,255,0.22); animation: rm-spin 60s linear infinite"></div>
-  <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center">
-    <img src="assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 110px; height: 110px; margin-bottom: 26px">
-    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.24em; color: #4da3ff; margin-bottom: 20px">GRID SPOTS OPEN</div>
-    <h2 style="margin: 0 0 20px; font-size: clamp(40px, 7vw, 84px); font-weight: 700; text-transform: uppercase; line-height: 1"><span style="color: #4da3ff">Pull</span> up a stool.<br><span style="color: #ff8a3d">Grab a wrench.</span></h2>
-    <p style="margin: 0 auto 40px; max-width: 48ch; color: #9fb0c8; font-size: 17px; line-height: 1.6; text-wrap: pretty">Membership is open to anyone who loves cars. Come to a meet, see the builds, meet the crew.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center">
-      <a href="{{ discordUrl }}" style="display: inline-block; padding: 18px 44px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #ff8a3d">JOIN THE DISCORD</a>
-      <a href="mailto:info@race-me.org" style="display: inline-block; padding: 18px 44px; background: #ff8a3d; color: #080b12; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)" style-hover="background: #4da3ff">GET IN TOUCH</a>
-    </div>
-  </div>
-  <div style="position: relative; max-width: 1280px; margin: clamp(64px, 9vw, 110px) auto 0; padding: 24px 0 28px; border-top: 1px solid rgba(77,163,255,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #5a6b84">
-    <span style="display: inline-flex; align-items: center; gap: 10px"><img src="assets/logo-rm-64.png" alt="RM" style="width: 22px; height: 22px">© 2026 RACE ME™ — A REGISTERED COLORADO NONPROFIT</span>
-    <span>DRIVE FAST · WRENCH SLOW · DRINK RESPONSIBLY</span>
-  </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{
-  &quot;discordUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://discord.gg/kSG9SPUkdZ&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Discord&quot; },
-  &quot;discordServerId&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;1523907282952261773&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Discord&quot; },
-  &quot;showTicker&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Ticker&quot; },
-  &quot;tickerSpeed&quot;: { &quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 18, &quot;min&quot;: 6, &quot;max&quot;: 40, &quot;step&quot;: 1, &quot;unit&quot;: &quot;s&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Ticker&quot; }
-}">
+<script type="text/x-dc" data-dc-script data-props='{"showNotes":{"editor":"boolean","default":true,"tsType":"boolean","section":"Style"},"memberCount":{"editor":"int","default":0,"min":0,"max":500,"tsType":"number","section":"Track goal"},"trackGoal":{"editor":"int","default":40,"min":5,"max":500,"tsType":"number","section":"Track goal"},"discordUrl":{"editor":"text","default":"https://discord.gg/kSG9SPUkdZ","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":9000}}'>
 class Component extends DCLogic {
   renderVals() {
-    const speed = this.props.tickerSpeed ?? 18;
+    const goal = this.props.trackGoal ?? 40;
+    const count = this.props.memberCount ?? 0;
+    const pct = Math.max(0, Math.min(100, Math.round((count / goal) * 100)));
+    const split = this.state && this.state.split != null ? this.state.split : 50;
     return {
+      split: split,
+      splitPct: split + '%',
+      beforeClip: 'inset(0 ' + (100 - split) + '% 0 0)',
+      onSplit: (e) => this.setState({ split: Number(e.target.value) }),
+      showNotes: this.props.showNotes ?? true,
       discordUrl: this.props.discordUrl ?? 'https://discord.gg/kSG9SPUkdZ',
-      hasDiscordWidget: !!(this.props.discordServerId ?? '1523907282952261773').trim(),
-      noDiscordWidget: !(this.props.discordServerId ?? '1523907282952261773').trim(),
-      discordWidgetSrc: 'https://discord.com/widget?id=' + (this.props.discordServerId ?? '1523907282952261773').trim() + '&theme=dark',
-      showTicker: this.props.showTicker ?? true,
-      tickerDuration: speed + 's',
-      pillars: [
-        { num: '01', title: 'Race', body: '24 Hours of Lemons is our arena. Next up: the High Plains 24 in September — roll cage going in now, Class C win in the crosshairs.' },
-        { num: '02', title: 'Wrench', body: 'Group builds and shared tools. Bring your project — someone here has done that swap before.' },
-        { num: '03', title: 'Drive', body: 'Weekend cruises and canyon runs. The cars get driven, not parked under covers.' },
-        { num: '04', title: 'Hang', body: 'Cold beer, hot takes, good people. Half the club is the cars; the other half is everyone around them.' },
-      ],
+      trackGoal: goal,
+      memberCount: count,
+      hasCount: count > 0,
+      goalPct: pct + '%',
       garage: [
-        { row: 'auto', label: '007 — TRACK-DAY MISSILE', slotProps: { id: 'garage-007', src: 'uploads/pasted-1783392817796-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'span 2', label: 'SPYDER — CANYON RUN, TOP DOWN', slotProps: { id: 'garage-canyon', src: 'uploads/pasted-1783392747836-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'THE ELISE — ONE LAP OF AMERICA VETERAN', slotProps: { id: 'garage-elise', src: 'uploads/pasted-1783392769200-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'BOXSTER SPYDER — WEEKEND WEAPON', slotProps: { id: 'garage-spyder', src: 'uploads/pasted-1783392794416-0.jpg', placeholder: 'Drop a member ride' } },
-        { row: 'auto', label: 'GR SUPRA — FRONT RANGE CRUISER', slotProps: { id: 'garage-supra', src: 'uploads/pasted-1783392857251-0.jpg', placeholder: 'Drop a member ride' } },
+        { src: 'uploads/pasted-1783392817796-0.jpg', label: '007: the track-day missile', row: 'auto', col: 'span 2' },
+        { src: 'uploads/pasted-1783392747836-0.jpg', label: 'Spyder: canyon run, top down', row: 'span 2', col: 'auto' },
+        { src: 'uploads/pasted-1783392769200-0.jpg', label: 'The Elise: One Lap of America veteran', row: 'auto', col: 'auto' },
+        { src: 'uploads/pasted-1783392794416-0.jpg', label: 'Boxster Spyder: weekend weapon', row: 'auto', col: 'auto' },
+        { src: 'uploads/pasted-1783392857251-0.jpg', label: 'GR Supra: Front Range cruiser', row: 'auto', col: 'span 2' }
       ],
-      tripStats: [
-        { value: '318', label: 'CURVES / 11 MI' },
-        { value: '9', label: 'DAYS' },
-        { value: '1', label: 'BREAKDOWN LIMIT' },
+      reasons: [
+        { pos: 1, title: 'You actually drive', body: 'Seat time is the point: canyon runs, track days, the annual road trip, and endurance racing. Not a parking-lot car show.' },
+        { pos: 2, title: 'No race car required', body: 'Work on the club cars and you earn time driving them. Plenty of members start with a wrench and end up with a race license.' },
+        { pos: 3, title: 'Fast is cheaper together', body: 'Dues pay for what nobody buys alone: a shop, lifts, shared tools, club cars, and eventually a private day at the track.' },
+        { pos: 4, title: 'Friends, not just events', body: 'A crew that shows up for your build, your race, and your breakdown on the side of the highway, and keeps showing up next season.' }
       ],
-      shopSpecs: [
-        { label: 'FOOTPRINT', value: '3,200 sq ft' },
-        { label: 'LIFTS', value: '3 two-post + 1 four-post' },
-        { label: 'WELDING', value: 'Dedicated weld area' },
-        { label: 'PAINT', value: 'Paint booth' },
-        { label: 'HANGOUT', value: 'Sim racing + bar (future)' },
+      ladder: [
+        { step: 1, title: 'Crew', body: 'Wrench on a club car, crew at an event, ride along on a canyon run. Every logged hour earns credit.' },
+        { step: 2, title: 'Driving day', body: 'Complete a high-performance driving day with a recognized organizer, in your car or ours.' },
+        { step: 3, title: 'Club-car session', body: 'A supervised session in the club car at a track day.' },
+        { step: 4, title: 'Race driver', body: 'Meet the series licensing and safety-gear rules, then take a race stint.' }
       ],
       tiers: [
-        { tag: 'TIER 01', name: 'Pit Crew', price: '$125 / yr', accent: '#4da3ff', border: 'rgba(77,163,255,0.3)',
-          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
-          perks: ['All monthly meets, cruises & socials', 'Members-only chat access', 'Race Me decal + digital membership card', 'Vote in annual club decisions'] },
-        { tag: 'TIER 02', name: 'Driver', price: '$250 / yr', accent: '#ff8a3d', border: 'rgba(255,138,61,0.4)',
-          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
-          perks: ['Everything in Pit Crew', 'Priority + discounted track days', 'Merch pack & free entry to club shows', 'Early access to limited-capacity events'] },
-        { tag: 'TIER 03', name: 'Podium', price: '$500 / yr', accent: '#e8edf5', border: 'rgba(232,237,245,0.3)',
-          href: 'https://www.zeffy.com/en-US/ticketing/race-mes-memberships', cta: 'JOIN VIA ZEFFY',
-          perks: ['Everything in Driver', 'One free track day per year', 'Name on race-me.org & event banners', 'Podium-only garage night + first pick on trip spots'] },
+        { cls: 'C', name: 'Pit Crew', monthly: '$15', yearly: '$150', hours: 'Pay as you go', extra: '$40 / hr', booking: '3 days', seat: 'Ride-alongs + earn credit', perks: ['Exclusive member discounts from partner shops', 'All meets, cruises, and socials', 'Members-only Discord', 'Race Me decal and digital membership card', 'A vote in club decisions'] },
+        { cls: 'B', name: 'Driver', monthly: '$35', yearly: '$350', hours: '1', extra: '$35 / hr', booking: '7 days', seat: 'Eligible with credit', perks: ['Everything in Pit Crew', 'Priority on track-day sign-ups', 'Merch pack and free entry to club shows', 'Early access to limited-spot trips'] },
+        { cls: 'A', name: 'Podium', monthly: '$75', yearly: '$750', hours: '2', extra: '$30 / hr', booking: '14 days', seat: 'First pick with credit', perks: ['Everything in Driver', 'First pick on road-trip spots', 'Podium-only garage night', 'Name on race-me.org and event banners'] }
       ],
+      nonprofit: [
+        { title: 'Dues go back in', body: 'Every dollar pays for the shop, the club cars, and events. No owner, no profit.' },
+        { title: 'Members decide', body: 'One member, one vote on how dues are spent, which car we build next, and where we drive.' },
+        { title: 'Open books', body: 'Each year we publish a short report showing where the money went.' },
+        { title: 'Built to last', body: 'Club cars and equipment belong to the club, not to any one person, so they stay with the members.' }
+      ],
+      perks: [
+        { title: 'Parts', body: 'Member pricing at local and national parts stores (in the works).' },
+        { title: 'Insurance', body: 'Discounts on road and track-day coverage through a club partner (in the works).' },
+        { title: 'Track days', body: 'Group rates with driving-day organizers at High Plains Raceway.' },
+        { title: 'Group buys', body: 'Tires, pads, fluids, and safety gear ordered in bulk at club pricing.' },
+        { title: 'Garage nights', body: 'Hands-on clinics on welding, brakes, suspension setup, and reading track data.' }
+      ],
+      rules: [
+        'Book lift time ahead; walk-ups only when a lift is free.',
+        'Pass the lift orientation before running a lift, and never work alone under a raised car.',
+        'Your own car or a club car only. No paid work for anyone.',
+        'Cars left on a lift past your booking pay a daily lift fee.',
+        'Tools down and lifts lowered before anyone opens a beer.'
+      ]
     };
   }
 }
