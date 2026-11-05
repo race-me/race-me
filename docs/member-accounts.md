@@ -1,7 +1,7 @@
 # Member accounts and sync
 
-Members can sign in with their email to keep their tool data (Suspension Bench cars, Corner Balance, Setup Log)
-online and the same on every device. It's optional: without signing in, the tools save in the browser as before.
+Members sign in with their email. Their tool data is saved to their account and stays the same on every device;
+the tools also keep working from the browser when offline.
 
 - Code: `members/sync.js` (sign-in button and panel in the members header, and the sync itself).
 - Database: Supabase project `lkktdmdnwdklyvapyjxb`, table `public.tool_data`, one row per member per tool.
@@ -17,19 +17,24 @@ online and the same on every device. It's optional: without signing in, the tool
 4. **Authentication → Emails → SMTP:** set up a real email sender (for example Resend, or the provider behind
    info@race-me.org). Supabase's built-in sender is for testing and may only deliver to your own team's addresses.
 
-## Single login
+## Signing in
 
-Members with an account don't need the club password: the login screen offers "Email me a sign-in link", and an
-invite or sign-in link opens the members area directly. This works because the page's unlock key is stored in the
-one-row table `public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in
-race-me/Suspension). Accounts are invite-only, so this is the same as giving a member the club password.
+Members sign in only with their accounts; there is no club password. The login screen emails a sign-in link, and an
+invite or sign-in link opens the members area directly.
 
-- **Setup:** run `supabase/members-key.sql` once, then the `insert into public.members_key …` statement printed by
-  `node build.mjs --site ../race-me --tools ../Suspension --key-sql` (in race-me/members-src).
-- **Changing the club password:** build with `--new-password`; it prints the new statement. Run it, or account
-  holders get "can't be unlocked from your account yet" until you do.
-- **Removing a member:** delete their user. Like the club password, a device that already unlocked the page keeps
-  it until the password changes.
+The members content is encrypted with a random 64-byte page key. The key lives in the one-row table
+`public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in race-me/Suspension).
+Accounts are invite-only, so only members can open the page. A device that has opened it keeps the key until
+Sign out, or until the key changes.
+
+- **Rebuilding the page:** copy the key from Supabase (Table Editor → members_key → key) into `RACE_ME_PAGE_KEY` and run
+  `node build.mjs --site ../race-me --tools ../Suspension` in race-me/members-src. It refuses a key that doesn't open
+  the current page.
+- **New key** (for example after removing a member whose device still has the page open): build with `--new-key`. It
+  prints an `insert into public.members_key …` statement. Run it in the SQL Editor right after publishing, or members
+  get "can't be opened from your account right now" until you do. Every device signs in again.
+- **Removing a member:** delete their user. They can't sign in again; replace the key if you also want devices they
+  already unlocked to lose access.
 
 ## Members page build
 
