@@ -173,7 +173,7 @@
       <p>Signed in as <span class="who">${esc(user.email)}</span>. Your saved cars, setups, sessions and tool settings are saved to your account and kept the same on every device you sign in on.</p>
       <p>${busy ? 'Syncing now…' : lastErr ? esc(lastErr) : lastSync ? 'Last synced ' + ago(lastSync) + '.' : 'Not synced yet.'}</p>
       ${noteText ? `<p style="color:#e8edf5">${esc(noteText)}</p>` : ''}
-      <div class="row"><button type="button" class="btn" data-do="sync">Sync now</button><button type="button" class="btn btn-ghost" data-do="out">Sign out of my account</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div>
+      <div class="row"><button type="button" class="btn" data-do="profile">Edit my profile</button><button type="button" class="btn btn-ghost" data-do="sync">Sync now</button><button type="button" class="btn btn-ghost" data-do="out">Sign out of my account</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div>
       <p class="msg">Signing out keeps the data on this device; it just stops syncing.</p>` : `
       <h2>Save to my account</h2>
       <p>Sign in with the email the club has on file. Your tool data is then saved online and follows you to any device. Without signing in, it stays in this browser only.</p>
@@ -223,6 +223,7 @@
       const d = e.target.closest('[data-do]')?.dataset.do;
       if (d === 'close') dlg.close();
       if (d === 'sync') sync();
+      if (d === 'profile') { dlg.close(); document.dispatchEvent(new CustomEvent('raceme:edit-profile')); }
       if (d === 'out') { client.auth.signOut({ scope: 'local' }).finally(() => { user = null; render(); }); }
     });
     dlg.addEventListener('submit', e => { e.preventDefault(); signIn(dlg.querySelector('#rm-sync-email').value.trim()); });
@@ -246,6 +247,7 @@
   window.RaceMeAccount = {
     sendLink,
     user: () => user,
+    db: async () => { await ready; return client; }, // for profile.js
     async membersKey() {
       await ready;
       if (!user) return null;
@@ -260,4 +262,9 @@
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') soon(300); else if (timer) { clearTimeout(timer); sync(); } });
   window.addEventListener('online', () => soon(300));
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
+
+  // The member profile form (first sign-in, and "Edit my profile") lives in profile.js next to this file.
+  const prof = document.createElement('script');
+  prof.src = new URL('profile.js', document.currentScript?.src || location.href).href;
+  document.head.append(prof);
 })();

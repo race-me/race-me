@@ -36,6 +36,18 @@ Sign out, or until the key changes.
 - **Removing a member:** delete their user. They can't sign in again; replace the key if you also want devices they
   already unlocked to lose access.
 
+## Member profiles
+
+The first time a member signs in, a profile form opens before they can use the members area: name, phone, address,
+emergency contact, Discord username (optional), driving experience, their cars (year, make, model, optional
+modifications), "I'm 21 or older" and agreement to the member rules (saved with the date). They can change it later
+with "Edit my profile" in the account panel.
+
+- **Table:** `public.member_profiles`, one row per member (`supabase/profiles.sql` in race-me/Suspension). Each member
+  can read and change only their own row; officers see everyone's in the Table Editor. Deleting a user deletes their
+  profile.
+- **Code:** `members/profile.js`, loaded by `sync.js`. If the table can't be reached, members aren't blocked.
+
 ## Members page build
 
 `members/index.html` is built from the private repo race-me/members-src (`node build.mjs --site ../race-me
