@@ -13,6 +13,11 @@
     'suspension-bench': ['sgb.v1.current', 'sgb.v1.prefs', 'sgb.v2.vehicles', 'sgb.v2.overrides'],
     'corner-balance': ['raceme.corner.v1'],
     'setup-log': ['raceme.setuplog.v1'],
+    'tire-analysis': ['raceme.tires.v1'],
+    'alignment': ['raceme.alignment.v1'],
+    'springs': ['raceme.springs.v1'],
+    'brake-bias': ['raceme.brakes.v1'],
+    'gearing': ['raceme.gearing.v1'],
   };
   const META = 'raceme.sync.meta', BACKUP = 'raceme.sync.backup.';
   const TRACKED = new Set(Object.values(TOOLS).flat());
@@ -165,7 +170,7 @@
     if (!dlg.open) return;
     dlg.querySelector('[data-body]').innerHTML = user ? `
       <h2>Your account</h2>
-      <p>Signed in as <span class="who">${esc(user.email)}</span>. Your Suspension Bench cars, Corner Balance log and Setup Log are saved to your account and kept the same on every device you sign in on.</p>
+      <p>Signed in as <span class="who">${esc(user.email)}</span>. Your saved cars, setups, sessions and tool settings are saved to your account and kept the same on every device you sign in on.</p>
       <p>${busy ? 'Syncing now…' : lastErr ? esc(lastErr) : lastSync ? 'Last synced ' + ago(lastSync) + '.' : 'Not synced yet.'}</p>
       ${noteText ? `<p style="color:#e8edf5">${esc(noteText)}</p>` : ''}
       <div class="row"><button type="button" class="btn" data-do="sync">Sync now</button><button type="button" class="btn btn-ghost" data-do="out">Sign out of my account</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div>
