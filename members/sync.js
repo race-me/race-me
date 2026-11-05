@@ -178,7 +178,7 @@
       <h2>Save to my account</h2>
       <p>Sign in with the email the club has on file. Your tool data is then saved online and follows you to any device. Without signing in, it stays in this browser only.</p>
       <form data-form><label for="rm-sync-email">Email</label><input id="rm-sync-email" type="email" autocomplete="email" required value="${esc(codeFor)}">
-      ${codeFor ? `<label for="rm-sync-code">Code from the email</label><input id="rm-sync-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required>` : ''}
+      ${codeFor ? `<label for="rm-sync-code">Code from the email</label><input id="rm-sync-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="8-digit code" required>` : ''}
       <div class="row"><button type="submit" class="btn">${codeFor ? 'Sign in' : 'Email me a code'}</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div></form>
       <p class="msg" role="status" aria-live="polite" data-msg>${esc(codeMsg)}</p>`;
   }
@@ -203,7 +203,8 @@
     try {
       await ready;
       const token = String(code || '').replace(/\D/g, '');
-      if (token.length < 6) return { ok: false, message: 'Enter the code from the email.' };
+      // The project sends 8-digit codes (Supabase: Email OTP Length); shorter ones are accepted in case that changes.
+      if (token.length < 6) return { ok: false, message: 'Enter the 8-digit code from the email.' };
       // The code may come from the sign-in, sign-up confirmation or invite email, depending on the account's state
       // and which Supabase template has {{ .Token }}. Try each kind; a wrong code fails all of them.
       let error = null;

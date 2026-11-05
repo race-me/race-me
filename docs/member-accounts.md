@@ -19,7 +19,7 @@ the tools also keep working from the browser when offline.
 
 ## Signing in
 
-Members sign in only with their accounts; there is no club password. The login screen emails a 6-digit code, which
+Members sign in only with their accounts; there is no club password. The login screen emails an 8-digit code (Supabase: Email OTP Length = 8), which
 they type in (a link in the email also works, and an invite link opens the members area directly).
 
 The members content is encrypted with a random 64-byte page key. The key lives in the one-row table
