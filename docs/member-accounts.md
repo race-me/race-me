@@ -50,6 +50,36 @@ admin (signed in as info@race-me.org) gets pin, lock, hide, move and delete on e
 - **Emails** for replies and @mentions: the `forum-notify` Edge Function and Resend; see members-src
   `supabase/README.md`.
 
+Race day (members only) is for live threads at events: an open Race day thread checks for new posts every 30 seconds,
+so members who can't be there can follow along. While someone is typing a reply, new posts wait behind a "new posts"
+button instead.
+
+## Crew
+
+The Crew tab on the members page (race-me.org/members/#crew) lets a member share a car from their Setup Log with another
+member: a remote crew chief, a coach, a friend. The crew member opens that car's setup sheet and sessions read only (the
+Setup Log in a read-only mode), and either of them can leave notes on the car. The owner can stop sharing any time and
+the crew member can leave. The shared copy is whatever the owner's Setup Log last synced to their account.
+
+- **Database:** `supabase/crew.sql` in race-me/members-src (`crew_shares`, `crew_notes`, `crew_overview()`,
+  `crew_car_notes()`). Only the owner and the members a car is shared with can see it.
+- **Code:** `members/crew.js`, loaded by the members page the first time the Crew tab is opened; the read-only mode is
+  in `tools/setup-log.html` (`window.RACEME_CREW`).
+
+## Standings
+
+race-me.org/standings/ is the season table. Before each event members pick 1st, 2nd, 3rd and fastest lap from the entry
+list; picks lock at the time the admin sets (8 am on the event day by default) and everyone's picks show once they
+lock. After the event the admin enters the results. Scoring: 5 points for each driver in the exact podium spot, 2 for a
+driver on the podium in a different spot, 3 for fastest lap. Bragging rights only: no money, no prizes.
+
+The admin (info@race-me.org) gets Add an event, Edit event (name, track, date, when picks close, entry list one driver
+per line) and Enter results on the page itself.
+
+- **Database:** `supabase/standings.sql` in race-me/members-src. Picks go through `standings_pick()`, which checks the
+  deadline and the entry list; only the admin can change events and results.
+- **Code:** `standings/index.html` and `standings/standings.js`.
+
 ## Member profiles
 
 The first time a member signs in, a profile form opens before they can use the members area: name, phone, address,

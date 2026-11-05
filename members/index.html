@@ -150,6 +150,8 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
     return data.text();
   }
   const toolPage = name => (toolHtml[name] = toolHtml[name] || fetchText(tools[name]));
+  // For crew.js (the Crew page), which opens the Setup Log read only with a crew member's shared cars.
+  window.RaceMeMembers = { toolPage: name => tools[name] ? toolPage(name) : Promise.reject(new Error('Tool not published: ' + name)) };
 
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
   const safeUrl = u => /^https:\/\//i.test(u || '') ? u : '';
@@ -199,7 +201,7 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
 
   // Each members page is a [data-view]; the URL hash picks one. A tool's frame is made the first time its page is shown.
   const TOOL_TITLES = { setup: 'Setup Log', tires: 'Tire Analysis', bench: 'Suspension Geometry Bench', balance: 'Corner Balance', align: 'Alignment', springs: 'Springs and Dampers', brakes: 'Brake Bias', gearing: 'Gearing' };
-  const VIEWS = { overview: 'Members', benefits: 'Member benefits', tools: 'Car tools', ...TOOL_TITLES, rules: 'Member rules' };
+  const VIEWS = { overview: 'Members', benefits: 'Member benefits', tools: 'Car tools', ...TOOL_TITLES, crew: 'Crew', rules: 'Member rules' };
   function route() {
     const name = location.hash.slice(1) in VIEWS ? location.hash.slice(1) : 'overview';
     document.querySelectorAll('[data-view]').forEach(v => { v.hidden = v.dataset.view !== name; });
@@ -214,6 +216,10 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
       slot.appendChild(frame);
       toolPage(name).then(html => { frame.srcdoc = html; })
         .catch(() => { frame.srcdoc = '<p style="font:16px system-ui;padding:24px;color:#b42318">This tool couldn\'t load. Check your connection and reload the page.</p>'; });
+    }
+    if (name === 'crew' && !document.querySelector('script[data-crew-js]')) {
+      const el = document.createElement('script'); // the Crew page's code, next to sync.js; loaded the first time it's shown
+      el.src = 'crew.js'; el.dataset.crewJs = ''; document.head.append(el);
     }
     document.title = 'Race Me — ' + VIEWS[name];
   }

@@ -80,7 +80,7 @@
   const main = $('#forum');
   const STATUS = { available: 'Available', pending: 'Pending', sold: 'Sold' };
   // Membership class badges: Podium gold, Driver silver, Pit Crew bronze; Admin in club orange.
-  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew', supporter: 'Supporter' };
   let user = null, accountReady = false, members = null, sections = null;
   const urls = new Map(); // photo path -> signed URL
 
@@ -150,7 +150,8 @@
       <div class="kick">Club forum</div>
       <h1 class="big">The paddock</h1>
       <p class="lead">Build threads, tech help, parts for sale, and what's coming up on the calendar. ${d.signed_in ? 'Pick a section, or search everything.' : 'Visitors can read Events &amp; road trips; members see the rest.'}</p>
-      <div class="bar"><form class="search" id="search-form" role="search"><input type="search" id="search-q" placeholder="Search the Paddock" aria-label="Search the Paddock" value="${esc(q)}"><button class="btn btn-ghost" type="submit">Search</button></form></div>
+      <div class="bar"><form class="search" id="search-form" role="search"><input type="search" id="search-q" placeholder="Search the Paddock" aria-label="Search the Paddock" value="${esc(q)}"><button class="btn btn-ghost" type="submit">Search</button></form>
+        ${d.signed_in ? '<a class="btn btn-ghost" href="../standings/">Season standings and picks</a>' : ''}</div>
       ${d.signed_in ? '' : signInPanel()}
       <div class="sections">${d.sections.map(s => {
         const latest = s.latest ? `Latest: <strong style="color:#c9d3e2">${esc(s.latest.title)}</strong> · ${esc(person(d.people, s.latest.by).name)} · ${ago(s.latest.at)}` : 'No threads yet. Start one.';
@@ -188,9 +189,26 @@
   }
 
   let current = null; // the open thread's data, for actions
+  // Race day threads check for new posts every 30 seconds while they're open, so members away from the track can follow along.
+  const LIVE = new Set(['race-day']);
+  let liveTimer = null;
+  function stopLive() { clearInterval(liveTimer); liveTimer = null; }
+  function startLive(r, seen) {
+    stopLive();
+    liveTimer = setInterval(async () => {
+      if (document.hidden || route(location.hash).id !== r.id) return;
+      let d; try { d = await rpc('forum_thread', { tid: r.id }); } catch (e) { return; }
+      const fresh = d.posts.length - seen;
+      if (fresh <= 0) return;
+      const box = $('#c-reply'), busy = box && (box.value.trim() || $('#th-reply')?.children.length || document.activeElement === box);
+      if (!busy) { const atEnd = window.innerHeight + window.scrollY >= document.body.scrollHeight - 80; await thread(r); if (atEnd) window.scrollTo(0, document.body.scrollHeight); return; }
+      const bar = $('#live-bar');
+      if (bar) { bar.hidden = false; bar.textContent = `${fresh} new post${fresh === 1 ? '' : 's'} · Show`; }
+    }, 30000);
+  }
   async function thread(r) {
     const d = current = await rpc('forum_thread', { tid: r.id });
-    const t = d.thread, s = d.section, classified = s.kind === 'classifieds';
+    const t = d.thread, s = d.section, classified = s.kind === 'classifieds', live = LIVE.has(s.id);
     const pic = await photoUrls(d.posts.flatMap(p => p.images || []));
     const face = await avatarUrls(d.people);
     const mine = id => id === d.me;
@@ -213,7 +231,7 @@
     main.innerHTML = `
       <div class="crumbs"><a href="#/">The Paddock</a> / <a href="#/s/${s.id}">${esc(s.name)}</a> /</div>
       <h1 class="title">${esc(t.title)}</h1>
-      <div class="muted small">${t.pinned ? '<span class="tag pin">pinned</span> ' : ''}${t.locked ? '<span class="tag lock">locked</span> ' : ''}${t.hidden ? '<span class="tag hid">hidden</span> ' : ''}${t.reply_count} repl${t.reply_count === 1 ? 'y' : 'ies'}</div>
+      <div class="muted small">${t.pinned ? '<span class="tag pin">pinned</span> ' : ''}${t.locked ? '<span class="tag lock">locked</span> ' : ''}${t.hidden ? '<span class="tag hid">hidden</span> ' : ''}${t.reply_count} repl${t.reply_count === 1 ? 'y' : 'ies'}${live ? ' · <span class="tag live">live</span> new posts appear on their own' : ''}</div>
       ${listing}${admin}
       <div style="border-top:2px solid #4da3ff;margin-top:18px">${d.posts.map((p, i) => {
         const a = person(d.people, p.author_id);
@@ -228,6 +246,7 @@
               ${d.is_admin && i > 0 ? `<button class="btn btn-ghost btn-sm" data-mod="${p.hidden ? 'unhide-post' : 'hide-post'}" data-value="${p.id}">${p.hidden ? 'Unhide post' : 'Hide post'}</button>` : ''}
             </div></div></article>`;
       }).join('')}</div>
+      ${live ? '<button class="btn live-bar" id="live-bar" type="button" hidden></button>' : ''}
       <div id="reply">${!d.signed_in ? `<p class="muted" style="margin-top:20px">Members can reply. <a href="#/">Sign in</a>.</p>`
         : t.locked && !d.is_admin ? '<p class="muted" style="margin-top:20px">This thread is locked.</p>'
         : `<h2 style="font-stretch:62%;font-weight:900;font-size:30px;text-transform:uppercase;margin:28px 0 0">Reply</h2>${composer('reply', { public: s.is_public })}`}</div>
@@ -242,6 +261,8 @@
       catch (err) { say(err.message, true); }
     });
     $('#mod-move')?.addEventListener('change', async e => { try { await rpc('forum_moderate', { tid: t.id, action: 'move', value: e.target.value }); await thread(r); } catch (err) { say(err.message, true); } });
+    $('#live-bar')?.addEventListener('click', async () => { await thread(r); window.scrollTo(0, document.body.scrollHeight); });
+    if (live) startLive(r, d.posts.length); else stopLive();
   }
 
   function newThread(r) {
@@ -406,6 +427,7 @@
   /* ----- routing and account ----- */
   async function render() {
     const r = route(location.hash);
+    if (r.view !== 'thread') stopLive();
     try {
       if (!sections && r.view !== 'home') sections = (await rpc('forum_overview')).sections;
       if (r.view === 'home') await home();

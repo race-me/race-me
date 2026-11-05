@@ -5,7 +5,7 @@
    race-me/members-src. */
 (() => {
   const EXP = { none: 'None yet', autocross: 'Autocross', track: 'Track days', timetrial: 'Time trials', racing: 'Racing' };
-  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew', supporter: 'Supporter' };
 
   /* ---------- core (no DOM; tested in tests/admin.test.cjs) ---------- */
   const name = m => m.profile ? `${m.profile.first_name || ''} ${m.profile.last_name || ''}`.trim() : '';
@@ -83,6 +83,7 @@
     .rm-adm .badge.podium{background:linear-gradient(135deg,#ffe08a,#d4a72c)}
     .rm-adm .badge.driver{background:linear-gradient(135deg,#f1f4f8,#a9b2be)}
     .rm-adm .badge.pit-crew{background:linear-gradient(135deg,#e7ae7c,#a8642e)}
+    .rm-adm .badge.supporter{background:linear-gradient(135deg,#b9d8ff,#5b8fcf)}
     .rm-adm .badge.admin{background:#ff8a3d}
     .rm-adm .classpick { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
     .rm-adm .classpick select { width: auto; min-width: 160px; padding: 8px 10px; background: #080b12; color: #e8edf5; border: 1px solid rgba(159,176,200,.45); font: 600 15px 'Archivo', system-ui, sans-serif; }

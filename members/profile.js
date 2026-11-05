@@ -104,7 +104,7 @@
   if (typeof module !== 'undefined') { module.exports = core; return; }
 
   /* ---------- browser ---------- */
-  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew', supporter: 'Supporter' };
   let myClass = null;
   let photoUrl = '', photoMsg = null;
   const AVATARS = 'avatars';
@@ -172,7 +172,7 @@
     .rm-prof .acts { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 30px; }
     .rm-prof .summary { margin-top: 14px; color: #ff8a3d; }
     .rm-badge { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; color: #080b12; vertical-align: 2px; }
-    .rm-badge.podium { background: linear-gradient(135deg, #ffe08a, #d4a72c); } .rm-badge.driver { background: linear-gradient(135deg, #f1f4f8, #a9b2be); } .rm-badge.pit-crew { background: linear-gradient(135deg, #e7ae7c, #a8642e); }
+    .rm-badge.podium { background: linear-gradient(135deg, #ffe08a, #d4a72c); } .rm-badge.driver { background: linear-gradient(135deg, #f1f4f8, #a9b2be); } .rm-badge.pit-crew { background: linear-gradient(135deg, #e7ae7c, #a8642e); } .rm-badge.supporter { background: linear-gradient(135deg, #b9d8ff, #5b8fcf); }
     .rm-prof .photo { display: flex; gap: 18px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
     .rm-prof .av { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: inline-grid; place-items: center; background: #1b2433; color: #c9d3e2; font-weight: 800; }
     .rm-prof .av.big { width: 88px; height: 88px; font-size: 30px; }
