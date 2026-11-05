@@ -378,7 +378,7 @@
     });
   }
 
-  // The tools offer the member's cars in their car pickers (scripts/cars-lib.js in race-me/Suspension reads this).
+  // The tools offer the member's cars in their car pickers (tools/scripts/cars-lib.js in race-me/members-src reads this).
   function shareCars(row) {
     try { localStorage.setItem('raceme.mycars.v1', JSON.stringify({ at: Date.now(), cars: (row && row.cars) || [] })); } catch (e) {}
   }
