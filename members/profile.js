@@ -280,12 +280,18 @@
           .upsert({ ...r.row, user_id: user.id, email: user.email }, { onConflict: 'user_id' }).select().single();
         if (error) throw error;
         saved = data; required = false;
+        shareCars(saved);
         busy = false; close();
       } catch (err) {
         busy = false; render();
         wrap.querySelector('.summary').textContent = 'Could not save your profile: ' + (err.message || err) + '. Check your connection and try again.';
       }
     });
+  }
+
+  // The tools offer the member's cars in their car pickers (scripts/cars-lib.js in race-me/Suspension reads this).
+  function shareCars(row) {
+    try { localStorage.setItem('raceme.mycars.v1', JSON.stringify({ at: Date.now(), cars: (row && row.cars) || [] })); } catch (e) {}
   }
 
   async function load() {
@@ -295,6 +301,7 @@
       if (error) throw error;
       saved = data || null;
       loadedFor = user.id;
+      if (saved) shareCars(saved);
       if (!saved) open(true);
     } catch (err) {
       // The profile table isn't reachable (not set up yet, or offline): don't lock the member out.
