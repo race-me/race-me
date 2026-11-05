@@ -204,9 +204,15 @@
       await ready;
       const token = String(code || '').replace(/\D/g, '');
       if (token.length < 6) return { ok: false, message: 'Enter the code from the email.' };
-      const { error } = await client.auth.verifyOtp({ email, token, type: 'email' });
-      if (error) throw error;
-      return { ok: true, message: 'Signed in.' };
+      // The code may come from the sign-in, sign-up confirmation or invite email, depending on the account's state
+      // and which Supabase template has {{ .Token }}. Try each kind; a wrong code fails all of them.
+      let error = null;
+      for (const type of ['email', 'signup', 'invite', 'magiclink']) {
+        ({ error } = await client.auth.verifyOtp({ email, token, type }));
+        if (!error) return { ok: true, message: 'Signed in.' };
+        if (!/expired|invalid|not found/i.test(error.message || '')) break;
+      }
+      throw error;
     } catch (e) {
       return { ok: false, message: /expired|invalid/i.test(e.message || '')
         ? 'That code didn\'t work. It may have expired or been mistyped; ask for a new one.'
