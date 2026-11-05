@@ -5,12 +5,12 @@ the tools also keep working from the browser when offline.
 
 - Code: `members/sync.js` (sign-in button and panel in the members header, and the sync itself).
 - Database: Supabase project `lkktdmdnwdklyvapyjxb`, table `public.tool_data`, one row per member per tool.
-  Created by `supabase/setup.sql` in the race-me/Suspension repo. Row-level security limits every member to their own rows.
+  Created by `supabase/setup.sql` in the private race-me/members-src repo. Row-level security limits every member to their own rows.
 - The publishable key in `sync.js` is meant to be public. Never put the `service_role` key in any page.
 
 ## One-time Supabase setup
 
-1. **SQL Editor:** paste and run `supabase/setup.sql`.
+1. **SQL Editor:** run the scripts in race-me/members-src `supabase/` in the order its README gives.
 2. **Authentication → Sign In / Providers:** turn off "Allow new users to sign up". Leave Email enabled.
 3. **Authentication → URL Configuration:** Site URL `https://race-me.org/members/`. Add these Redirect URLs:
    `https://race-me.org/members/` and `https://race-me.org/members/index.html`.
@@ -23,7 +23,7 @@ Members sign in only with their accounts; there is no club password. The login s
 they type in (a link in the email also works, and an invite link opens the members area directly).
 
 The members content is encrypted with a random 64-byte page key. The key lives in the one-row table
-`public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in race-me/Suspension).
+`public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in race-me/members-src).
 Accounts are invite-only, so only members can open the page. A device that has opened it keeps the key until
 Sign out, or until the key changes.
 
@@ -41,10 +41,10 @@ Sign out, or until the key changes.
 info@race-me.org (any account with `app_metadata.role = 'admin'`) gets an **Admin** button in the members header:
 the member list with profiles, search, CSV download, invite by email, send a sign-in code, and remove a member.
 
-- **Database:** `supabase/admin.sql` in race-me/Suspension: `is_admin()`, `admin_members()`, `admin_remove_member()`, and
+- **Database:** `supabase/admin.sql` in race-me/members-src: `is_admin()`, `admin_members()`, `admin_remove_member()`, and
   the admin read rule on profiles. It also makes info@race-me.org the admin. Every action is checked in the database;
   members can't make themselves admin.
-- **Invites:** the Edge Function `supabase/functions/admin-invite`, which holds the service-role key on Supabase.
+- **Invites:** the Edge Function `supabase/functions/admin-invite` in race-me/members-src, which holds the service-role key on Supabase.
 - **Code:** `members/admin.js`, loaded by `sync.js` only for the admin.
 
 ## Member profiles
@@ -54,7 +54,7 @@ emergency contact, Discord username (optional), driving experience, their cars (
 modifications), "I'm 21 or older" and agreement to the member rules (saved with the date). They can change it later
 with "Edit my profile" in the account panel.
 
-- **Table:** `public.member_profiles`, one row per member (`supabase/profiles.sql` in race-me/Suspension). Each member
+- **Table:** `public.member_profiles`, one row per member (`supabase/profiles.sql` in race-me/members-src). Each member
   can read and change only their own row; officers see everyone's in the Table Editor. Deleting a user deletes their
   profile.
 - **Code:** `members/profile.js`, loaded by `sync.js`. If the table can't be reached, members aren't blocked.

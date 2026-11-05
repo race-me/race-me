@@ -1,7 +1,7 @@
 /* Race Me members: the member profile. The first time a member signs in, this asks for their details before the
    members area can be used; "Edit my profile" (in the account panel) opens it again later. Stored in Supabase table
    public.member_profiles, one row per member, readable and editable only by that member (supabase/profiles.sql in
-   race-me/Suspension). If that table can't be reached, members aren't blocked.
+   race-me/members-src). If that table can't be reached, members aren't blocked.
    Loaded by members/index.html after sync.js. */
 (() => {
   const EXPERIENCE = [

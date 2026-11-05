@@ -2,7 +2,7 @@
    Lists members with their profiles (database function admin_members), invites by email (Edge Function
    admin-invite), sends a sign-in code, and removes members (admin_remove_member). The database checks the admin
    role for every one of these; hiding this panel from others is only for tidiness. See supabase/admin.sql in
-   race-me/Suspension. */
+   race-me/members-src. */
 (() => {
   const EXP = { none: 'None yet', autocross: 'Autocross', track: 'Track days', timetrial: 'Time trials', racing: 'Racing' };
 
