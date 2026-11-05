@@ -163,7 +163,7 @@
       const email = wrap.querySelector('#adm-invite').value.trim();
       busy = true; note = 'Sending invite…'; render();
       try { await A.callFunction('admin-invite', { email }); note = `Invited ${email}. They'll get an email to set up their account.`; await load(); }
-      catch (err) { note = /Failed to send a request|fetch/i.test(err.message) ? 'Could not reach the invite service. Has the admin-invite Edge Function been deployed?' : err.message; }
+      catch (err) { note = 'Could not send the invite: ' + err.message; }
       busy = false; render();
     });
     wrap.addEventListener('click', async e => {

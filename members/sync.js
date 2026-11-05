@@ -288,8 +288,12 @@
       await ready;
       const { data, error } = await client.functions.invoke(name, { body });
       if (error) {
-        let msg = error.message;
-        try { msg = (await error.context.json()).error || msg; } catch (e) { /* not JSON */ }
+        // Say what actually happened: the function's own message, else the HTTP status, else a network failure.
+        let msg = error.message, status = error.context?.status;
+        try { const j = await error.context.json(); msg = j.error || j.message || j.msg || msg; } catch (e) { /* not JSON */ }
+        if (error.name === 'FunctionsFetchError') msg = 'The request never got an answer (function not deployed, blocked by "Verify JWT", or offline).';
+        else if (status === 404) msg = `The ${name} function isn't deployed (404).`;
+        else if (status === 401 && !/sign in/i.test(msg)) msg = `Supabase refused the request before the function ran (401). Turn off "Verify JWT" for ${name}.`;
         throw new Error(msg);
       }
       return data;
