@@ -23,40 +23,40 @@ test('first device uploads, second device downloads, then edits flow both ways',
   const srv = server(), A = store(), B = store();
   A.setItem('raceme.setuplog.v1', log(['s1']));
   A.setItem('sgb.v2.vehicles', JSON.stringify({ v1: { name: 'Supra' } }));
-  let r = await core.syncOnce(srv, A);
+  let r = await core.syncOnce(srv, A, 'u1');
   assert.deepEqual(r.pushed.sort(), ['setup-log', 'suspension-bench']);
-  r = await core.syncOnce(srv, B);
+  r = await core.syncOnce(srv, B, 'u1');
   assert.deepEqual(r.pulled.sort(), ['setup-log', 'suspension-bench']);
   assert.deepEqual(ids(B), ['s1']);
   // nothing changed: no traffic beyond the list
   const before = srv.calls.push;
-  for (const d of [A, B, A, B]) { r = await core.syncOnce(srv, d); assert.deepEqual([r.pushed, r.pulled, r.merged], [[], [], []]); }
+  for (const d of [A, B, A, B]) { r = await core.syncOnce(srv, d, 'u1'); assert.deepEqual([r.pushed, r.pulled, r.merged], [[], [], []]); }
   assert.equal(srv.calls.push, before);
   // B edits, A (unchanged) receives it
   B.setItem('raceme.setuplog.v1', log(['s1', 's2']));
-  r = await core.syncOnce(srv, B); assert.deepEqual(r.pushed, ['setup-log']);
-  r = await core.syncOnce(srv, A); assert.deepEqual(r.pulled, ['setup-log']);
+  r = await core.syncOnce(srv, B, 'u1'); assert.deepEqual(r.pushed, ['setup-log']);
+  r = await core.syncOnce(srv, A, 'u1'); assert.deepEqual(r.pulled, ['setup-log']);
   assert.deepEqual(ids(A), ['s1', 's2']);
 });
 
 test('both devices changed: merged, nothing lost, backup kept', async () => {
   const srv = server(), A = store(), B = store();
-  A.setItem('raceme.setuplog.v1', log(['s1'])); await core.syncOnce(srv, A); await core.syncOnce(srv, B);
-  A.setItem('raceme.setuplog.v1', log(['s1', 'a2'])); await core.syncOnce(srv, A);   // A adds a session
+  A.setItem('raceme.setuplog.v1', log(['s1'])); await core.syncOnce(srv, A, 'u1'); await core.syncOnce(srv, B, 'u1');
+  A.setItem('raceme.setuplog.v1', log(['s1', 'a2'])); await core.syncOnce(srv, A, 'u1');   // A adds a session
   B.setItem('raceme.setuplog.v1', log(['s1', 'b2']));                                 // B adds one offline
-  const r = await core.syncOnce(srv, B);
+  const r = await core.syncOnce(srv, B, 'u1');
   assert.deepEqual(r.merged, ['setup-log']);
   assert.deepEqual(ids(B), ['a2', 'b2', 's1']);
   assert.ok(JSON.parse(B.getItem('raceme.sync.backup.setup-log')).keys['raceme.setuplog.v1']);
-  await core.syncOnce(srv, A);
+  await core.syncOnce(srv, A, 'u1');
   assert.deepEqual(ids(A), ['a2', 'b2', 's1']);
 });
 
 test('device with its own data meets an existing account: merged on first sign-in', async () => {
   const srv = server(), A = store(), B = store();
-  A.setItem('raceme.corner.v1', JSON.stringify({ name: 'MR2', weights: [1, 2, 3, 4], log: [{ id: 'x' }] })); await core.syncOnce(srv, A);
+  A.setItem('raceme.corner.v1', JSON.stringify({ name: 'MR2', weights: [1, 2, 3, 4], log: [{ id: 'x' }] })); await core.syncOnce(srv, A, 'u1');
   B.setItem('raceme.corner.v1', JSON.stringify({ name: 'Yaris', weights: [5, 6, 7, 8], log: [{ id: 'y' }] }));
-  const r = await core.syncOnce(srv, B);
+  const r = await core.syncOnce(srv, B, 'u1');
   assert.deepEqual(r.merged, ['corner-balance']);
   const c = JSON.parse(B.getItem('raceme.corner.v1'));
   assert.equal(c.name, 'Yaris');                        // this device wins on plain settings
@@ -72,7 +72,19 @@ test('bench vehicle maps merge by key; current car stays this device\'s', () => 
 test('unreadable or untracked storage is ignored', async () => {
   const srv = server(), A = store();
   A.setItem('raceme.corner.v1', '{not json'); A.setItem('something.else', '{"a":1}');
-  const r = await core.syncOnce(srv, A);
+  const r = await core.syncOnce(srv, A, 'u1');
   assert.deepEqual(r.pushed, []);
   assert.equal(srv.rows.size, 0);
+});
+
+test('a second account on the same device, or an emptied server, still gets this device\'s data', async () => {
+  const srv = server(), A = store();
+  A.setItem('raceme.corner.v1', JSON.stringify({ name: 'MR2', log: [] }));
+  await core.syncOnce(srv, A, 'u1');
+  const other = server();
+  let r = await core.syncOnce(other, A, 'u2');
+  assert.deepEqual(r.pushed, ['corner-balance']);
+  srv.rows.clear();
+  r = await core.syncOnce(srv, A, 'u1');
+  assert.deepEqual(r.pushed, ['corner-balance']);
 });

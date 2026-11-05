@@ -54,10 +54,12 @@
   const merge = (l, r) => Object.fromEntries([...new Set([...Object.keys(l), ...Object.keys(r)])].map(k => [k, mergeKey(k, l[k], r[k])]));
   const apply = (store, data) => { for (const [k, v] of Object.entries(data)) store.setItem(k, JSON.stringify(v)); };
 
-  // One pass over every tool. api: { list() -> [{tool, data, updated_at}], push(tool, data) -> updated_at }.
-  async function syncOnce(api, store) {
-    let meta = {};
-    try { meta = JSON.parse(store.getItem(META) || '{}') || {}; } catch (e) { meta = {}; }
+  // One pass over every tool for member uid. api: { list() -> [{tool, data, updated_at}], push(tool, data) -> updated_at }.
+  // What was last synced is remembered per member, so a second account on the same device starts fresh.
+  async function syncOnce(api, store, uid) {
+    let all = {};
+    try { all = JSON.parse(store.getItem(META) || '{}') || {}; } catch (e) { all = {}; }
+    const meta = all[uid] = all[uid] || {};
     const rows = Object.fromEntries((await api.list()).map(r => [r.tool, r]));
     const result = { pushed: [], pulled: [], merged: [] };
     for (const [tool, keys] of Object.entries(TOOLS)) {
@@ -65,7 +67,10 @@
       const empty = !Object.keys(local).length, h = hash(local);
       const localDirty = !empty && h !== m.hash;
       const serverNew = !!row && row.updated_at !== m.at;
-      if (!row || !serverNew) {
+      if (!row) {
+        // The server has nothing for this tool yet: upload whatever this device has.
+        if (!empty) { meta[tool] = { hash: h, at: await api.push(tool, { keys: local }) }; result.pushed.push(tool); }
+      } else if (!serverNew) {
         if (localDirty) { meta[tool] = { hash: h, at: await api.push(tool, { keys: local }) }; result.pushed.push(tool); }
       } else if (!localDirty) {
         const data = row.data?.keys || {};
@@ -81,7 +86,7 @@
         result.merged.push(tool);
       }
     }
-    store.setItem(META, JSON.stringify(meta));
+    store.setItem(META, JSON.stringify(all));
     return result;
   }
   const core = { TOOLS, readLocal, hash, merge, mergeKey, syncOnce };
@@ -120,7 +125,7 @@
     if (busy) { again = true; return; }
     busy = true; lastErr = ''; render();
     try {
-      const r = await syncOnce(api, localStorage);
+      const r = await syncOnce(api, localStorage, user.id);
       lastSync = new Date();
       if (r.pulled.length || r.merged.length) reloadTools();
       if (r.merged.length) note('This device and another one both had changes. Both are kept; this device\'s copy wins where they disagree.');
