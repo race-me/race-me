@@ -19,11 +19,18 @@ online and the same on every device. It's optional: without signing in, the tool
 
 ## Members page build
 
-Add this line before `</body>` in the members page source, then rebuild:
+`members/index.html` is built by `build-members.ps1` from `members-src/` (kept off GitHub because it holds the
+unencrypted members content). On 2026-11-05 it was rebuilt outside that script to add:
 
-```html
-<script src="sync.js" defer></script>
-```
+- the Corner Balance and Setup Log pages (tabs, overview cards, legal and account notes),
+- tool frames by name: the encrypted payload is now `{ html, benefits, tools: { bench, balance, setup } }`, and the
+  page script makes a frame from `tools[name]` inside `[data-frame="name"]`; buttons use
+  `data-action="open-tool" data-tool="name"`,
+- `<script src="sync.js" defer></script>` before `</body>`.
+
+Bring `members-src/` and `build-members.ps1` up to date with these before the next local build, or that build will
+drop them. The tool pages come from the race-me/Suspension repo: `index.html` (bench), `corner-balance.html`,
+`setup-log.html`.
 
 ## Day to day
 
