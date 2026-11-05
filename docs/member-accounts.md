@@ -47,6 +47,19 @@ the member list with profiles, search, CSV download, invite by email, send a sig
 - **Invites:** the Edge Function `supabase/functions/admin-invite` in race-me/members-src, which holds the service-role key on Supabase.
 - **Code:** `members/admin.js`, loaded by `sync.js` only for the admin.
 
+## The Paddock (forum)
+
+race-me.org/paddock/ is the club forum; it replaced Discord. Visitors can read sections marked public (Events & road
+trips) with names shortened to "First L."; members sign in with their usual code and read and post everywhere: threads,
+replies, photos, @mentions, a For sale & wanted section with price, location and status, "new" markers and search. The
+admin (signed in as info@race-me.org) gets pin, lock, hide, move and delete on every thread.
+
+- **Database:** `supabase/forum.sql` in race-me/members-src. All permissions are enforced there.
+- **Code:** `paddock/index.html` and `paddock/forum.js`; sign-in comes from `members/sync.js`. `paddock.html` forwards
+  old links.
+- **Emails** for replies and @mentions: the `forum-notify` Edge Function and Resend; see members-src
+  `supabase/README.md`.
+
 ## Member profiles
 
 The first time a member signs in, a profile form opens before they can use the members area: name, phone, address,

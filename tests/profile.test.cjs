@@ -8,14 +8,14 @@ new Function('module', fs.readFileSync(path.join(__dirname, '..', 'members', 'pr
 const P = mod.exports;
 const now = new Date('2026-11-05T12:00:00Z');
 const good = () => ({ ...P.blank(), first_name: ' Alex ', last_name: 'Driver', phone: '(719) 555-0100', address_line1: '1 Main St', city: 'Colorado Springs',
-  state: 'CO', postal_code: '80903', emergency_name: 'Sam Driver', emergency_phone: '719.555.0101', emergency_relationship: 'Spouse', discord: '@alexd',
+  state: 'CO', postal_code: '80903', emergency_name: 'Sam Driver', emergency_phone: '719.555.0101', emergency_relationship: 'Spouse',
   experience: 'track', track_days: '12', cars: [{ year: '2019', make: 'Mazda', model: 'MX-5', mods: 'Coilovers' }, { year: '', make: '', model: '', mods: '' }], age_21: true, rules: true });
 
 test('a complete form becomes a clean row', () => {
   const { row, errors } = P.validate(good(), { now });
   assert.deepEqual(errors, {});
   assert.equal(row.first_name, 'Alex');
-  assert.equal(row.discord, 'alexd');
+  assert.equal(row.notify_replies, true);
   assert.equal(row.track_days, 12);
   assert.equal(row.address_line2, null);
   assert.deepEqual(row.cars, [{ year: 2019, make: 'Mazda', model: 'MX-5', mods: 'Coilovers' }], 'blank extra car rows are dropped');

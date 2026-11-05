@@ -8,7 +8,7 @@ new Function('module', fs.readFileSync(path.join(__dirname, '..', 'members', 'ad
 const A = mod.exports;
 const alex = { user_id: 'a', email: 'alex@x.com', invited_at: '2026-11-01T00:00:00Z', last_sign_in_at: '2026-11-04T00:00:00Z',
   profile: { first_name: 'Alex', last_name: 'Driver', phone: '719-555-0100', city: 'Colorado Springs', state: 'CO', postal_code: '80903', address_line1: '1 Main', country: 'USA',
-    emergency_name: 'Sam', emergency_phone: '719-555-0101', emergency_relationship: 'Spouse', discord: 'alexd', experience: 'track', track_days: 12, age_21: true,
+    emergency_name: 'Sam', emergency_phone: '719-555-0101', emergency_relationship: 'Spouse', experience: 'track', track_days: 12, age_21: true,
     rules_accepted_at: '2026-11-04T10:00:00Z', cars: [{ year: 2019, make: 'Mazda', model: 'MX-5', mods: 'Coilovers, "big" brakes' }] } };
 const invited = { user_id: 'b', email: 'new@x.com', invited_at: '2026-11-05T00:00:00Z', last_sign_in_at: null, profile: null };
 const noProfile = { user_id: 'c', email: 'np@x.com', last_sign_in_at: '2026-11-05T00:00:00Z', profile: null };
@@ -22,7 +22,7 @@ test('status, name and search', () => {
 });
 
 test('CSV quotes every cell, escapes quotes, and defuses spreadsheet formulas', () => {
-  const evil = { ...alex, profile: { ...alex.profile, first_name: '=HYPERLINK("http://x","click")', last_name: '+1', discord: '@me' } };
+  const evil = { ...alex, profile: { ...alex.profile, first_name: '=HYPERLINK("http://x","click")', last_name: '+1' } };
   const csv = A.toCsv([alex, evil, invited]);
   const lines = csv.trim().split('\r\n');
   assert.equal(lines.length, 4);
@@ -30,6 +30,5 @@ test('CSV quotes every cell, escapes quotes, and defuses spreadsheet formulas', 
   assert.match(lines[1], /"Coilovers, ""big"" brakes"/);
   assert.match(lines[1], /"2019 Mazda MX-5"/);
   assert.match(lines[2], /^"'=HYPERLINK\(""http:\/\/x"",""click""\)","'\+1"/);
-  assert.match(lines[2], /"'@me"/);
   assert.match(lines[3], /"Invited, not signed in yet"/);
 });

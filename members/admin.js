@@ -18,7 +18,7 @@
     const s = String(q || '').toLowerCase().trim();
     if (!s) return true;
     const p = m.profile || {};
-    return [m.email, name(m), p.phone, p.discord, p.city, cars(m)].some(v => String(v || '').toLowerCase().includes(s));
+    return [m.email, name(m), p.phone, p.city, cars(m)].some(v => String(v || '').toLowerCase().includes(s));
   }
   const csvCell = v => {
     const t = String(v ?? '');
@@ -27,12 +27,12 @@
   };
   function toCsv(list) {
     const head = ['First name', 'Last name', 'Email', 'Phone', 'Street', 'Unit', 'City', 'State', 'ZIP', 'Country',
-      'Emergency contact', 'Emergency phone', 'Relationship', 'Discord', 'Experience', 'Track days', 'Cars', 'Modifications',
+      'Emergency contact', 'Emergency phone', 'Relationship', 'Experience', 'Track days', 'Cars', 'Modifications',
       '21 or older', 'Rules agreed', 'Status', 'Invited', 'Last sign-in'];
     const rows = list.map(m => {
       const p = m.profile || {};
       return [p.first_name, p.last_name, m.email, p.phone, p.address_line1, p.address_line2, p.city, p.state, p.postal_code, p.country,
-        p.emergency_name, p.emergency_phone, p.emergency_relationship, p.discord, EXP[p.experience] || '', p.track_days ?? '',
+        p.emergency_name, p.emergency_phone, p.emergency_relationship, EXP[p.experience] || '', p.track_days ?? '',
         cars(m), (p.cars || []).map(c => c.mods).filter(Boolean).join(' | '), p.age_21 ? 'yes' : '',
         p.rules_accepted_at ? p.rules_accepted_at.slice(0, 10) : '', status(m).text,
         (m.invited_at || m.created_at || '').slice(0, 10), (m.last_sign_in_at || '').slice(0, 10)];
@@ -83,7 +83,7 @@
     if (!p) return `<p style="margin:0 0 12px;color:#9fb0c8">${m.last_sign_in_at ? 'Signed in but hasn\'t filled in a profile yet. They\'ll be asked next time they sign in.' : 'Invited; hasn\'t signed in yet. Send them a sign-in code if the invite got lost.'}</p>`;
     const dd = (k, v) => `<div><dt>${k}</dt><dd>${esc(v) || '—'}</dd></div>`;
     return `<dl>
-      ${dd('Phone', p.phone)}${dd('Discord', p.discord)}
+      ${dd('Phone', p.phone)}${dd('Paddock emails', `Replies: ${p.notify_replies === false ? 'off' : 'on'} · Mentions: ${p.notify_mentions === false ? 'off' : 'on'}`)}
       ${dd('Address', [p.address_line1, p.address_line2, `${p.city || ''}, ${p.state || ''} ${p.postal_code || ''}`, p.country !== 'USA' ? p.country : ''].filter(Boolean).join('\n'))}
       ${dd('Emergency contact', `${p.emergency_name || ''} (${p.emergency_relationship || ''})\n${p.emergency_phone || ''}`)}
       ${dd('Experience', `${EXP[p.experience] || '—'}${p.track_days != null ? `, about ${p.track_days} days` : ''}`)}

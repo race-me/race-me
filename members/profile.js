@@ -19,8 +19,8 @@
   const emptyCar = () => ({ year: '', make: '', model: '', mods: '' });
   const blank = () => ({
     first_name: '', last_name: '', phone: '', address_line1: '', address_line2: '', city: '', state: '', postal_code: '',
-    country: 'USA', emergency_name: '', emergency_phone: '', emergency_relationship: '', discord: '', experience: '',
-    track_days: '', cars: [emptyCar()], age_21: false, rules: false,
+    country: 'USA', emergency_name: '', emergency_phone: '', emergency_relationship: '', experience: '',
+    track_days: '', cars: [emptyCar()], age_21: false, rules: false, notify_replies: true, notify_mentions: true,
   });
   // A saved row back into form values.
   function toForm(row) {
@@ -59,16 +59,16 @@
       emergency_name: need('emergency_name', "emergency contact's name"),
       emergency_phone: phone('emergency_phone', "your emergency contact's phone"),
       emergency_relationship: need('emergency_relationship', 'relationship to you', 60),
-      discord: clean(f.discord).replace(/^@/, '') || null,
       experience: clean(f.experience),
       track_days: null,
       cars: [],
       age_21: !!f.age_21,
       rules_accepted_at: null,
+      notify_replies: f.notify_replies !== false,
+      notify_mentions: f.notify_mentions !== false,
     };
     if (row.postal_code && row.postal_code.length < 3) e.postal_code = 'Enter your ZIP code.';
     if (row.address_line2 && row.address_line2.length > 120) e.address_line2 = 'Keep it under 120 characters.';
-    if (row.discord && row.discord.length > 40) e.discord = 'That is longer than a Discord username can be.';
     if (!EXPERIENCE.some(([k]) => k === row.experience)) e.experience = 'Pick the one closest to your experience.';
     const td = clean(f.track_days);
     if (td) {
@@ -157,7 +157,6 @@
         ${field('first_name', 'First name', { auto: 'given-name', cls: 'half' })}
         ${field('last_name', 'Last name', { auto: 'family-name', cls: 'half' })}
         ${field('phone', 'Phone', { type: 'tel', auto: 'tel' })}
-        ${field('discord', 'Discord username', { opt: true, hint: 'So we can match you in the club Discord.' })}
       </div></fieldset>
 
       <fieldset><legend>Address</legend><div class="grid">
@@ -195,6 +194,11 @@
               <textarea id="rp-c${i}mods" data-car="${i}" data-ck="mods" placeholder="Coilovers, wheels and tires, seats, harness, cage, engine…">${esc(c.mods)}</textarea>${carErr(i, 'mods')}</div>
           </div></div>`).join('')}
         ${form.cars.length < MAX_CARS ? '<button type="button" class="btn btn-ghost" data-add style="margin-top:14px">Add another car</button>' : ''}
+      </fieldset>
+
+      <fieldset><legend>Paddock emails</legend>
+        <label class="check"><input type="checkbox" data-k="notify_replies" ${form.notify_replies !== false ? 'checked' : ''}><span>Email me when someone replies to my thread in the Paddock.</span></label>
+        <label class="check"><input type="checkbox" data-k="notify_mentions" ${form.notify_mentions !== false ? 'checked' : ''}><span>Email me when someone @mentions me.</span></label>
       </fieldset>
 
       <fieldset><legend>Agreements</legend>
@@ -276,8 +280,12 @@
       busy = true; render();
       try {
         const db = await window.RaceMeAccount.db();
-        const { data, error } = await db.from('member_profiles')
-          .upsert({ ...r.row, user_id: user.id, email: user.email }, { onConflict: 'user_id' }).select().single();
+        const save = row => db.from('member_profiles').upsert({ ...row, user_id: user.id, email: user.email }, { onConflict: 'user_id' }).select().single();
+        let { data, error } = await save(r.row);
+        if (error && /notify_/.test(error.message || '')) {
+          const { notify_replies, notify_mentions, ...rest } = r.row; // the Paddock email settings aren't set up yet
+          ({ data, error } = await save(rest));
+        }
         if (error) throw error;
         saved = data; required = false;
         shareCars(saved);

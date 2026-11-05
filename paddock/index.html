@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Paddock — Race Me</title>
+<meta name="description" content="The Paddock: Race Me's club forum. Build threads, tech help, parts for sale, events and road trips.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M4232QS5G8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M4232QS5G8');
+</script>
+<link rel="icon" type="image/png" href="../assets/favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#080b12;color:#e8edf5;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#4da3ff}a:hover{color:#ff8a3d}
+::selection{background:#ff8a3d;color:#080b12}
+input:focus-visible,button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid #ff8a3d;outline-offset:2px}
+[hidden]{display:none !important}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;padding:13px 22px;background:#4da3ff;color:#080b12;font:700 16px 'Archivo',system-ui,sans-serif}
+.btn:hover{background:#ff8a3d;color:#080b12}
+.btn[disabled]{opacity:.6;cursor:progress}
+.btn-ghost{background:transparent;color:#c9d3e2;border:1px solid rgba(159,176,200,0.4);padding:10px 16px;font-size:15px}
+.btn-ghost:hover{background:transparent;color:#ff8a3d;border-color:#ff8a3d}
+.btn-sm{padding:7px 12px;font-size:14px}
+.rm-sync-btn{display:none !important} /* the tools' sync button isn't needed on the forum */
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(16px,4vw,40px) clamp(56px,8vw,96px)}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ff8a3d;margin-bottom:12px}
+h1.big{margin:0 0 18px;font-stretch:62%;font-weight:900;font-size:clamp(56px,9vw,128px);line-height:.86;text-transform:uppercase}
+h1.title{margin:0 0 12px;font-stretch:75%;font-weight:900;font-size:clamp(30px,4.5vw,52px);line-height:1;text-transform:none;overflow-wrap:anywhere}
+.lead{margin:0;max-width:62ch;font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:#9fb0c8;text-wrap:pretty}
+.muted{color:#8b9bb3}.small{font-size:14px}
+.crumbs{font-size:15px;margin-bottom:14px;color:#8b9bb3}.crumbs a{text-decoration:none;font-weight:700}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:26px 0 16px}
+.search{display:flex;gap:8px;flex:1 1 320px;max-width:520px}
+input[type=text],input[type=search],input[type=email],input[type=number],select,textarea{padding:11px 13px;background:#0b0f18;color:#e8edf5;border:1px solid rgba(159,176,200,.45);font:500 16px 'Archivo',system-ui,sans-serif;min-width:0;width:100%}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+label.l{display:block;font-size:15px;font-weight:700;margin:14px 0 8px}
+.sections{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:12px}
+.sec{display:flex;flex-direction:column;gap:8px;padding:22px 22px 20px;background:#0b0f18;border:1px solid rgba(159,176,200,.3);text-decoration:none;color:#e8edf5}
+.sec:hover{border-color:#ff8a3d;color:#e8edf5}
+.sec h2{margin:0;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;text-transform:uppercase;color:#4da3ff}
+.sec .meta{font-size:14px;color:#8b9bb3;margin-top:auto}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border:1px solid currentColor;white-space:nowrap;vertical-align:2px}
+.tag.new{color:#ff8a3d}.tag.pub{color:#3ad08a}.tag.pin{color:#4da3ff}.tag.lock{color:#9fb0c8}.tag.hid{color:#ff8a3d}
+.tag.available{color:#3ad08a}.tag.pending{color:#f2c037}.tag.sold{color:#ff8a3d}
+.list{border-top:2px solid #4da3ff}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 16px;align-items:center;padding:14px 4px;border-bottom:1px solid rgba(159,176,200,.2);text-decoration:none;color:#e8edf5}
+.row:hover{background:#0b0f18;color:#e8edf5}
+.row .t{font-size:18px;font-weight:700;overflow-wrap:anywhere}
+.row .s{font-size:14px;color:#8b9bb3}
+.row .r{text-align:right;font-size:14px;color:#8b9bb3;white-space:nowrap}
+.row .thumb{width:72px;height:54px;object-fit:cover;background:#0b0f18;border:1px solid rgba(159,176,200,.25)}
+.row .nothumb{width:0}
+@media (max-width:640px){.row{grid-template-columns:auto minmax(0,1fr)}.row .r{grid-column:2;text-align:left}}
+.post{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(159,176,200,.2)}
+@media (max-width:700px){.post{grid-template-columns:1fr}}
+.post.hid{opacity:.55}
+.who .n{font-weight:800;font-size:17px}
+.who .c{font-size:14px;color:#8b9bb3;margin-top:4px}
+.body{font-size:17px;line-height:1.6;overflow-wrap:anywhere}
+.body p{margin:0 0 12px}.body ul{margin:0 0 12px;padding-left:22px}
+.body code{background:#0b0f18;border:1px solid rgba(159,176,200,.3);padding:0 5px;font-size:15px}
+.mention{color:#ff8a3d;font-weight:700}
+.when{font-size:14px;color:#8b9bb3;margin-bottom:8px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:6px 0 10px}
+.pics a{display:block;aspect-ratio:4/3;background:#0b0f18}
+.pics img{width:100%;height:100%;object-fit:cover;display:block}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.panel{border:2px solid #4da3ff;background:#0b0f18;padding:clamp(18px,3vw,26px);margin:18px 0}
+.panel.warn{border-color:#ff8a3d}
+.listing{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;font-size:18px}
+.listing .price{font-size:30px;font-weight:900;font-stretch:75%}
+.composer .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.composer .hint{font-size:14px;color:#8b9bb3;margin-top:8px}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.thumbs figure{position:relative;margin:0;width:110px;height:82px;background:#0b0f18;border:1px solid rgba(159,176,200,.3)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs button{position:absolute;top:2px;right:2px;border:0;background:#080b12;color:#e8edf5;cursor:pointer;font-size:16px;width:26px;height:26px}
+.mentions{position:absolute;z-index:5;background:#0b0f18;border:1px solid #4da3ff;min-width:220px;max-height:240px;overflow:auto}
+.mentions button{display:block;width:100%;text-align:left;border:0;background:none;color:#e8edf5;padding:8px 12px;font:600 15px 'Archivo',system-ui,sans-serif;cursor:pointer}
+.mentions button[aria-selected=true],.mentions button:hover{background:#4da3ff;color:#080b12}
+.msg{min-height:1.4em;margin:10px 0 0;font-size:15px;color:#c9d3e2}.msg.bad{color:#ff8a3d}
+mark{background:#ff8a3d;color:#080b12;padding:0 2px}
+.signin{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.signin > div{flex:1 1 220px}
+.pager{display:flex;gap:10px;justify-content:center;margin-top:18px}
+</style>
+</head>
+<body>
+<!-- ============ MASTHEAD ============ -->
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 18px clamp(16px, 4vw, 56px); border-bottom: 1px solid rgba(159,176,200,0.25)">
+  <a href="../index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #e8edf5">
+    <img src="../assets/logo-roundel-512.png" alt="" style="width: 44px; height: 44px">
+    <span style="font-stretch: 62%; font-weight: 900; font-size: 34px; line-height: 1; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></span>
+  </a>
+  <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+    <a href="../index.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Home</a>
+    <a href="../trips.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Road trips</a>
+    <a href="../events.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Events</a>
+    <a href="../projects.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Projects</a>
+    <a href="../support.html" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Support</a>
+    <a href="./" aria-current="page" style="text-decoration: none; padding: 12px 0; color: #ff8a3d; border-bottom: 2px solid #ff8a3d">Paddock</a>
+    <a href="../members/" style="text-decoration: none; padding: 12px 0; color: #c9d3e2">Members</a>
+    <button type="button" class="btn btn-ghost" data-action="signout" hidden>Sign out</button>
+    <a href="../support.html" data-guest style="text-decoration: none; padding: 12px 20px; background: #ff8a3d; color: #080b12; font-weight: 700">Join the club</a>
+  </nav>
+</header>
+
+<main id="forum" class="wrap" aria-live="polite"><p class="muted">Loading the Paddock…</p></main>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background: #05070c; color: #8b9bb3; padding: 40px clamp(16px, 4vw, 56px) 36px; font-size: 14px">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px">
+    <div style="display: flex; align-items: center; gap: 18px">
+      <img src="../assets/logo-roundel-512.png" alt="Race Me roundel" style="width: 72px; height: 72px">
+      <div>
+        <div style="font-stretch: 62%; font-weight: 900; font-size: 56px; line-height: 0.9; text-transform: uppercase"><span style="color: #4da3ff">Race</span> <span style="color: #ff8a3d">Me</span></div>
+        <div style="margin-top: 8px">© 2026 Race Me, a Colorado 501(c)(7) nonprofit social club</div>
+      </div>
+    </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 22px">
+      <a href="../index.html" style="color: #c9d3e2; padding: 10px 0">Home</a>
+      <a href="../trips.html" style="color: #c9d3e2; padding: 10px 0">Road trips</a>
+      <a href="../events.html" style="color: #c9d3e2; padding: 10px 0">Events</a>
+      <a href="../projects.html" style="color: #c9d3e2; padding: 10px 0">Projects</a>
+      <a href="../support.html" style="color: #c9d3e2; padding: 10px 0">Support</a>
+      <a href="./" style="color: #c9d3e2; padding: 10px 0">Paddock</a>
+      <a href="mailto:info@race-me.org" style="color: #c9d3e2; padding: 10px 0">info@race-me.org</a>
+    </nav>
+  </div>
+  <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(159,176,200,0.2)">Members must be 21 or older. Be decent: no harassment, no spam, no selling for others. The admin can remove posts that break the member rules.</div>
+</footer>
+<script src="../members/sync.js" defer></script>
+<script src="forum.js" defer></script>
+</body>
+</html>

@@ -68,7 +68,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
     <p style="margin: 0; flex: 1 1 380px; max-width: 56ch; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; color: #9fb0c8; text-wrap: pretty">Race Me is a Colorado nonprofit club for people who want to drive fast, wrench together, and make real friends doing it. You don't need a race car to join. Put in time on ours and you'll earn a turn behind the wheel.</p>
     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px">
       <a href="#membership" style="text-decoration: none; padding: 16px 26px; background: #4da3ff; color: #080b12; font-weight: 700; font-size: 16px">See membership</a>
-      <a href="{{ discordUrl }}" style="text-decoration: none; padding: 14px 24px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Say hi on Discord</a>
+      <a href="paddock/" style="text-decoration: none; padding: 14px 24px; border: 2px solid #e8edf5; color: #e8edf5; font-weight: 700; font-size: 16px">Visit the Paddock</a>
     </div>
   </div>
 </section>
@@ -320,14 +320,14 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
   </div>
 </section>
 
-<!-- ============ JOIN / DISCORD ============ -->
+<!-- ============ JOIN ============ -->
 <section id="join" aria-labelledby="join-h" style="margin-top: clamp(64px, 9vw, 128px); background: #ff8a3d; color: #080b12; padding: clamp(64px, 9vw, 128px) clamp(16px, 4vw, 56px)">
   <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px">
     <h2 id="join-h" style="margin: 0; flex: 1 1 560px; max-width: 16ch; font-stretch: 62%; font-weight: 900; font-size: clamp(60px, 9vw, 150px); line-height: 0.86; text-transform: uppercase">Come to a meet before you decide</h2>
     <div style="flex: 0 1 400px; display: flex; flex-direction: column; gap: 22px">
-      <p style="margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; text-wrap: pretty">Guests can visit twice before joining. Hop in the Discord, find the next meet, and come see the cars and the crew in person.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; text-wrap: pretty">Guests can visit twice before joining. Check Events &amp; road trips in the Paddock for the next meet, and come see the cars and the crew in person.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 12px">
-        <a href="{{ discordUrl }}" style="text-decoration: none; padding: 16px 26px; background: #080b12; color: #ff8a3d; font-weight: 700; font-size: 16px">Join the Discord</a>
+        <a href="paddock/#/s/events" style="text-decoration: none; padding: 16px 26px; background: #080b12; color: #ff8a3d; font-weight: 700; font-size: 16px">See upcoming events</a>
         <a href="mailto:info@race-me.org" style="text-decoration: none; padding: 14px 24px; border: 2px solid #080b12; color: #080b12; font-weight: 700; font-size: 16px">Get in touch</a>
       </div>
       <a href="paddock.html" style="font-weight: 700; font-size: 16px; color: #080b12">Read the live club chat in the Paddock →</a>
@@ -397,7 +397,7 @@ class Component extends DCLogic {
         { step: 4, title: 'Race driver', body: 'Meet the series licensing and safety-gear rules, then take a race stint.' }
       ],
       tiers: [
-        { cls: 'C', name: 'Pit Crew', monthly: '$15', yearly: '$150', hours: 'Pay as you go', extra: '$40 / hr', booking: '3 days', seat: 'Ride-alongs + earn credit', perks: ['Exclusive member discounts from partner shops', 'All meets, cruises, and socials', 'Members-only Discord', 'Race Me decal and digital membership card', 'A vote in club decisions', 'Suspension Geometry Bench in the members area'] },
+        { cls: 'C', name: 'Pit Crew', monthly: '$15', yearly: '$150', hours: 'Pay as you go', extra: '$40 / hr', booking: '3 days', seat: 'Ride-alongs + earn credit', perks: ['Exclusive member discounts from partner shops', 'All meets, cruises, and socials', 'Members-only forum (the Paddock)', 'Race Me decal and digital membership card', 'A vote in club decisions', 'Suspension Geometry Bench in the members area'] },
         { cls: 'B', name: 'Driver', monthly: '$35', yearly: '$350', hours: '1', extra: '$35 / hr', booking: '7 days', seat: 'Eligible with credit', perks: ['Everything in Pit Crew', 'Priority on track-day sign-ups', 'Merch pack and free entry to club shows', 'Early access to limited-spot trips'] },
         { cls: 'A', name: 'Podium', monthly: '$75', yearly: '$750', hours: '2', extra: '$30 / hr', booking: '14 days', seat: 'First pick with credit', perks: ['Everything in Driver', 'First pick on road-trip spots', 'Podium-only garage night', 'Name on race-me.org and event banners'] }
       ],
