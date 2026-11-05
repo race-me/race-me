@@ -5,6 +5,7 @@
    race-me/members-src. */
 (() => {
   const EXP = { none: 'None yet', autocross: 'Autocross', track: 'Track days', timetrial: 'Time trials', racing: 'Racing' };
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
 
   /* ---------- core (no DOM; tested in tests/admin.test.cjs) ---------- */
   const name = m => m.profile ? `${m.profile.first_name || ''} ${m.profile.last_name || ''}`.trim() : '';
@@ -18,7 +19,7 @@
     const s = String(q || '').toLowerCase().trim();
     if (!s) return true;
     const p = m.profile || {};
-    return [m.email, name(m), p.phone, p.city, cars(m)].some(v => String(v || '').toLowerCase().includes(s));
+    return [m.email, name(m), p.phone, p.city, cars(m), CLASSES[m.class]].some(v => String(v || '').toLowerCase().includes(s));
   }
   const csvCell = v => {
     const t = String(v ?? '');
@@ -26,12 +27,12 @@
     return '"' + (/^[=+\-@]/.test(t) ? "'" + t : t).replace(/"/g, '""') + '"';
   };
   function toCsv(list) {
-    const head = ['First name', 'Last name', 'Email', 'Phone', 'Street', 'Unit', 'City', 'State', 'ZIP', 'Country',
+    const head = ['First name', 'Last name', 'Email', 'Class', 'Phone', 'Street', 'Unit', 'City', 'State', 'ZIP', 'Country',
       'Emergency contact', 'Emergency phone', 'Relationship', 'Experience', 'Track days', 'Cars', 'Modifications',
       '21 or older', 'Rules agreed', 'Status', 'Invited', 'Last sign-in'];
     const rows = list.map(m => {
       const p = m.profile || {};
-      return [p.first_name, p.last_name, m.email, p.phone, p.address_line1, p.address_line2, p.city, p.state, p.postal_code, p.country,
+      return [p.first_name, p.last_name, m.email, CLASSES[m.class] || '', p.phone, p.address_line1, p.address_line2, p.city, p.state, p.postal_code, p.country,
         p.emergency_name, p.emergency_phone, p.emergency_relationship, EXP[p.experience] || '', p.track_days ?? '',
         cars(m), (p.cars || []).map(c => c.mods).filter(Boolean).join(' | '), p.age_21 ? 'yes' : '',
         p.rules_accepted_at ? p.rules_accepted_at.slice(0, 10) : '', status(m).text,
@@ -39,7 +40,7 @@
     });
     return [head, ...rows].map(r => r.map(csvCell).join(',')).join('\r\n') + '\r\n';
   }
-  const core = { name, cars, status, matches, toCsv };
+  const core = { CLASSES, name, cars, status, matches, toCsv };
   if (typeof module !== 'undefined') { module.exports = core; return; }
 
   /* ---------- browser ---------- */
@@ -64,8 +65,8 @@
     .rm-adm table { width: 100%; border-collapse: collapse; font-size: 15px; }
     .rm-adm th { text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #8b9bb3; padding: 8px 10px; border-bottom: 2px solid rgba(159,176,200,.35); }
     .rm-adm td { padding: 10px; border-bottom: 1px solid rgba(159,176,200,.2); vertical-align: top; }
-    .rm-adm tr.row { cursor: pointer; } .rm-adm tr.row:hover td { background: #0b0f18; }
-    .rm-adm tr.row:focus-visible { outline: 2px solid #ff8a3d; outline-offset: -2px; }
+    .rm-adm tr.adm-row { cursor: pointer; } .rm-adm tr.adm-row:hover td { background: #0b0f18; }
+    .rm-adm tr.adm-row:focus-visible { outline: 2px solid #ff8a3d; outline-offset: -2px; }
     .rm-adm .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 8px; border: 1px solid currentColor; white-space: nowrap; }
     .rm-adm .tag.active { color: #3ad08a; } .rm-adm .tag.invited { color: #4da3ff; } .rm-adm .tag.noprofile { color: #ff8a3d; }
     .rm-adm .det td { background: #0b0f18; }
@@ -76,6 +77,13 @@
     .rm-adm .danger { border-color: #ff8a3d !important; color: #ff8a3d !important; }
     .rm-adm .danger.armed { background: #ff8a3d !important; color: #080b12 !important; }
     .rm-adm .count { color: #8b9bb3; }
+    .rm-adm .badge{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:2px;vertical-align:2px;color:#080b12;white-space:nowrap}
+    .rm-adm .badge.podium{background:linear-gradient(135deg,#ffe08a,#d4a72c)}
+    .rm-adm .badge.driver{background:linear-gradient(135deg,#f1f4f8,#a9b2be)}
+    .rm-adm .badge.pit-crew{background:linear-gradient(135deg,#e7ae7c,#a8642e)}
+    .rm-adm .badge.admin{background:#ff8a3d}
+    .rm-adm .classpick { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+    .rm-adm .classpick select { width: auto; min-width: 160px; padding: 8px 10px; background: #080b12; color: #e8edf5; border: 1px solid rgba(159,176,200,.45); font: 600 15px 'Archivo', system-ui, sans-serif; }
     @media (max-width: 760px) { .rm-adm .hide-sm { display: none; } }`;
 
   function details(m) {
@@ -109,13 +117,16 @@
       <div class="bar"><input type="search" id="adm-q" placeholder="Search name, email, phone, car…" value="${esc(query)}" style="flex:1 1 280px" aria-label="Search members">
         <span class="count">${loadErr ? '' : `${list.length} of ${members.length} member${members.length === 1 ? '' : 's'}`}</span></div>
       ${loadErr ? `<p class="msg bad">${esc(loadErr)}</p>` : `<div style="overflow-x:auto"><table>
-        <thead><tr><th>Name</th><th>Email</th><th class="hide-sm">Phone</th><th class="hide-sm">Cars</th><th>Status</th><th class="hide-sm">Last sign-in</th></tr></thead>
+        <thead><tr><th>Name</th><th>Email</th><th class="hide-sm">Phone</th><th class="hide-sm">Cars</th><th>Class</th><th>Status</th><th class="hide-sm">Last sign-in</th></tr></thead>
         <tbody>${list.map(m => `
-          <tr class="row" tabindex="0" data-id="${m.user_id}" aria-expanded="${open === m.user_id}">
+          <tr class="adm-row" tabindex="0" data-id="${m.user_id}" aria-expanded="${open === m.user_id}">
             <td>${esc(name(m)) || '<span style="color:#8b9bb3">—</span>'}${m.is_admin ? ' <span class="tag invited">admin</span>' : ''}</td><td style="overflow-wrap:anywhere">${esc(m.email)}</td>
             <td class="hide-sm">${esc(m.profile?.phone || '')}</td><td class="hide-sm">${esc(cars(m))}</td>
+            <td>${m.class ? `<span class="badge ${m.class}">${CLASSES[m.class]}</span>` : '<span style="color:#8b9bb3">—</span>'}</td>
             <td><span class="tag ${status(m).key}">${esc(status(m).text)}</span></td><td class="hide-sm">${day(m.last_sign_in_at)}</td></tr>
-          ${open === m.user_id ? `<tr class="det"><td colspan="6">${details(m)}
+          ${open === m.user_id ? `<tr class="det"><td colspan="7"><div class="classpick"><label for="cls-${m.user_id}" style="font-weight:700">Membership class</label>
+              <select id="cls-${m.user_id}" data-class="${m.user_id}"><option value="">Not set</option>${Object.entries(CLASSES).reverse().map(([k, v]) => `<option value="${k}" ${m.class === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+              <span style="color:#8b9bb3">Shown as a badge next to their name.</span></div>${details(m)}
             <div class="acts">
               <button type="button" class="btn btn-ghost" data-code="${esc(m.email)}">Send sign-in code</button>
               ${m.is_admin ? '' : `<button type="button" class="btn btn-ghost danger ${armed === m.user_id ? 'armed' : ''}" data-remove="${m.user_id}">${armed === m.user_id ? `Click again to remove ${esc(name(m) || m.email)}` : 'Remove member'}</button>`}
@@ -154,9 +165,23 @@
 
   function wire() {
     wrap.addEventListener('input', e => { if (e.target.id === 'adm-q') { query = e.target.value; render(); } });
+    wrap.addEventListener('change', async e => {
+      const id = e.target.dataset.class;
+      if (!id) return;
+      const m = members.find(x => x.user_id === id), cls = e.target.value;
+      try {
+        const db = await A.db();
+        const { error } = cls ? await db.from('member_classes').upsert({ user_id: id, class: cls, updated_at: new Date().toISOString() }, { onConflict: 'user_id' })
+          : await db.from('member_classes').delete().eq('user_id', id);
+        if (error) throw error;
+        m.class = cls || null;
+        note = `${name(m) || m.email} is now ${cls ? CLASSES[cls] : 'without a class'}.`;
+      } catch (err) { note = 'Could not change the class: ' + (err.message || err) + (/member_classes/.test(err.message || '') ? ' Run the updated supabase/admin.sql.' : ''); }
+      render();
+    });
     wrap.addEventListener('keydown', e => {
       if (e.key === 'Escape') hide();
-      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('tr.row')) { e.preventDefault(); e.target.click(); }
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('tr.adm-row')) { e.preventDefault(); e.target.click(); }
     });
     wrap.addEventListener('submit', async e => {
       e.preventDefault();
@@ -193,7 +218,7 @@
         } catch (err) { note = 'Could not remove: ' + (err.message || err); render(); }
         return;
       }
-      const row = t.closest('tr.row');
+      const row = t.closest('tr.adm-row');
       if (row) { open = open === row.dataset.id ? null : row.dataset.id; armed = null; render(); }
     });
   }

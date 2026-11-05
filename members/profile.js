@@ -97,6 +97,8 @@
   if (typeof module !== 'undefined') { module.exports = core; return; }
 
   /* ---------- browser ---------- */
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
+  let myClass = null;
   let user = null, saved = null, loadedFor = null, form = blank(), required = false, minimized = false, busy = false, errors = {};
   let wrap, banner;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -127,6 +129,8 @@
     .rm-prof .check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: #4da3ff; flex: none; }
     .rm-prof .acts { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 30px; }
     .rm-prof .summary { margin-top: 14px; color: #ff8a3d; }
+    .rm-badge { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; color: #080b12; vertical-align: 2px; }
+    .rm-badge.podium { background: linear-gradient(135deg, #ffe08a, #d4a72c); } .rm-badge.driver { background: linear-gradient(135deg, #f1f4f8, #a9b2be); } .rm-badge.pit-crew { background: linear-gradient(135deg, #e7ae7c, #a8642e); }
     .rm-prof .privacy { margin-top: 26px; font-size: 14px; color: #8b9bb3; max-width: 64ch; }
     .rm-prof-banner { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 60; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center;
       max-width: calc(100vw - 24px); padding: 12px 16px; background: #0b0f18; border: 2px solid #ff8a3d; color: #e8edf5; font: 600 15px 'Archivo', system-ui, sans-serif; }`;
@@ -151,6 +155,7 @@
     wrap.innerHTML = `<form novalidate>
       <div class="kick">${isNew ? 'Welcome to the members area' : 'Your account'}</div>
       <h1>${isNew ? 'Set up your profile' : 'My profile'}</h1>
+      ${!isNew ? `<p class="lead" style="margin-bottom:10px">Membership class: ${myClass ? `<span class="rm-badge ${myClass}">${CLASSES[myClass]}</span>` : 'not set yet (the admin sets it when your membership is confirmed)'}</p>` : ''}
       <p class="lead">${isNew ? 'One time only. The club uses this to run events and to reach someone if anything happens at the track.' : 'Keep your details up to date.'} Signed in as <strong>${esc(user?.email)}</strong>.</p>
 
       <fieldset><legend>About you</legend><div class="grid">
@@ -309,6 +314,7 @@
       if (error) throw error;
       saved = data || null;
       loadedFor = user.id;
+      try { const c = await db.from('member_classes').select('class').eq('user_id', user.id).maybeSingle(); myClass = c.data?.class || null; } catch (e) { myClass = null; }
       if (saved) shareCars(saved);
       if (!saved) open(true);
     } catch (err) {

@@ -78,6 +78,8 @@
   const $ = s => document.querySelector(s);
   const main = $('#forum');
   const STATUS = { available: 'Available', pending: 'Pending', sold: 'Sold' };
+  // Membership class badges: Podium gold, Driver silver, Pit Crew bronze; Admin in club orange.
+  const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
   let user = null, accountReady = false, members = null, sections = null;
   const urls = new Map(); // photo path -> signed URL
 
@@ -97,7 +99,7 @@
     return p => urls.get(p) || '';
   }
   const person = (people, id) => people?.[id] || { name: 'Member', cars: [] };
-  const badge = p => p.admin ? ' <span class="tag pin">admin</span>' : '';
+  const badge = p => `${p.class && CLASSES[p.class] ? ` <span class="badge ${p.class}">${CLASSES[p.class]}</span>` : ''}${p.admin ? ' <span class="badge admin">Admin</span>' : ''}`;
   const sectionName = id => sections?.find(s => s.id === id)?.name || id;
 
   /* ----- sign-in panel (visitors) ----- */
@@ -163,7 +165,7 @@
         return `<a class="row" href="#/t/${t.id}">
           ${classified ? (t.thumb && pic(t.thumb) ? `<img class="thumb" src="${esc(pic(t.thumb))}" alt="">` : '<span class="thumb"></span>') : '<span class="nothumb"></span>'}
           <span><span class="t">${t.pinned ? '<span class="tag pin">pinned</span> ' : ''}${t.locked ? '<span class="tag lock">locked</span> ' : ''}${t.hidden ? '<span class="tag hid">hidden</span> ' : ''}${esc(t.title)} ${t.is_new ? '<span class="tag new">new</span>' : ''}</span><br>
-            <span class="s">${classified ? `${money(t.price) ? `<strong style="color:#e8edf5">${money(t.price)}</strong> · ` : ''}${t.location ? esc(t.location) + ' · ' : ''}<span class="tag ${t.sale_status}">${STATUS[t.sale_status] || ''}</span> · ` : ''}by ${esc(a.name)}</span></span>
+            <span class="s">${classified ? `${money(t.price) ? `<strong style="color:#e8edf5">${money(t.price)}</strong> · ` : ''}${t.location ? esc(t.location) + ' · ' : ''}<span class="tag ${t.sale_status}">${STATUS[t.sale_status] || ''}</span> · ` : ''}by ${esc(a.name)}${badge(a)}</span></span>
           <span class="r">${t.reply_count} repl${t.reply_count === 1 ? 'y' : 'ies'}<br>${esc(last.name)} · ${ago(t.last_post_at)}</span></a>`;
       }).join('') : `<p class="muted" style="padding:18px 4px">${d.threads.length ? 'Nothing with that status.' : 'No threads here yet.'}</p>`}</div>
       <div class="pager">${r.page > 0 ? `<a class="btn btn-ghost" href="#/s/${s.id}/${r.page - 1}">Newer</a>` : ''}${(r.page + 1) * 30 < d.total ? `<a class="btn btn-ghost" href="#/s/${s.id}/${r.page + 1}">Older</a>` : ''}</div>`;

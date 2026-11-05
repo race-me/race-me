@@ -32,3 +32,9 @@ test('CSV quotes every cell, escapes quotes, and defuses spreadsheet formulas', 
   assert.match(lines[2], /^"'=HYPERLINK\(""http:\/\/x"",""click""\)","'\+1"/);
   assert.match(lines[3], /"Invited, not signed in yet"/);
 });
+
+test('class shows in CSV and search', () => {
+  const m = { ...alex, class: 'podium' };
+  assert.match(A.toCsv([m]).split('\r\n')[1], /^"Alex","Driver","alex@x.com","Podium",/);
+  assert.ok(A.matches(m, 'podium') && !A.matches(alex, 'podium'));
+});
