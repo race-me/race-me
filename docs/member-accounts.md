@@ -22,19 +22,9 @@ the tools also keep working from the browser when offline.
 Members sign in only with their accounts; there is no club password. The login screen emails an 8-digit code (Supabase: Email OTP Length = 8), which
 they type in (a link in the email also works, and an invite link opens the members area directly).
 
-The members content is encrypted with a random 64-byte page key. The key lives in the one-row table
-`public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in race-me/members-src).
-Accounts are invite-only, so only members can open the page. A device that has opened it keeps the key until
-Sign out, or until the key changes.
-
-- **Rebuilding the page:** copy the key from Supabase (Table Editor → members_key → key) into `RACE_ME_PAGE_KEY` and run
-  `node build.mjs --site ../race-me --tools ../Suspension` in race-me/members-src. It refuses a key that doesn't open
-  the current page.
-- **New key** (for example after removing a member whose device still has the page open): build with `--new-key`. It
-  prints an `insert into public.members_key …` statement. Run it in the SQL Editor right after publishing, or members
-  get "can't be opened from your account right now" until you do. Every device signs in again.
-- **Removing a member:** delete their user. They can't sign in again; replace the key if you also want devices they
-  already unlocked to lose access.
+The members content isn't in the page: after sign-in, `members/index.html` loads it from the Supabase storage bucket
+`members-area`, which only signed-in members can read. The GitHub Action in race-me/members-src publishes it (on every
+push, daily, and on demand). There is no page key any more.
 
 ## Admin panel
 
@@ -63,7 +53,7 @@ admin (signed in as info@race-me.org) gets pin, lock, hide, move and delete on e
 ## Member profiles
 
 The first time a member signs in, a profile form opens before they can use the members area: name, phone, address,
-emergency contact, Discord username (optional), driving experience, their cars (year, make, model, optional
+emergency contact, driving experience, their cars (year, make, model, optional
 modifications), "I'm 21 or older" and agreement to the member rules (saved with the date). They can change it later
 with "Edit my profile" in the account panel.
 
@@ -72,11 +62,16 @@ with "Edit my profile" in the account panel.
   profile.
 - **Code:** `members/profile.js`, loaded by `sync.js`. If the table can't be reached, members aren't blocked.
 
-## Members page build
+## Members page
 
-`members/index.html` is built from the private repo race-me/members-src (`node build.mjs --site ../race-me
---tools ../Suspension`); see its README. Don't edit `members/index.html` by hand. The members area has eight car
-tools, all from the race-me/Suspension repo, and `sync.js` keeps each tool's data per member.
+`members/index.html` is a copy of `src/shell.html` in race-me/members-src (header, sign-in, and the loader). The
+content (`body.html`, `benefits.json`, the eight car tools) lives in members-src and is published to Supabase by its
+**Publish members area** action; see its README. `sync.js`, `profile.js`, `admin.js` live here in race-me.
+
+## Profile photos
+
+Members can add a photo in their profile; it's cropped square to 256 px and stored as `avatars/<user id>.jpg`. Members
+see photos next to names in the Paddock; visitors see initials. The admin can remove a photo from the Admin panel.
 
 ## Day to day
 

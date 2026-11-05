@@ -44,3 +44,13 @@ test('a saved row loads back into the form', () => {
   assert.deepEqual(P.validate(f, { now, acceptedAt: row.rules_accepted_at }).row, row, 'round trip');
   assert.deepEqual(P.toForm(null), P.blank());
 });
+
+test('profile photo helpers', () => {
+  assert.equal(P.initials('Alex Driver'), 'AD');
+  assert.equal(P.initials('  cher '), 'C');
+  assert.equal(P.initials(''), '?');
+  assert.deepEqual(P.cropSquare(4032, 3024), { sx: 504, sy: 0, size: 3024 });
+  assert.deepEqual(P.cropSquare(1080, 1920), { sx: 0, sy: 420, size: 1080 });
+  assert.equal(P.validate({ ...good(), avatar_at: '2026-11-05T00:00:00Z' }, { now }).row.avatar_at, '2026-11-05T00:00:00Z');
+  assert.equal(P.validate(good(), { now }).row.avatar_at, null);
+});

@@ -277,7 +277,7 @@
   });
   ready.catch(e => { lastErr = e.message; render(); });
 
-  // For the members page's login screen: sign in by email, and read the members page key once signed in.
+  // For the members page, the forum and the admin panel: sign in by email code, and reach the database.
   window.RaceMeAccount = {
     sendCode,
     verifyCode,
@@ -299,13 +299,6 @@
       return data;
     },
     db: async () => { await ready; return client; }, // for profile.js
-    async membersKey() {
-      await ready;
-      if (!user) return null;
-      const { data, error } = await client.from('members_key').select('key').eq('id', 1).maybeSingle();
-      if (error) throw error;
-      return data?.key || null;
-    },
   };
 
   // Changes from a tool (they run in frames of this page, or in other tabs) arrive as storage events.

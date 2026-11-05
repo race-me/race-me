@@ -57,6 +57,7 @@ test('routes, photo sizing, money and time', () => {
   assert.deepEqual(F.fit(4032, 3024), { w: 1600, h: 1200 });
   assert.deepEqual(F.fit(800, 600), { w: 800, h: 600 });
   assert.equal(F.money(400), '$400');
+  assert.equal(F.initials('Bea Racer'), 'BR');
   assert.equal(F.money(''), '');
   const now = Date.parse('2026-11-05T12:00:00Z');
   assert.equal(F.ago('2026-11-05T11:59:30Z', now), 'just now');

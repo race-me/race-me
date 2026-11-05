@@ -68,9 +68,10 @@
     if (s < 86400 * 7) return Math.floor(s / 86400) + ' d ago';
     return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
   }
+  const initials = name => String(name || '').trim().split(/\s+/).filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase() || '?';
   const money = n => n == null || n === '' ? '' : '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: Number(n) % 1 ? 2 : 0, maximumFractionDigits: 2 });
 
-  const core = { esc, renderBody, snippet, mentionQuery, usedMentions, route, fit, ago, money };
+  const core = { esc, renderBody, snippet, mentionQuery, usedMentions, route, fit, ago, money, initials };
   if (typeof module !== 'undefined') { module.exports = core; return; }
 
   /* ---------- browser ---------- */
@@ -97,6 +98,20 @@
       for (const d of data || []) if (d.signedUrl) urls.set(d.path, d.signedUrl);
     }
     return p => urls.get(p) || '';
+  }
+  // Profile photos (members only; the database leaves them out for visitors). Cached per person and photo version.
+  const avatars = new Map();
+  async function avatarUrls(people) {
+    const need = Object.entries(people || {}).filter(([id, p]) => p.avatar && !avatars.has(id + p.avatar));
+    if (need.length) {
+      const db = await A.db();
+      const { data } = await db.storage.from('avatars').createSignedUrls(need.map(([id]) => id + '.jpg'), 3600);
+      (data || []).forEach((d, i) => { if (d.signedUrl) avatars.set(need[i][0] + need[i][1].avatar, d.signedUrl); });
+    }
+    return (id, p) => {
+      const url = p?.avatar && avatars.get(id + p.avatar);
+      return url ? `<img class="av" src="${esc(url)}" alt="">` : `<span class="av" aria-hidden="true">${esc(initials(p?.name))}</span>`;
+    };
   }
   const person = (people, id) => people?.[id] || { name: 'Member', cars: [] };
   const badge = p => `${p.class && CLASSES[p.class] ? ` <span class="badge ${p.class}">${CLASSES[p.class]}</span>` : ''}${p.admin ? ' <span class="badge admin">Admin</span>' : ''}`;
@@ -177,6 +192,7 @@
     const d = current = await rpc('forum_thread', { tid: r.id });
     const t = d.thread, s = d.section, classified = s.kind === 'classifieds';
     const pic = await photoUrls(d.posts.flatMap(p => p.images || []));
+    const face = await avatarUrls(d.people);
     const mine = id => id === d.me;
     const names = p => (p.mentions || []).map(id => person(d.people, id).name);
     const listing = classified ? `<div class="panel" style="margin-top:6px">
@@ -202,7 +218,7 @@
       <div style="border-top:2px solid #4da3ff;margin-top:18px">${d.posts.map((p, i) => {
         const a = person(d.people, p.author_id);
         return `<article class="post${p.hidden ? ' hid' : ''}" id="p-${p.id}">
-          <div class="who"><div class="n">${esc(a.name)}${badge(a)}</div>${a.cars?.length ? `<div class="c">${a.cars.map(esc).join('<br>')}</div>` : ''}</div>
+          <div class="who">${face(p.author_id, a)}<div><div class="n">${esc(a.name)}${badge(a)}</div>${a.cars?.length ? `<div class="c">${a.cars.map(esc).join('<br>')}</div>` : ''}</div></div>
           <div><div class="when">${ago(p.created_at)}${p.edited_at ? ' · edited' : ''}${p.hidden ? ' · <span class="tag hid">hidden</span>' : ''}</div>
             <div class="body" data-body="${p.id}">${renderBody(p.body, names(p))}</div>
             ${(p.images || []).length ? `<div class="pics">${p.images.map(src => pic(src) ? `<a href="${esc(pic(src))}" target="_blank" rel="noopener"><img src="${esc(pic(src))}" alt="Photo" loading="lazy"></a>` : '').join('')}</div>` : ''}

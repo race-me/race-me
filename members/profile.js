@@ -20,7 +20,7 @@
   const blank = () => ({
     first_name: '', last_name: '', phone: '', address_line1: '', address_line2: '', city: '', state: '', postal_code: '',
     country: 'USA', emergency_name: '', emergency_phone: '', emergency_relationship: '', experience: '',
-    track_days: '', cars: [emptyCar()], age_21: false, rules: false, notify_replies: true, notify_mentions: true,
+    track_days: '', cars: [emptyCar()], age_21: false, rules: false, notify_replies: true, notify_mentions: true, avatar_at: null,
   });
   // A saved row back into form values.
   function toForm(row) {
@@ -66,6 +66,7 @@
       rules_accepted_at: null,
       notify_replies: f.notify_replies !== false,
       notify_mentions: f.notify_mentions !== false,
+      avatar_at: f.avatar_at || null,
     };
     if (row.postal_code && row.postal_code.length < 3) e.postal_code = 'Enter your ZIP code.';
     if (row.address_line2 && row.address_line2.length > 120) e.address_line2 = 'Keep it under 120 characters.';
@@ -93,12 +94,53 @@
     else row.rules_accepted_at = acceptedAt || now.toISOString();
     return Object.keys(e).length ? { row: null, errors: e } : { row, errors: {} };
   }
-  const core = { EXPERIENCE, MAX_CARS, blank, toForm, validate };
+  // Profile photo helpers: initials for people without a photo, and the centred square to crop a photo to.
+  const initials = name => String(name || '').trim().split(/\s+/).filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase() || '?';
+  function cropSquare(w, h) {
+    const size = Math.min(w, h);
+    return { sx: Math.round((w - size) / 2), sy: Math.round((h - size) / 2), size };
+  }
+  const core = { EXPERIENCE, MAX_CARS, blank, toForm, validate, initials, cropSquare };
   if (typeof module !== 'undefined') { module.exports = core; return; }
 
   /* ---------- browser ---------- */
   const CLASSES = { podium: 'Podium', driver: 'Driver', 'pit-crew': 'Pit Crew' };
   let myClass = null;
+  let photoUrl = '', photoMsg = null;
+  const AVATARS = 'avatars';
+  async function refreshPhoto() {
+    photoUrl = '';
+    if (!form.avatar_at) return;
+    try {
+      const db = await window.RaceMeAccount.db();
+      const { data } = await db.storage.from(AVATARS).createSignedUrl(user.id + '.jpg', 3600);
+      photoUrl = data?.signedUrl || '';
+    } catch (e) { photoUrl = ''; }
+  }
+  // Crop to a centred square, shrink to 256 px, upload as avatars/<user id>.jpg.
+  async function uploadPhoto(file) {
+    if (!/^image\//.test(file.type)) throw new Error('That isn\'t a photo.');
+    let bmp;
+    try { bmp = await createImageBitmap(file); } catch (e) { throw new Error('This browser can\'t read that photo format. Try a JPEG or PNG.'); }
+    const { sx, sy, size } = cropSquare(bmp.width, bmp.height);
+    const canvas = document.createElement('canvas'); canvas.width = canvas.height = 256;
+    canvas.getContext('2d').drawImage(bmp, sx, sy, size, size, 0, 0, 256, 256);
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.85));
+    const db = await window.RaceMeAccount.db();
+    const { error } = await db.storage.from(AVATARS).upload(user.id + '.jpg', blob, { contentType: 'image/jpeg', upsert: true });
+    if (error) throw new Error(error.message);
+    return new Date().toISOString();
+  }
+  // Save the photo marker right away when the profile already exists (a new profile saves it with the form).
+  async function savePhotoMarker(at) {
+    form.avatar_at = at;
+    if (!saved) return;
+    const db = await window.RaceMeAccount.db();
+    const { error } = await db.from('member_profiles').update({ avatar_at: at }).eq('user_id', user.id);
+    if (error) throw new Error(error.message);
+    saved.avatar_at = at;
+  }
+
   let user = null, saved = null, loadedFor = null, form = blank(), required = false, minimized = false, busy = false, errors = {};
   let wrap, banner;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -131,6 +173,9 @@
     .rm-prof .summary { margin-top: 14px; color: #ff8a3d; }
     .rm-badge { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; color: #080b12; vertical-align: 2px; }
     .rm-badge.podium { background: linear-gradient(135deg, #ffe08a, #d4a72c); } .rm-badge.driver { background: linear-gradient(135deg, #f1f4f8, #a9b2be); } .rm-badge.pit-crew { background: linear-gradient(135deg, #e7ae7c, #a8642e); }
+    .rm-prof .photo { display: flex; gap: 18px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+    .rm-prof .av { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: inline-grid; place-items: center; background: #1b2433; color: #c9d3e2; font-weight: 800; }
+    .rm-prof .av.big { width: 88px; height: 88px; font-size: 30px; }
     .rm-prof .privacy { margin-top: 26px; font-size: 14px; color: #8b9bb3; max-width: 64ch; }
     .rm-prof-banner { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 60; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center;
       max-width: calc(100vw - 24px); padding: 12px 16px; background: #0b0f18; border: 2px solid #ff8a3d; color: #e8edf5; font: 600 15px 'Archivo', system-ui, sans-serif; }`;
@@ -158,7 +203,17 @@
       ${!isNew ? `<p class="lead" style="margin-bottom:10px">Membership class: ${myClass ? `<span class="rm-badge ${myClass}">${CLASSES[myClass]}</span>` : 'not set yet (the admin sets it when your membership is confirmed)'}</p>` : ''}
       <p class="lead">${isNew ? 'One time only. The club uses this to run events and to reach someone if anything happens at the track.' : 'Keep your details up to date.'} Signed in as <strong>${esc(user?.email)}</strong>.</p>
 
-      <fieldset><legend>About you</legend><div class="grid">
+      <fieldset><legend>About you</legend>
+        <div class="photo">
+          ${photoUrl ? `<img class="av big" src="${esc(photoUrl)}" alt="Your profile photo">` : `<span class="av big" aria-hidden="true">${esc(initials(`${form.first_name} ${form.last_name}`))}</span>`}
+          <div>
+            <div class="acts" style="margin-top:0"><label class="btn btn-ghost" style="cursor:pointer">${photoUrl ? 'Change photo' : 'Add a photo'}<input type="file" accept="image/*" data-photo hidden></label>
+            ${photoUrl ? '<button type="button" class="btn btn-ghost" data-photo-remove>Remove photo</button>' : ''}</div>
+            <span class="hint">Optional. Shown to members next to your name in the Paddock. It's cropped square and shrunk.</span>
+            ${photoMsg ? `<div class="${photoMsg.bad ? 'err' : 'hint'}">${esc(photoMsg.text)}</div>` : ''}
+          </div>
+        </div>
+        <div class="grid">
         ${field('first_name', 'First name', { auto: 'given-name', cls: 'half' })}
         ${field('last_name', 'Last name', { auto: 'family-name', cls: 'half' })}
         ${field('phone', 'Phone', { type: 'tel', auto: 'tel' })}
@@ -224,7 +279,10 @@
 
   function open(isRequired, keepEntries = false) {
     required = isRequired; minimized = false;
-    if (!keepEntries) { errors = {}; form = toForm(saved); }
+    if (!keepEntries) {
+      errors = {}; form = toForm(saved); photoMsg = null;
+      refreshPhoto().then(() => { if (wrap && !wrap.hidden) render(); });
+    }
     if (!wrap) {
       const st = document.createElement('style'); st.textContent = css; document.head.append(st);
       wrap = document.createElement('div');
@@ -267,6 +325,24 @@
     };
     wrap.addEventListener('input', e => sync(e.target));
     wrap.addEventListener('change', e => sync(e.target));
+    wrap.addEventListener('change', async e => {
+      if (!e.target.matches('[data-photo]')) return;
+      const file = e.target.files[0];
+      if (!file) return;
+      photoMsg = { text: 'Uploading…' }; render();
+      try { await savePhotoMarker(await uploadPhoto(file)); await refreshPhoto(); photoMsg = { text: 'Photo saved.' }; }
+      catch (err) { photoMsg = { text: 'Could not save the photo: ' + err.message, bad: true }; }
+      render();
+    });
+    wrap.addEventListener('click', async e => {
+      if (!e.target.closest('[data-photo-remove]')) return;
+      try {
+        const db = await window.RaceMeAccount.db();
+        await db.storage.from(AVATARS).remove([user.id + '.jpg']);
+        await savePhotoMarker(null); photoUrl = ''; photoMsg = { text: 'Photo removed.' };
+      } catch (err) { photoMsg = { text: 'Could not remove the photo: ' + err.message, bad: true }; }
+      render();
+    });
     wrap.addEventListener('click', e => {
       const t = e.target;
       if (t.closest('[data-add]')) { form.cars.push({ year: '', make: '', model: '', mods: '' }); render(); wrap.querySelector(`#rp-c${form.cars.length - 1}year`)?.focus(); }
@@ -287,8 +363,8 @@
         const db = await window.RaceMeAccount.db();
         const save = row => db.from('member_profiles').upsert({ ...row, user_id: user.id, email: user.email }, { onConflict: 'user_id' }).select().single();
         let { data, error } = await save(r.row);
-        if (error && /notify_/.test(error.message || '')) {
-          const { notify_replies, notify_mentions, ...rest } = r.row; // the Paddock email settings aren't set up yet
+        if (error && /notify_|avatar_at/.test(error.message || '')) {
+          const { notify_replies, notify_mentions, avatar_at, ...rest } = r.row; // newer columns not set up yet
           ({ data, error } = await save(rest));
         }
         if (error) throw error;

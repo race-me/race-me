@@ -46,6 +46,7 @@
   /* ---------- browser ---------- */
   const A = window.RaceMeAccount;
   if (!A || !A.isAdmin()) return;
+  let faces = {}; // user id -> signed URL of their profile photo
   let members = [], query = '', open = null, busy = false, note = '', loadErr = '', armed = null, wrap, btn;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const day = t => t ? new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
@@ -77,6 +78,7 @@
     .rm-adm .danger { border-color: #ff8a3d !important; color: #ff8a3d !important; }
     .rm-adm .danger.armed { background: #ff8a3d !important; color: #080b12 !important; }
     .rm-adm .count { color: #8b9bb3; }
+    .rm-adm .av { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-right: 10px; }
     .rm-adm .badge{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:2px;vertical-align:2px;color:#080b12;white-space:nowrap}
     .rm-adm .badge.podium{background:linear-gradient(135deg,#ffe08a,#d4a72c)}
     .rm-adm .badge.driver{background:linear-gradient(135deg,#f1f4f8,#a9b2be)}
@@ -120,7 +122,7 @@
         <thead><tr><th>Name</th><th>Email</th><th class="hide-sm">Phone</th><th class="hide-sm">Cars</th><th>Class</th><th>Status</th><th class="hide-sm">Last sign-in</th></tr></thead>
         <tbody>${list.map(m => `
           <tr class="adm-row" tabindex="0" data-id="${m.user_id}" aria-expanded="${open === m.user_id}">
-            <td>${esc(name(m)) || '<span style="color:#8b9bb3">—</span>'}${m.is_admin ? ' <span class="tag invited">admin</span>' : ''}</td><td style="overflow-wrap:anywhere">${esc(m.email)}</td>
+            <td>${faces[m.user_id] ? `<img class="av" src="${esc(faces[m.user_id])}" alt="">` : ''}${esc(name(m)) || '<span style="color:#8b9bb3">—</span>'}${m.is_admin ? ' <span class="tag invited">admin</span>' : ''}</td><td style="overflow-wrap:anywhere">${esc(m.email)}</td>
             <td class="hide-sm">${esc(m.profile?.phone || '')}</td><td class="hide-sm">${esc(cars(m))}</td>
             <td>${m.class ? `<span class="badge ${m.class}">${CLASSES[m.class]}</span>` : '<span style="color:#8b9bb3">—</span>'}</td>
             <td><span class="tag ${status(m).key}">${esc(status(m).text)}</span></td><td class="hide-sm">${day(m.last_sign_in_at)}</td></tr>
@@ -129,6 +131,7 @@
               <span style="color:#8b9bb3">Shown as a badge next to their name.</span></div>${details(m)}
             <div class="acts">
               <button type="button" class="btn btn-ghost" data-code="${esc(m.email)}">Send sign-in code</button>
+              ${m.profile?.avatar_at ? `<button type="button" class="btn btn-ghost" data-rmphoto="${m.user_id}">Remove photo</button>` : ''}
               ${m.is_admin ? '' : `<button type="button" class="btn btn-ghost danger ${armed === m.user_id ? 'armed' : ''}" data-remove="${m.user_id}">${armed === m.user_id ? `Click again to remove ${esc(name(m) || m.email)}` : 'Remove member'}</button>`}
             </div></td></tr>` : ''}`).join('')}
         </tbody></table></div>`}
@@ -143,6 +146,12 @@
       const { data, error } = await db.rpc('admin_members');
       if (error) throw error;
       members = data || [];
+      const withPhoto = members.filter(m => m.profile?.avatar_at);
+      faces = {};
+      if (withPhoto.length) {
+        const { data: urls } = await db.storage.from('avatars').createSignedUrls(withPhoto.map(m => m.user_id + '.jpg'), 3600);
+        (urls || []).forEach((u, i) => { if (u.signedUrl) faces[withPhoto[i].user_id] = u.signedUrl; });
+      }
     } catch (e) {
       loadErr = 'Could not load members: ' + (e.message || e) + (/function|schema cache/i.test(e.message || '') ? ' Has supabase/admin.sql been run?' : '');
     }
@@ -199,6 +208,19 @@
         a.href = URL.createObjectURL(new Blob(['﻿' + toCsv(members)], { type: 'text/csv' }));
         a.download = `race-me-members-${new Date().toISOString().slice(0, 10)}.csv`;
         document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        return;
+      }
+      const rmp = t.closest('[data-rmphoto]');
+      if (rmp) {
+        const m = members.find(x => x.user_id === rmp.dataset.rmphoto);
+        try {
+          const db = await A.db();
+          const { error: e1 } = await db.storage.from('avatars').remove([m.user_id + '.jpg']);
+          if (e1) throw e1;
+          const { error: e2 } = await db.rpc('admin_clear_avatar', { member: m.user_id });
+          if (e2) throw e2;
+          note = `Removed ${name(m) || m.email}'s photo.`; await load();
+        } catch (err) { note = 'Could not remove the photo: ' + (err.message || err); render(); }
         return;
       }
       const code = t.closest('[data-code]');

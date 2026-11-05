@@ -359,7 +359,7 @@ a{color:#4da3ff}a:hover{color:#ff8a3d}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"showNotes":{"editor":"boolean","default":true,"tsType":"boolean","section":"Style"},"memberCount":{"editor":"int","default":0,"min":0,"max":500,"tsType":"number","section":"Track goal"},"trackGoal":{"editor":"int","default":40,"min":5,"max":500,"tsType":"number","section":"Track goal"},"discordUrl":{"editor":"text","default":"https://discord.gg/kSG9SPUkdZ","tsType":"string","section":"Links"},"$preview":{"width":1440,"height":9000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"showNotes":{"editor":"boolean","default":true,"tsType":"boolean","section":"Style"},"memberCount":{"editor":"int","default":0,"min":0,"max":500,"tsType":"number","section":"Track goal"},"trackGoal":{"editor":"int","default":40,"min":5,"max":500,"tsType":"number","section":"Track goal"},"$preview":{"width":1440,"height":9000}}'>
 class Component extends DCLogic {
   renderVals() {
     const goal = this.props.trackGoal ?? 40;
@@ -372,7 +372,6 @@ class Component extends DCLogic {
       beforeClip: 'inset(0 ' + (100 - split) + '% 0 0)',
       onSplit: (e) => this.setState({ split: Number(e.target.value) }),
       showNotes: this.props.showNotes ?? true,
-      discordUrl: this.props.discordUrl ?? 'https://discord.gg/kSG9SPUkdZ',
       trackGoal: goal,
       memberCount: count,
       hasCount: count > 0,
