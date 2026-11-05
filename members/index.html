@@ -88,11 +88,17 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
       <label for="acct-email" style="display: block; font-size: 15px; font-weight: 700; margin-bottom: 10px">Email</label>
       <input id="acct-email" type="email" autocomplete="email" required autofocus
         style="display: block; width: 100%; padding: 14px 16px; background: #080b12; color: #e8edf5; border: 1px solid rgba(159,176,200,0.45); font: 500 18px 'Archivo', system-ui, sans-serif; margin-bottom: 18px">
-      <button id="acct-btn" type="submit" class="btn" style="width: 100%" disabled>Email me a sign-in link</button>
+      <div id="acct-code-row" hidden>
+        <label for="acct-code" style="display: block; font-size: 15px; font-weight: 700; margin-bottom: 10px">Code from the email</label>
+        <input id="acct-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10"
+          style="display: block; width: 100%; padding: 14px 16px; background: #080b12; color: #e8edf5; border: 1px solid rgba(159,176,200,0.45); font: 600 24px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 0.3em; margin-bottom: 18px">
+      </div>
+      <button id="acct-btn" type="submit" class="btn" style="width: 100%" disabled>Email me a sign-in code</button>
+      <button id="acct-again" type="button" class="btn btn-ghost" hidden style="width: 100%; margin-top: 10px">Use a different email or send a new code</button>
       <p id="acct-msg" role="status" aria-live="polite" style="margin: 14px 0 0; min-height: 1.4em; font-size: 15px; color: #9fb0c8">Loading sign-in…</p>
     </form>
     <div style="flex: 1 1 300px; max-width: 46ch; font-size: 17px; line-height: 1.55; color: #9fb0c8">
-      <p style="margin: 0 0 16px; text-wrap: pretty">Members sign in with the email the club has on file. We email you a link; open it on this device and you're in. No password to remember.</p>
+      <p style="margin: 0 0 16px; text-wrap: pretty">Members sign in with the email the club has on file. We email you a 6-digit code to type in here. No password to remember.</p>
       <p style="margin: 0 0 16px; text-wrap: pretty">New member, or changed your email? Email <a href="mailto:info@race-me.org" style="font-weight: 700">info@race-me.org</a> or ask in the Discord and we'll set you up.</p>
       <p style="margin: 0 0 16px; text-wrap: pretty">Not a member yet? Pick a class and sign up in about two minutes.</p>
       <a href="../support.html#membership" style="font-weight: 700">Become a member →</a>
@@ -285,14 +291,25 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
     }
   });
   setTimeout(() => { if (!accountReady && !unlocked) acctMsg.textContent = 'Sign-in couldn\'t load. Check your connection and reload the page.'; }, 10000);
+  // Two steps: email -> we send a code -> type the code. (A link in the email also works, if the template has one.)
+  let codeFor = '';
+  const codeStep = on => {
+    $('#acct-code-row').hidden = !on; $('#acct-again').hidden = !on;
+    $('#acct-email').readOnly = on;
+    acctBtn.textContent = on ? 'Sign in' : 'Email me a sign-in code';
+    if (on) $('#acct-code').focus(); else { $('#acct-code').value = ''; $('#acct-email').focus(); }
+  };
   acctForm.addEventListener('submit', async e => {
     e.preventDefault();
-    acctBtn.disabled = true; acctMsg.style.color = '#9fb0c8'; acctMsg.textContent = 'Sending…';
-    const r = await window.RaceMeAccount.sendLink($('#acct-email').value.trim());
-    acctMsg.textContent = r.message;
-    acctMsg.style.color = r.ok ? '#9fb0c8' : '#ff8a3d';
+    acctBtn.disabled = true; acctMsg.style.color = '#9fb0c8';
+    const r = codeFor
+      ? (acctMsg.textContent = 'Checking…', await window.RaceMeAccount.verifyCode(codeFor, $('#acct-code').value))
+      : (acctMsg.textContent = 'Sending…', await window.RaceMeAccount.sendCode($('#acct-email').value.trim()));
+    if (r.ok && !codeFor) { codeFor = $('#acct-email').value.trim(); codeStep(true); }
+    if (!(r.ok && codeFor && acctBtn.textContent === 'Sign in' && r.message === 'Signed in.')) { acctMsg.textContent = r.message; acctMsg.style.color = r.ok ? '#9fb0c8' : '#ff8a3d'; }
     acctBtn.disabled = false;
   });
+  $('#acct-again').addEventListener('click', () => { codeFor = ''; acctMsg.textContent = ''; codeStep(false); });
 
   // Already unlocked on this device? A stored key from before a key change fails the MAC check and is dropped.
   const saved = store.get();

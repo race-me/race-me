@@ -177,29 +177,55 @@
       <p class="msg">Signing out keeps the data on this device; it just stops syncing.</p>` : `
       <h2>Save to my account</h2>
       <p>Sign in with the email the club has on file. Your tool data is then saved online and follows you to any device. Without signing in, it stays in this browser only.</p>
-      <form data-form><label for="rm-sync-email">Email</label><input id="rm-sync-email" type="email" autocomplete="email" required>
-      <div class="row"><button type="submit" class="btn">Email me a sign-in link</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div></form>
-      <p class="msg" role="status" aria-live="polite" data-msg></p>`;
+      <form data-form><label for="rm-sync-email">Email</label><input id="rm-sync-email" type="email" autocomplete="email" required value="${esc(codeFor)}">
+      ${codeFor ? `<label for="rm-sync-code">Code from the email</label><input id="rm-sync-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required>` : ''}
+      <div class="row"><button type="submit" class="btn">${codeFor ? 'Sign in' : 'Email me a code'}</button><button type="button" class="btn btn-ghost" data-do="close">Close</button></div></form>
+      <p class="msg" role="status" aria-live="polite" data-msg>${esc(codeMsg)}</p>`;
   }
 
-  // Emails a sign-in link. Resolves to a message for the person; ok is false when nothing was sent.
-  async function sendLink(email) {
+  // Emails a sign-in code (and a link, if the email template still has one). Resolves to a message for the
+  // person; ok is false when nothing was sent.
+  async function sendCode(email) {
     try {
       await ready;
       const { error } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: location.origin + location.pathname } });
       if (error) throw error;
-      return { ok: true, message: 'Check your email for the sign-in link and open it on this device.' };
+      return { ok: true, message: `We emailed a sign-in code to ${email}. Enter it here. It can take a minute; check spam too.` };
     } catch (e) {
       return { ok: false, message: /signup|not allowed|not found/i.test(e.message || '')
         ? 'That email isn\'t set up for an account yet. Ask info@race-me.org to add it.'
-        : /rate|too many/i.test(e.message || '') ? 'Too many sign-in emails just now. Try again in a few minutes.'
-        : 'Could not send the link: ' + (e.message || e) };
+        : /rate|too many|seconds/i.test(e.message || '') ? 'Too many sign-in emails just now. Wait a minute and try again.'
+        : 'Could not send the code: ' + (e.message || e) };
     }
   }
-  async function signIn(email) {
-    const msg = dlg.querySelector('[data-msg]');
-    msg.textContent = 'Sending…';
-    msg.textContent = (await sendLink(email)).message;
+  // Checks the code from the email; on success Supabase signs in and the usual account events follow.
+  async function verifyCode(email, code) {
+    try {
+      await ready;
+      const token = String(code || '').replace(/\D/g, '');
+      if (token.length < 6) return { ok: false, message: 'Enter the code from the email.' };
+      const { error } = await client.auth.verifyOtp({ email, token, type: 'email' });
+      if (error) throw error;
+      return { ok: true, message: 'Signed in.' };
+    } catch (e) {
+      return { ok: false, message: /expired|invalid/i.test(e.message || '')
+        ? 'That code didn\'t work. It may have expired or been mistyped; ask for a new one.'
+        : 'Could not sign in: ' + (e.message || e) };
+    }
+  }
+  let codeFor = '', codeMsg = '';
+  async function signIn() {
+    const msg = dlg.querySelector('[data-msg]'), email = dlg.querySelector('#rm-sync-email').value.trim();
+    if (!codeFor) {
+      msg.textContent = 'Sending…';
+      const r = await sendCode(email);
+      codeMsg = r.message;
+      if (r.ok) { codeFor = email; render(); dlg.querySelector('#rm-sync-code')?.focus(); } else msg.textContent = r.message;
+    } else {
+      msg.textContent = 'Checking…';
+      const r = await verifyCode(codeFor, dlg.querySelector('#rm-sync-code').value);
+      if (r.ok) { codeFor = ''; codeMsg = ''; } else msg.textContent = r.message;
+    }
   }
 
   function mount() {
@@ -226,7 +252,7 @@
       if (d === 'profile') { dlg.close(); document.dispatchEvent(new CustomEvent('raceme:edit-profile')); }
       if (d === 'out') { client.auth.signOut({ scope: 'local' }).finally(() => { user = null; render(); }); }
     });
-    dlg.addEventListener('submit', e => { e.preventDefault(); signIn(dlg.querySelector('#rm-sync-email').value.trim()); });
+    dlg.addEventListener('submit', e => { e.preventDefault(); signIn(); });
     render();
   }
 
@@ -237,6 +263,7 @@
       user = session?.user || null;
       render();
       if (user && user.id !== was) setTimeout(sync, 0);
+      if (user?.app_metadata?.role === 'admin') loadScript('admin.js');
       // The members page listens for this to unlock itself for a signed-in member (single login).
       if (user?.id !== was || event === 'INITIAL_SESSION') setTimeout(() => document.dispatchEvent(new CustomEvent('raceme:account', { detail: { user } })), 0);
     });
@@ -245,8 +272,21 @@
 
   // For the members page's login screen: sign in by email, and read the members page key once signed in.
   window.RaceMeAccount = {
-    sendLink,
+    sendCode,
+    verifyCode,
+    sendLink: sendCode, // older name
     user: () => user,
+    isAdmin: () => user?.app_metadata?.role === 'admin',
+    callFunction: async (name, body) => {
+      await ready;
+      const { data, error } = await client.functions.invoke(name, { body });
+      if (error) {
+        let msg = error.message;
+        try { msg = (await error.context.json()).error || msg; } catch (e) { /* not JSON */ }
+        throw new Error(msg);
+      }
+      return data;
+    },
     db: async () => { await ready; return client; }, // for profile.js
     async membersKey() {
       await ready;
@@ -263,8 +303,15 @@
   window.addEventListener('online', () => soon(300));
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 
-  // The member profile form (first sign-in, and "Edit my profile") lives in profile.js next to this file.
-  const prof = document.createElement('script');
-  prof.src = new URL('profile.js', document.currentScript?.src || location.href).href;
-  document.head.append(prof);
+  // The member profile form (first sign-in, and "Edit my profile") lives in profile.js next to this file; the admin
+  // panel in admin.js, loaded only for the admin account.
+  const base = document.currentScript?.src || location.href, loaded = new Set();
+  function loadScript(name) {
+    if (loaded.has(name)) return;
+    loaded.add(name);
+    const el = document.createElement('script');
+    el.src = new URL(name, base).href;
+    document.head.append(el);
+  }
+  loadScript('profile.js');
 })();

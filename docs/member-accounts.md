@@ -19,8 +19,8 @@ the tools also keep working from the browser when offline.
 
 ## Signing in
 
-Members sign in only with their accounts; there is no club password. The login screen emails a sign-in link, and an
-invite or sign-in link opens the members area directly.
+Members sign in only with their accounts; there is no club password. The login screen emails a 6-digit code, which
+they type in (a link in the email also works, and an invite link opens the members area directly).
 
 The members content is encrypted with a random 64-byte page key. The key lives in the one-row table
 `public.members_key`, which only signed-in members can read (`supabase/members-key.sql` in race-me/Suspension).
@@ -35,6 +35,17 @@ Sign out, or until the key changes.
   get "can't be opened from your account right now" until you do. Every device signs in again.
 - **Removing a member:** delete their user. They can't sign in again; replace the key if you also want devices they
   already unlocked to lose access.
+
+## Admin panel
+
+info@race-me.org (any account with `app_metadata.role = 'admin'`) gets an **Admin** button in the members header:
+the member list with profiles, search, CSV download, invite by email, send a sign-in code, and remove a member.
+
+- **Database:** `supabase/admin.sql` in race-me/Suspension: `is_admin()`, `admin_members()`, `admin_remove_member()`, and
+  the admin read rule on profiles. It also makes info@race-me.org the admin. Every action is checked in the database;
+  members can't make themselves admin.
+- **Invites:** the Edge Function `supabase/functions/admin-invite`, which holds the service-role key on Supabase.
+- **Code:** `members/admin.js`, loaded by `sync.js` only for the admin.
 
 ## Member profiles
 
