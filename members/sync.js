@@ -182,20 +182,24 @@
       <p class="msg" role="status" aria-live="polite" data-msg></p>`;
   }
 
-  async function signIn(email) {
-    const msg = dlg.querySelector('[data-msg]');
-    msg.textContent = 'Sending…';
+  // Emails a sign-in link. Resolves to a message for the person; ok is false when nothing was sent.
+  async function sendLink(email) {
     try {
       await ready;
       const { error } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: location.origin + location.pathname } });
       if (error) throw error;
-      msg.textContent = 'Check your email for the sign-in link. Open it on this device.';
+      return { ok: true, message: 'Check your email for the sign-in link and open it on this device.' };
     } catch (e) {
-      msg.textContent = /signup|not allowed|not found/i.test(e.message || '')
+      return { ok: false, message: /signup|not allowed|not found/i.test(e.message || '')
         ? 'That email isn\'t set up for an account yet. Ask info@race-me.org to add it.'
         : /rate|too many/i.test(e.message || '') ? 'Too many sign-in emails just now. Try again in a few minutes.'
-        : 'Could not send the link: ' + (e.message || e);
+        : 'Could not send the link: ' + (e.message || e) };
     }
+  }
+  async function signIn(email) {
+    const msg = dlg.querySelector('[data-msg]');
+    msg.textContent = 'Sending…';
+    msg.textContent = (await sendLink(email)).message;
   }
 
   function mount() {
@@ -232,9 +236,24 @@
       user = session?.user || null;
       render();
       if (user && user.id !== was) setTimeout(sync, 0);
+      // The members page listens for this to unlock itself for a signed-in member (single login).
+      if (user?.id !== was || event === 'INITIAL_SESSION') setTimeout(() => document.dispatchEvent(new CustomEvent('raceme:account', { detail: { user } })), 0);
     });
   });
   ready.catch(e => { lastErr = e.message; render(); });
+
+  // For the members page's login screen: sign in by email, and read the members page key once signed in.
+  window.RaceMeAccount = {
+    sendLink,
+    user: () => user,
+    async membersKey() {
+      await ready;
+      if (!user) return null;
+      const { data, error } = await client.from('members_key').select('key').eq('id', 1).maybeSingle();
+      if (error) throw error;
+      return data?.key || null;
+    },
+  };
 
   // Changes from a tool (they run in frames of this page, or in other tabs) arrive as storage events.
   window.addEventListener('storage', e => { if (e.key && TRACKED.has(e.key)) soon(); });
