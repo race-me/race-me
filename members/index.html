@@ -201,7 +201,7 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
 
   // Each members page is a [data-view]; the URL hash picks one. A tool's frame is made the first time its page is shown.
   const TOOL_TITLES = { setup: 'Setup Log', tires: 'Tire Analysis', bench: 'Suspension Geometry Bench', balance: 'Corner Balance', align: 'Alignment', springs: 'Springs and Dampers', brakes: 'Brake Bias', gearing: 'Gearing' };
-  const VIEWS = { overview: 'Members', benefits: 'Member benefits', tools: 'Car tools', ...TOOL_TITLES, crew: 'Crew', rules: 'Member rules' };
+  const VIEWS = { overview: 'Members', benefits: 'Member benefits', deals: 'Race car deals', tools: 'Car tools', ...TOOL_TITLES, crew: 'Crew', rules: 'Member rules' };
   function route() {
     const name = location.hash.slice(1) in VIEWS ? location.hash.slice(1) : 'overview';
     document.querySelectorAll('[data-view]').forEach(v => { v.hidden = v.dataset.view !== name; });
@@ -220,6 +220,10 @@ input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid #ff8a
     if (name === 'crew' && !document.querySelector('script[data-crew-js]')) {
       const el = document.createElement('script'); // the Crew page's code, next to sync.js; loaded the first time it's shown
       el.src = 'crew.js'; el.dataset.crewJs = ''; document.head.append(el);
+    }
+    if (name === 'deals' && !document.querySelector('script[data-deals-js]')) {
+      const el = document.createElement('script'); // the Deals page's code, next to crew.js; loaded the first time it's shown
+      el.src = 'deals.js'; el.dataset.dealsJs = ''; document.head.append(el);
     }
     document.title = 'Race Me — ' + VIEWS[name];
   }
